@@ -6,30 +6,74 @@
     </head>
     <body>
 
-        <nav th:fragment="nav" id="mainNav">
-            <ul class="nav bg-dark">
-                <li class="nav-item">
-                    <a class="nav-link text-light" th:href="@{/}">Codeup Blog</a>
-                </li>
-                <li class="nav-item" sec:authorize="isAuthenticated()">
-                    <a class="nav-link text-light" th:href="@{/posts/create}">Create Posts</a>
-                </li>
-                <li class="nav-item ml-auto" sec:authorize="!isAuthenticated()">
-                    <a class="nav-link text-light" th:href="@{/sign-up}">Register</a>
-                </li>
-                <li class="nav-item" sec:authorize="!isAuthenticated()">
-                    <a class="nav-link text-light" th:href="@{/login}">Login</a>
-                </li>
-                <li class="nav-item ml-auto" sec:authorize="isAuthenticated()">
-                    <a class="nav-link text-light" th:href="@{/profile}">Profile (<span th:text="${#authentication.principal.username}"></span>)</a>
-                </li>
-                <li class="nav-item" sec:authorize="isAuthenticated()">
-                    <form th:action="@{/logout}" th:method="post">
-                        <button class="btn-link btn nav-link text-light">Logout</button>
-                    </form>
-                </li>
-            </ul>
+        <nav class="navbar" role="navigation" aria-label="main navigation" th:fragment="nav" id="mainNav">
+            <div class="navbar-brand">
+<!--                <a class="navbar-item" href="https://bulma.io">-->
+<!--                    <img src="https://bulma.io/images/bulma-logo.png" width="112" height="28"/>-->
+<!--                </a>-->
+                <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                </a>
+            </div>
+
+            <div id="navbarBasicExample" class="navbar-menu">
+                <div class="navbar-start">
+                    <a class="navbar-item">Home</a>
+                    <a class="navbar-item">Documentation</a>
+                    <div class="navbar-item has-dropdown is-hoverable">
+                        <a class="navbar-link">More</a>
+                        <div class="navbar-dropdown">
+                            <a class="navbar-item">About</a>
+                            <a class="navbar-item">Jobs</a>
+                            <a class="navbar-item">Contact</a>
+                            <hr class="navbar-divider"/>
+                            <a class="navbar-item">Report an issue</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="navbar-end">
+                    <div class="navbar-item">
+                        <div class="buttons">
+                            <a class="button is-primary" sec:authorize="!isAuthenticated()" th:href="@{/sign-up}">Register</a>
+                            <a class="button is-light" sec:authorize="!isAuthenticated()" th:href="@{/login}">Login</a>
+                            <a class="button is-light" sec:authorize="isAuthenticated()" th:href="@{/profile}">Profile (<span th:text="${#authentication.principal.username}"></span>)</a>
+                            <form th:action="@{/logout}" th:method="post" sec:authorize="isAuthenticated()">
+                                <button class="button is-light">Logout</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </nav>
+
+
+
+<!--        <nav th:fragment="nav" id="mainNav">-->
+<!--            <ul class="nav bg-dark">-->
+<!--                <li class="nav-item">-->
+<!--                    <a class="nav-link text-light" th:href="@{/}">Codeup Blog</a>-->
+<!--                </li>-->
+<!--                <li class="nav-item" sec:authorize="isAuthenticated()">-->
+<!--                    <a class="nav-link text-light" th:href="@{/posts/create}">Create Posts</a>-->
+<!--                </li>-->
+<!--                <li class="nav-item ml-auto" sec:authorize="!isAuthenticated()">-->
+<!--                    <a class="nav-link text-light" th:href="@{/sign-up}">Register</a>-->
+<!--                </li>-->
+<!--                <li class="nav-item" sec:authorize="!isAuthenticated()">-->
+<!--                    <a class="nav-link text-light" th:href="@{/login}">Login</a>-->
+<!--                </li>-->
+<!--                <li class="nav-item ml-auto" sec:authorize="isAuthenticated()">-->
+<!--                    <a class="nav-link text-light" th:href="@{/profile}">Profile (<span th:text="${#authentication.principal.username}"></span>)</a>-->
+<!--                </li>-->
+<!--                <li class="nav-item" sec:authorize="isAuthenticated()">-->
+<!--                    <form th:action="@{/logout}" th:method="post">-->
+<!--                        <button class="btn-link btn nav-link text-light">Logout</button>-->
+<!--                    </form>-->
+<!--                </li>-->
+<!--            </ul>-->
+<!--        </nav>-->
 
     </body>
 </html>
