@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head th:replace="partials/head :: head('Login')">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
+        <link rel="stylesheet" href="/css/style.css"/>
+    </head>
+    <body>
+        <nav th:replace="partials/navbar :: nav"></nav>
+        <main class="container-fluid w-50 pt-3">
+            <div class="card">
+
+                <div class="card-header">Log in</div>
+                <div class="card-body">
+                    <div class="col-12">
+                        <div class="bg-warning customError mb-3">
+                            <div class='col-12' th:if="${param.error}">
+                                Invalid Username and Password.
+                            </div>
+                            <div class='col-12' th:if="${param.logout}">
+                                You have been logged out.
+                            </div>
+                        </div>
+                        <form th:action="@{/login}" method="post">
+                            <div class="form-group">
+                                <label for="username">Username</label>
+                                <input class="form-control" id="username" name="username" type="text" />
+                            </div>
+                            <div class="form-group">
+                                <label for="password">Password</label>
+                                <input class="form-control" id="password" name="password" type="password" />
+                            </div>
+                            <div class="row">
+                                <button type="submit" class="mx-auto btn btn-success">Log In!</button>
+                            </div>
+                            <div class="row">
+                                <small id="signUpHelp" class="mx-auto form-text text-muted">
+                                    Don't have an account?
+                                    <a href="/sign-up">Sign Up</a>
+                                </small>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </body>
+</html>

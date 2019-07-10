@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head th:replace="partials/head :: head('Home')">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
+    </head>
+    <body>
+
+        <div th:replace="partials/navbar :: nav"></div>
+
+        <main class="container-fluid w-75 pt-3">
+            <h1>This is the home page!</h1>
+        </main>
+
+        <th:block th:include="partials/scripts :: scripts" />
+
+    </body>
+</html>

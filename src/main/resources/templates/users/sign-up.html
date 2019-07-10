@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head th:replace="partials/head :: head('Sign Up!')">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
+        <link rel="stylesheet" href="/css/style.css"/>
+    </head>
+    <body>
+        <nav th:replace="partials/navbar :: nav"></nav>
+        <main class="container-fluid w-50 pt-3">
+            <div class="card">
+                <div class="card-header">Create an account</div>
+                <div class="card-body">
+                    <div class="col-12">
+                        <form th:action="@{/sign-up}" method="POST" th:object="${user}">
+
+                            <div class="form-group">
+                                <label for="username">Username</label>
+                                <input class="form-control" id="username" th:field="*{username}" />
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input class="form-control" id="email" th:field="*{email}" />
+                                <small id="emailHelp" class="form-text text-muted">We'll never share your email.</small>
+                            </div>
+                            <div class="form-group">
+                                <label for="password">Password</label>
+                                <input class="form-control" id="password" type="password" th:field="*{password}" />
+                            </div>
+                            <div class="form-group">
+                                <label for="cnfmpassword">Confirm Password</label>
+                                <input class="form-control" id="cnfmpassword" type="password" th:field="*{cnfmpassword}" />
+                            </div>
+                            <div class="bg-warning">
+                                <p th:if="${#fields.hasErrors('username')}" th:errors="*{username}" />
+                                <p th:if="${#fields.hasErrors('email')}" th:errors="*{email}" />
+                                <p th:if="${#fields.hasErrors('password')}" th:errors="*{password}" />
+                            </div>
+                            <div class="row">
+                                <button type="submit" class="mx-auto btn btn-success">Sign me up!</button>
+                            </div>
+                            <div class="row">
+                                <small id="logInHelp" class="mx-auto form-text text-muted">
+                                    Already have an account?
+                                    <a href="/login">Log In</a>
+                                </small>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </body>
+</html>
