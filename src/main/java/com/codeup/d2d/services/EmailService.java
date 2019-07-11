@@ -1,6 +1,6 @@
 //package com.codeup.d2d.services;
 //
-//import com.codeup.d2d.models.Post;
+//import com.codeup.d2d.doohickeys.Post;
 //import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.beans.factory.annotation.Value;
 //import org.springframework.mail.MailException;

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+    <head th:replace="partials/head :: head('View Doohickeys')">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
+        <link rel="stylesheet" href="/css/style.css"/>
+    </head>
+    <body>
+
+
+        <nav th:replace="partials/navbar :: nav"></nav>
+        <main class="container-fluid w-75 pt-3">
+            <th:block th:each="doohickey : ${doohickeyList}">
+                <div class="card p-1 my-2">
+                    <!--/* Thymeleaf has several built-in string utility functions like capitalizeWords */-->
+                    <h3 th:text="${#strings.capitalizeWords(doohickey.title)}">Doohickey</h3>
+                    <p th:text="${doohickey.description}">Lorem ipsum dolor sit amet, consectetur adipisicing elit. A accusamus accusantium alias aliquid architecto eligendi, excepturi explicabo libero maiores non numquam quae recusandae, sapiente suscipit, unde vero voluptatibus! Officiis, temporibus.</p>
+                    <small class="text-muted" th:text="${'-' + doohickey.author.username}">Username</small>
+                    <a sec:authorize="isAuthenticated()" th:if="${#authentication.principal.id} == ${doohickey.author.id}" th:href="@{'/doohickey/'+${doohickey.id}+'/edit'}">Edit</a>
+                </div>
+            </th:block>
+        </main>
+
+        <th:block th:include="partials/scripts :: scripts" />
+    </body>
+</html>
