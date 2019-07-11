@@ -1,8 +1,11 @@
 package com.codeup.d2d.controllers;
 
 import com.codeup.d2d.models.User;
+import com.codeup.d2d.models.UserRole;
 import com.codeup.d2d.repos.UserRepository;
+import com.codeup.d2d.repos.UserRoles;
 import com.codeup.d2d.services.AuthenticationService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,6 +20,10 @@ import java.util.Arrays;
 public class UserController {
     private UserRepository userDao;
     private PasswordEncoder passwordEncoder;
+
+    @Autowired
+    private UserRoles userRoles;
+
     private AuthenticationService authSvc;
 
     public UserController(AuthenticationService authSvc, UserRepository users, PasswordEncoder passwordEncoder) {
@@ -68,7 +75,18 @@ public class UserController {
         String hash = passwordEncoder.encode(user.getPassword());
         user.setPassword(hash);
         user.setEnabled(true);
-        userDao.save(user);
-        return "redirect:/login";
+
+        User newUser = userDao.save(user);
+
+        UserRole ur = new UserRole();
+        ur.setRole("ROLE_USER");
+        ur.setUserId(newUser.getId());
+        userRoles.save(ur);
+
+        authSvc.authenticate(user);
+
+        model.addAttribute("user", user);
+
+        return "redirect:/";
     }
 }

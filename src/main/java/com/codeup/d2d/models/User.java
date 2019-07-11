@@ -1,14 +1,11 @@
 package com.codeup.d2d.models;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotBlank;
 
 import javax.persistence.*;
 import javax.validation.constraints.Size;
-import java.util.Collection;
-import java.util.List;
 
 @Entity
 @Table(name = "users")
@@ -48,6 +45,7 @@ public class User {
 
     public User() {
     }
+
     public User(User copy) {
         id = copy.id; // This line is SUPER important! Many things won't work if it's absent
         email = copy.email;
@@ -55,12 +53,6 @@ public class User {
         password = copy.password;
         cnfmpassword = copy.cnfmpassword;
         enabled=copy.enabled;
-    }
-
-    public User(String email, String username, String password) {
-        this.email = email;
-        this.username = username;
-        this.password = password;
     }
     public User(String email, String username, String password, boolean enabled) {
         this.email = email;
