@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
     <head th:replace="partials/head :: head(${user.username+'''s Profile'})">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
         <link rel="stylesheet" href="/css/style.css"/>
@@ -11,6 +11,10 @@
                 <div class="col-12" th:text="${user.username+'''s Profile'}">
                     User's Profile
                 </div>
+                <div class="col-12">
+                    IS <span sec:authorize="!hasRole('ROLE_ADMIN')">NOT </span>ADMIN
+                </div>
+
             </div>
         </main>
     </body>

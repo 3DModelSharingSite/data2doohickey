@@ -1,11 +1,13 @@
 package com.codeup.d2d.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotBlank;
 
 import javax.persistence.*;
 import javax.validation.constraints.Size;
+import java.util.List;
 
 @Entity
 @Table(name = "users")
@@ -18,6 +20,7 @@ public class User {
     @Column(nullable = false, unique = true, length = 255)
     @NotBlank(message = "You must have an email!")
     @Email(message="[${validatedValue}] is not a valid email")
+    @JsonIgnore
     private String email;
 
     @Column(nullable = false, unique = true, length = 255)
@@ -34,6 +37,9 @@ public class User {
     @Column(nullable = false)
     private boolean enabled;
 
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "author")
+    @JsonBackReference
+    private List<Doohickey> doohickeyList;
 
 
 
