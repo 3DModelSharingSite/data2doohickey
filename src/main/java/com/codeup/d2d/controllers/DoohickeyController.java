@@ -5,8 +5,11 @@ import com.codeup.d2d.models.User;
 import com.codeup.d2d.repos.DoohickeyRepository;
 import com.codeup.d2d.repos.UserRepository;
 import com.codeup.d2d.services.AuthenticationService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -24,6 +27,7 @@ public class DoohickeyController {
     private DoohickeyRepository doohickeyDao;
     private AuthenticationService authSvc;
 
+    @Autowired
     public DoohickeyController(AuthenticationService authSvc, UserRepository users, DoohickeyRepository doohickeyDao) {
         this.authSvc = authSvc;
         this.userDao = users;
@@ -32,15 +36,12 @@ public class DoohickeyController {
 
 
     @GetMapping("/doohickeys")
-    public String showAllModels(@RequestParam(defaultValue = "1") String page, Model model) {
-        System.out.println(page);
-        int pageInt = Integer.parseInt(page)-1;
-        PageRequest pagerequest = new PageRequest(pageInt,30);
-        Page<Doohickey> doohickeyList = doohickeyDao.findAll(pagerequest);
-
-        model.addAttribute("doohickeyList",doohickeyList);
+    public String showAllModels(@PageableDefault(value=1) Pageable pageable, Model model) {
+        Pageable pageable2 = new PageRequest(pageable.getPageNumber()-1,pageable.getPageSize());
+        model.addAttribute("page",doohickeyDao.findAll(pageable2));
         return "doohickeys/index";
     }
+
     @GetMapping("/doohickeys/{id}")
     public String showDoohickey(@PathVariable Long id, Model model){
         Doohickey doohickey = doohickeyDao.findOne(id);

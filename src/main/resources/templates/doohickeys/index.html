@@ -9,7 +9,12 @@
 
         <nav th:replace="partials/navbar :: nav"></nav>
         <main class="container-fluid w-75 pt-3">
-            <th:block th:each="doohickey : ${doohickeyList}">
+
+
+            <nav th:replace="partials/pagination :: pageList"></nav>
+
+
+            <th:block th:each="doohickey : ${page}">
                 <div class="card p-1 my-2" style="cursor:pointer;" th:onclick="${'location=''/doohickeys/'+doohickey.id+''''}">
                     <!--/* Thymeleaf has several built-in string utility functions like capitalizeWords */-->
                     <h3 th:text="${#strings.capitalizeWords(doohickey.title)}">Doohickey</h3>
