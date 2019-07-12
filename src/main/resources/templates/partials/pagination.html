@@ -8,17 +8,14 @@
 
         <nav th:fragment="pageList" class="text-center" id="mainPaginator">
             <ul class="pagination">
-                <li th:class="${page.isFirst()}? 'disabled' : ''">
-                    <span th:if='${page.isFirst()}'>← First</span>
-                    <a th:if='${not page.isFirst()}' th:href="'?page=0'">
+                <li th:class="${page.hasPrevious()}? '' : 'disabled'">
+                    <a th:if='${not page.isFirst()}' th:href="'?page=1'">
                         ← First
                     </a>
-                </li>
-                <li th:class="${page.hasPrevious()}? '' : 'disabled'">
                     <span th:if='${not page.hasPrevious()}'>«</span>
                     <a
                             th:if='${page.hasPrevious()}'
-                            th:href="'?page=' + ${page.getNumber() - 1}"
+                            th:href="'?page=' + ${page.getNumber()}"
                             title='Go to previous page'
                     >
                         «
@@ -27,13 +24,13 @@
 
                 <li th:each="i : ${#numbers.sequence(1, page.getTotalPages())}">
                     <span
-                            th:if='${(i - 1) == param.page}'
+                            th:if='${(i) == page.getNumber()+1}'
                             th:text='${i}'>
                         1
                     </span>
                     <a
-                            th:if='${not ((i - 1) == param.page)}'
-                            th:href="'?page=' + ${(i -1)}"
+                            th:if='${not ((i) == page.getNumber()+1)}'
+                            th:href="'?page=' + ${(i)}"
                     >
                         <span th:text='${i}'>1</span>
                     </a>
@@ -47,12 +44,9 @@
                     >
                         »
                     </a>
-                </li>
-                <li th:class="${page.isLast()}? 'disabled' : ''">
-                    <span th:if='${page.isLast()}'>Last →</span>
                     <a
                             th:if='${not page.isLast()}'
-                            th:href="'?page=' + ${page.getTotalPages() - 1}"
+                            th:href="'?page=' + ${page.getTotalPages()}"
                     >
                         Last →
                     </a>

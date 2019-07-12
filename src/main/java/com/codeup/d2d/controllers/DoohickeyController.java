@@ -37,7 +37,8 @@ public class DoohickeyController {
 
     @GetMapping("/doohickeys")
     public String showAllModels(@PageableDefault(value=1) Pageable pageable, Model model) {
-        model.addAttribute("page",doohickeyDao.findAll(pageable));
+        Pageable pageable2 = new PageRequest(pageable.getPageNumber()-1,pageable.getPageSize());
+        model.addAttribute("page",doohickeyDao.findAll(pageable2));
         return "doohickeys/index";
     }
 
