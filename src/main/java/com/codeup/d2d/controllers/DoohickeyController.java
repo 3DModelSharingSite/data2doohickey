@@ -16,8 +16,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.validation.Valid;
-import java.util.Collection;
-import java.util.List;
 
 
 @Controller
@@ -43,6 +41,40 @@ public class DoohickeyController {
         model.addAttribute("doohickeyList",doohickeyList);
         return "doohickeys/index";
     }
+    @GetMapping("/doohickeys/{id}/edit")
+    public String showEditDoohickeyForm(@PathVariable Long id, Model model){
+        if(authSvc.getCurUser() == null){
+            return "redirect:/login";
+        }
+        model.addAttribute("doohickey", doohickeyDao.findOne(id));
+        model.addAttribute("action", "/doohickeys/"+id+"/edit");
+        model.addAttribute("title", "Edit Doohickey");
+        return "doohickeys/editCreate";
+    }
+    @PostMapping("/doohickeys/{id}/edit")
+    public String EditDoohickey(@PathVariable Long id, @Valid Doohickey editedDoohickey,
+                                        Errors validation,
+                                        Model model){
+        if(authSvc.getCurUser() == null){
+            return "redirect:/login";
+        }
+        if (validation.hasErrors()) {
+            model.addAttribute("errors", validation);
+            model.addAttribute("doohickey", editedDoohickey);
+            model.addAttribute("action", "/doohickeys/"+id+"/edit");
+            model.addAttribute("title", "Edit Doohickey");
+            return "doohickeys/editCreate";
+        }
+        Doohickey doohickey = doohickeyDao.findOne(editedDoohickey.getId());
+
+
+        doohickey.setTitle(editedDoohickey.getTitle());
+        doohickey.setDescription(editedDoohickey.getDescription());
+
+
+        doohickeyDao.save(doohickey);
+        return "redirect:/doohickeys";
+    }
 
     @GetMapping("/doohickeys/create")
     public String showCreateDoohickeyForm(Model model){
@@ -52,7 +84,7 @@ public class DoohickeyController {
         model.addAttribute("doohickey", new Doohickey());
         model.addAttribute("action", "/doohickeys/create");
         model.addAttribute("title", "Create a Doohickey");
-        return "doohickeys/create";
+        return "doohickeys/editCreate";
     }
 
     @PostMapping("/doohickeys/create")
@@ -65,7 +97,9 @@ public class DoohickeyController {
         if (validation.hasErrors()) {
             model.addAttribute("errors", validation);
             model.addAttribute("doohickey", doohickey);
-            return "users/sign-up";
+            model.addAttribute("action", "/doohickeys/create");
+            model.addAttribute("title", "Create a Doohickey");
+            return "doohickeys/editCreate";
         }
         doohickey.setAuthor((User)authSvc.getCurUser());
         doohickey.setViews(0);

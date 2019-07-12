@@ -17,7 +17,7 @@ public class Doohickey {
     private long id;
 
     @Column(nullable = false, length = 255)
-    @NotBlank(message = "A model must have a title!")
+    @NotBlank(message = "A doohickey must have a title!")
     @Size(min = 3, message = "A title must be at least 3 characters.")
     private String title;
 

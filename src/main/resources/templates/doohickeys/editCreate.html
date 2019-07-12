@@ -8,7 +8,7 @@
         <nav th:replace="partials/navbar :: nav"></nav>
         <main class="container-fluid w-50 pt-3">
             <div class="card">
-                <div class="card-header">Create a doohickey</div>
+                <div class="card-header" th:text="${title}"></div>
                 <div class="card-body">
                     <div class="col-12">
                         <form th:action="${action}" method="POST" th:object="${doohickey}">

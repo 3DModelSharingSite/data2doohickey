@@ -10,12 +10,12 @@
         <nav th:replace="partials/navbar :: nav"></nav>
         <main class="container-fluid w-75 pt-3">
             <th:block th:each="doohickey : ${doohickeyList}">
-                <div class="card p-1 my-2">
+                <div class="card p-1 my-2" style="cursor:pointer;" th:onclick="${'location=''/doohickeys/'+doohickey.id+''''}">
                     <!--/* Thymeleaf has several built-in string utility functions like capitalizeWords */-->
                     <h3 th:text="${#strings.capitalizeWords(doohickey.title)}">Doohickey</h3>
                     <p th:text="${doohickey.description}">Lorem ipsum dolor sit amet, consectetur adipisicing elit. A accusamus accusantium alias aliquid architecto eligendi, excepturi explicabo libero maiores non numquam quae recusandae, sapiente suscipit, unde vero voluptatibus! Officiis, temporibus.</p>
                     <small class="text-muted" th:text="${'-' + doohickey.author.username}">Username</small>
-                    <a sec:authorize="isAuthenticated()" th:if="${#authentication.principal.id} == ${doohickey.author.id}" th:href="@{'/doohickey/'+${doohickey.id}+'/edit'}">Edit</a>
+                    <a sec:authorize="isAuthenticated()" th:if="${#authentication.principal.id} == ${doohickey.author.id}" th:href="@{'/doohickeys/'+${doohickey.id}+'/edit'}">Edit</a>
                 </div>
             </th:block>
         </main>
