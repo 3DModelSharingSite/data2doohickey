@@ -41,6 +41,16 @@ public class DoohickeyController {
         model.addAttribute("doohickeyList",doohickeyList);
         return "doohickeys/index";
     }
+    @GetMapping("/doohickeys/{id}")
+    public String showDoohickey(@PathVariable Long id, Model model){
+        Doohickey doohickey = doohickeyDao.findOne(id);
+        model.addAttribute("doohickey", doohickey);
+        model.addAttribute("title", doohickey.getTitle() + " by " + doohickey.getAuthor().getUsername());
+        return "doohickeys/show";
+    }
+
+
+
     @GetMapping("/doohickeys/{id}/edit")
     public String showEditDoohickeyForm(@PathVariable Long id, Model model){
         if(authSvc.getCurUser() == null){

@@ -11,10 +11,6 @@
                 <div class="col-12" th:text="${user.username+'''s Profile'}">
                     User's Profile
                 </div>
-                <div class="col-12">
-                    IS <span sec:authorize="!hasRole('ROLE_ADMIN')">NOT </span>ADMIN
-                </div>
-
             </div>
         </main>
     </body>
