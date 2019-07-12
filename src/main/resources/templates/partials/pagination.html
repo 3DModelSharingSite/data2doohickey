@@ -6,7 +6,7 @@
     </head>
     <body>
 
-        <nav th:fragment="pageList" class="text-center" id="mainPaginator">
+        <nav th:fragment="pageList" class="text-center">
             <ul class="pagination">
                 <li th:class="${page.hasPrevious()}? '' : 'disabled'">
                     <a th:if='${not page.isFirst()}' th:href="'?page=1'">
@@ -39,7 +39,7 @@
                     <span th:if='${not page.hasNext()}'>»</span>
                     <a
                             th:if='${page.hasNext()}'
-                            th:href="'?page=' + ${page.getNumber() + 1}"
+                            th:href="'?page=' + ${page.getNumber() + 2}"
                             title='Go to next page'
                     >
                         »
