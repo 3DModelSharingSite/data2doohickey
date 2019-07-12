@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.validation.Valid;
@@ -33,13 +34,20 @@ public class UserController {
     }
 
     @GetMapping("/profile")
-    public String showProfile(Model model){
+    public String showProfile(){
         if(authSvc.getCurUser() == null){
             return "redirect:/login";
         }
-        model.addAttribute("user",userDao.findOne(((User)authSvc.getCurUser()).getId()));
+        return "redirect:/profile/"+((User)authSvc.getCurUser()).getUsername();
+    }
+
+    @GetMapping("/profile/{username}")
+    public String showProfileOfUser(@PathVariable String username, Model model){
+        User user = userDao.findByUsername(username);
+        model.addAttribute("user",user);
         return "users/profile";
     }
+
 
     @GetMapping("/sign-up")
     public String showSignupForm(Model model){
