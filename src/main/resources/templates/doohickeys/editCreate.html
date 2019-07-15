@@ -1,37 +1,78 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-    <head th:replace="partials/head :: head(${title})">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
-        <link rel="stylesheet" href="/css/style.css"/>
-    </head>
-    <body>
-        <nav th:replace="partials/navbar :: nav"></nav>
-        <main class="container-fluid w-50 pt-3">
-            <div class="card">
-                <div class="card-header" th:text="${title}"></div>
-                <div class="card-body">
-                    <div class="col-12">
-                        <form th:action="${action}" method="POST" th:object="${doohickey}">
+<head th:replace="partials/head :: head(${title})">
 
-                            <div class="form-group">
-                                <label for="title">Title</label>
-                                <input class="form-control" id="title" th:field="*{title}" />
-                            </div>
-                            <div class="form-group">
-                                <label for="description">Description</label>
-                                <input class="form-control" id="description" th:field="*{description}" />
-                            </div>
-                            <div class="bg-warning">
-                                <p th:if="${#fields.hasErrors('title')}" th:errors="*{title}" />
-                                <p th:if="${#fields.hasErrors('description')}" th:errors="*{description}" />
-                            </div>
-                            <div class="row">
-                                <button type="submit" class="mx-auto btn btn-success">Save!</button>
-                            </div>
-                        </form>
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+          crossorigin="anonymous"/>
+    <!--<link rel="stylesheet"-->
+          <!--href="/css/style.css"/>-->
+    <link rel="stylesheet"
+          type="test/css"
+          media="screen"
+          href="../../static/Madeleine.js-master/css/stylesheet.css"/>
+    <script src="../../static/Madeleine.js-master/src/lib/stats.js"></script>
+    <script src="../../static/Madeleine.js-master/src/lib/detector.js"></script>
+    <script src="../../static/Madeleine.js-master/src/lib/three.min.js"></script>
+    <script src="../../static/Madeleine.js-master/src/Madeleine.js"></script>
+
+</head>
+<body>
+<nav th:replace="partials/navbar :: nav"></nav>
+<main class="container-fluid w-50 pt-3">
+    <div class="card">
+        <div class="card-header" th:text="${title}"></div>
+        <div class="card-body">
+            <div class="col-12">
+                <form th:action="${action}" method="POST" th:object="${doohickey}">
+
+                    <div class="form-group">
+
+                            <input type="file" id="files" name="files" multiple/>
+
+                        <div id="upload-target"></div>
+                        <div id="ajax-target"></div>
                     </div>
-                </div>
+
+                    <div class="form-group">
+                        <label for="title">Title</label>
+                        <input class="form-control" id="title" th:field="*{title}"/>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="description">Description</label>
+                        <input class="form-control" id="description" th:field="*{description}"/>
+                    </div>
+
+                    <div class="bg-warning">
+                        <p th:if="${#fields.hasErrors('title')}" th:errors="*{title}"/>
+                        <p th:if="${#fields.hasErrors('description')}" th:errors="*{description}"/>
+                    </div>
+
+                    <div class="row">
+                        <button type="submit" class="mx-auto btn btn-success">Save!</button>
+                    </div>
+                </form>
             </div>
-        </main>
-    </body>
+        </div>
+    </div>
+</main>
+<script th:replace="partials/scripts :: scripts">
+
+window.onload = function () {
+    mad = new Madeleine({
+        target: 'ajax-target',
+        data: '../../static/Madeleine.js-master/models/skull.stl',
+        path: '../../static/Madeleine.js-master/src'
+    });
+    Lily.ready({
+        target: 'upload-target',
+        file: 'files',
+        path: '../../static/Madeleine.js-master/src'
+    });
+};
+
+</script>
+</body>
 </html>
