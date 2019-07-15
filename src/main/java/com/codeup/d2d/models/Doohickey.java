@@ -44,6 +44,19 @@ public class Doohickey {
     @ManyToMany(mappedBy = "favorites")
     private List<User> usersFavorited;
 
+    @Transient
+    @NotBlank(message = "A doohickey must have tags!")
+    private String tagsString;
+
+
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(
+            name = "doohickeys_tags",
+            joinColumns = {@JoinColumn(name = "doohickey_id")},
+            inverseJoinColumns = {@JoinColumn(name = "tag_id")}
+    )
+    private List<Tag> tags;
+
     public Doohickey() {
     }
 
@@ -56,6 +69,7 @@ public class Doohickey {
         created_at=copy.created_at;
         author=copy.author;
         usersFavorited=copy.usersFavorited;
+        tags=copy.tags;
     }
 
     public Doohickey(String title, String description, long views, long downloads, Date created_at, User author) {
@@ -138,5 +152,21 @@ public class Doohickey {
 
     public void setUsersFavorited(List<User> usersFavorited) {
         this.usersFavorited = usersFavorited;
+    }
+
+    public List<Tag> getTags() {
+        return tags;
+    }
+
+    public void setTags(List<Tag> tags) {
+        this.tags = tags;
+    }
+
+    public String getTagsString() {
+        return tagsString;
+    }
+
+    public void setTagsString(String tagsString) {
+        this.tagsString = tagsString;
     }
 }

@@ -1,8 +1,10 @@
 package com.codeup.d2d.controllers;
 
 import com.codeup.d2d.models.Doohickey;
+import com.codeup.d2d.models.Tag;
 import com.codeup.d2d.models.User;
 import com.codeup.d2d.repos.DoohickeyRepository;
+import com.codeup.d2d.repos.TagRepository;
 import com.codeup.d2d.repos.UserRepository;
 import com.codeup.d2d.services.AuthenticationService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +18,8 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 
@@ -23,14 +27,16 @@ import java.util.List;
 @Controller
 public class DoohickeyController {
     private UserRepository userDao;
+    private TagRepository tagDao;
     private DoohickeyRepository doohickeyDao;
     private AuthenticationService authSvc;
 
     @Autowired
-    public DoohickeyController(AuthenticationService authSvc, UserRepository users, DoohickeyRepository doohickeyDao) {
+    public DoohickeyController(TagRepository tagDao,AuthenticationService authSvc, UserRepository users, DoohickeyRepository doohickeyDao) {
         this.authSvc = authSvc;
         this.userDao = users;
         this.doohickeyDao = doohickeyDao;
+        this.tagDao=tagDao;
     }
 
     @GetMapping("/doohickeys")
@@ -121,7 +127,8 @@ public class DoohickeyController {
     @PostMapping("/doohickeys/create")
     public String CreateDoohickey(@Valid Doohickey doohickey,
                            Errors validation,
-                           Model model) {
+                           Model model,
+                           @RequestParam String tagsString) {
         if(authSvc.getCurUser() == null){
             return "redirect:/login";
         }
@@ -132,6 +139,19 @@ public class DoohickeyController {
             model.addAttribute("title", "Create a Doohickey");
             return "doohickeys/editCreate";
         }
+        List<String> tagStrings = Arrays.asList(tagsString.toLowerCase().split("\\s*,\\s*"));
+        List<Tag> tags = new ArrayList<>();
+        System.out.println(tagStrings);
+        for(String tag :tagStrings){
+            System.out.println(tag);
+            if(tagDao.findByName(tag) != null) {
+                tags.add(tagDao.findByName(tag));
+            }else{
+                tags.add(new Tag(tag));
+            }
+        }
+
+        doohickey.setTags(tags);
         doohickey.setAuthor((User)authSvc.getCurUser());
         doohickey.setViews(0);
         doohickey.setDownloads(0);
