@@ -13,12 +13,11 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.Collection;
+import java.util.List;
 
 
 @Controller
@@ -34,11 +33,11 @@ public class DoohickeyController {
         this.doohickeyDao = doohickeyDao;
     }
 
-
     @GetMapping("/doohickeys")
-    public String showAllModels(@PageableDefault(value=1) Pageable pageable, Model model) {
+    public String showAllDoohickeys(@PageableDefault(page = 1,size=6) Pageable pageable, Model model) {
         Pageable pageable2 = new PageRequest(pageable.getPageNumber()-1,pageable.getPageSize());
         model.addAttribute("page",doohickeyDao.findAll(pageable2));
+        model.addAttribute("user",(User)authSvc.getCurUser());
         return "doohickeys/index";
     }
 
@@ -50,6 +49,27 @@ public class DoohickeyController {
         return "doohickeys/show";
     }
 
+    @GetMapping("/doohickeys/{id}/favorite")
+    @ResponseBody
+    public String favoriteDoohickey(@PathVariable Long id){
+        if(authSvc.getCurUser() == null){
+            return "Failure";
+        }
+        User user = (User)authSvc.getCurUser();
+        user = userDao.findOne(user.getId());
+        Doohickey doohickey = doohickeyDao.findOne(id);
+        if(user.getFavorites().contains(doohickey)){
+            user.getFavorites().remove(doohickey);
+            userDao.save(user);
+            System.out.println(id+" Has been unfavorited!");
+            return "UnFavorited";
+        }else {
+            user.getFavorites().add(doohickey);
+            userDao.save(user);
+            System.out.println(id+" Has been favorited!");
+            return "Favorited";
+        }
+    }
 
 
     @GetMapping("/doohickeys/{id}/edit")

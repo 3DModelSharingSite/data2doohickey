@@ -6,7 +6,9 @@ import org.hibernate.validator.constraints.NotBlank;
 
 import javax.persistence.*;
 import javax.validation.constraints.Size;
+import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "doohickeys")
@@ -39,6 +41,8 @@ public class Doohickey {
     @JsonManagedReference
     private User author;
 
+    @ManyToMany(mappedBy = "favorites")
+    private List<User> usersFavorited;
 
     public Doohickey() {
     }
@@ -51,6 +55,7 @@ public class Doohickey {
         downloads = copy.downloads;
         created_at=copy.created_at;
         author=copy.author;
+        usersFavorited=copy.usersFavorited;
     }
 
     public Doohickey(String title, String description, long views, long downloads, Date created_at, User author) {
@@ -60,6 +65,15 @@ public class Doohickey {
         this.downloads = downloads;
         this.created_at = created_at;
         this.author=author;
+    }
+
+    public boolean usersFavoritedContains(long id){
+        for(User user: usersFavorited){
+            if(user.getId() == id){
+                return true;
+            }
+        }
+        return false;
     }
 
     public long getId() {
@@ -116,5 +130,13 @@ public class Doohickey {
 
     public void setAuthor(User author) {
         this.author = author;
+    }
+
+    public List<User> getUsersFavorited() {
+        return usersFavorited;
+    }
+
+    public void setUsersFavorited(List<User> usersFavorited) {
+        this.usersFavorited = usersFavorited;
     }
 }
