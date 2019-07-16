@@ -1,23 +1,14 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head th:replace="partials/head :: head(${title})">
 
-    <link rel="stylesheet"
-          href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
-          crossorigin="anonymous"/>
     <!--<link rel="stylesheet"-->
-          <!--href="/css/style.css"/>-->
-    <link rel="stylesheet"
-          type="test/css"
-          media="screen"
-          href="../../static/Madeleine.js-master/css/stylesheet.css"/>
-    <script src="../../static/Madeleine.js-master/src/lib/stats.js"></script>
-    <script src="../../static/Madeleine.js-master/src/lib/detector.js"></script>
-    <script src="../../static/Madeleine.js-master/src/lib/three.min.js"></script>
-    <script src="../../static/Madeleine.js-master/src/Madeleine.js"></script>
-
+          <!--href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"-->
+          <!--integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"-->
+          <!--crossorigin="anonymous"/>-->
 </head>
+
 <body>
 <nav th:replace="partials/navbar :: nav"></nav>
 <main class="container-fluid w-50 pt-3">
@@ -29,10 +20,13 @@
 
                     <div class="form-group">
 
-                            <input type="file" id="files" name="files" multiple/>
+                    <!--file upload-->
 
-                        <div id="upload-target"></div>
-                        <div id="ajax-target"></div>
+                        <div id="stl_cont" style="width:500px; height:500px; margin:0 auto;"></div>
+                        <canvas width="495" height="495" style="width: 495px; height: 495px;"></canvas>
+
+                        <input type="file" onchange='stl_viewer.add_model({local_file:this.files[0]});' accept="*.*"/>
+
                     </div>
 
                     <div class="form-group">
@@ -58,21 +52,8 @@
         </div>
     </div>
 </main>
-<script th:replace="partials/scripts :: scripts">
 
-window.onload = function () {
-    mad = new Madeleine({
-        target: 'ajax-target',
-        data: '../../static/Madeleine.js-master/models/skull.stl',
-        path: '../../static/Madeleine.js-master/src'
-    });
-    Lily.ready({
-        target: 'upload-target',
-        file: 'files',
-        path: '../../static/Madeleine.js-master/src'
-    });
-};
+<th:block th:include="partials/scripts :: scripts"/>
 
-</script>
 </body>
 </html>
