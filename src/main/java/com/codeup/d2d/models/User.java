@@ -57,6 +57,10 @@ public class User {
     @Transient
     private String cnfmpassword;
 
+    @OneToOne(fetch = FetchType.LAZY,
+            cascade =  CascadeType.ALL,
+            mappedBy = "user")
+    private UserDetails userDetails;
 
     public User() {
     }
@@ -152,5 +156,12 @@ public class User {
         this.favorites = favorites;
     }
 
+    public UserDetails getUserDetails() {
+        return userDetails;
+    }
+
+    public void setUserDetails(UserDetails userDetails) {
+        this.userDetails = userDetails;
+    }
 
 }
