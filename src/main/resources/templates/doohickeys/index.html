@@ -38,6 +38,7 @@
             </th:block>
         </main>
 
+        <nav th:replace="partials/footer :: footer"></nav>
         <th:block th:include="partials/scripts :: scripts" />
         <script>
             $(".favButton").click(function(e){

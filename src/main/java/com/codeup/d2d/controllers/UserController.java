@@ -44,6 +44,13 @@ public class UserController {
         }
         return "redirect:/profile/"+((User)authSvc.getCurUser()).getUsername();
     }
+    @GetMapping("/profile2/{username}")
+    public String showProfile2OfUser(@PathVariable String username, Model model){
+        User user = userDao.findByUsername(username);
+        model.addAttribute("user",user);
+        model.addAttribute("userDetails",user.getUserDetails());
+        return "users/profile2";
+    }
 
     @GetMapping("/profile/{username}")
     public String showProfileOfUser(@PathVariable String username, Model model){
@@ -52,6 +59,7 @@ public class UserController {
         model.addAttribute("userDetails",user.getUserDetails());
         return "users/profile";
     }
+
     @GetMapping("/profile/{username}/edit")
     public String editProfileDetailsOfUser(@PathVariable String username, Model model){
         User user = userDao.findByUsername(username);

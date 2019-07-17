@@ -1,0 +1,144 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head th:replace="partials/head :: head('View Profile')">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
+    <link rel="stylesheet" href="/css/style.css"/>
+</head>
+<body>
+    <nav th:replace="partials/navbar :: nav"></nav>
+    <main class="container-fluid w-75 pt-3">
+        <div class="loading-screen">
+            <span class="message center"></span>
+        </div>
+            <div class="page-container">
+                <div id="push-wrap">
+                    <div id="push-main">
+                        <div class="site-header">
+                            <div class="center_content justify">
+                                <nav class="site-header-nav plain-nav justify">
+                                    <span class="dropdown">
+                                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Create</a>
+                                    </span>
+                                    <div class="login">
+                                        <div class="login-box">
+                                            <a href="" class="login-join">Sign in / Join</a>
+                                        </div>
+                                    </div>
+                                </nav>
+                            </div>
+                        </div>
+                        <div id="main">
+                            <div class="center_content">
+                                <div class="profile-page">
+                                    <div class="profile-user-info">
+                                        <div class="profile-card tv-profile-image-card">
+                                            <div class="cover-img-wrapper " data-toggle=".cover-upload">
+                                                <div class="cover-img" style="background-image: url();"></div>
+                                            </div>
+
+
+                                            <div class="profile-avatar-wrapper " data-toggle=".avatar-upload">
+                                                <div class="avatar-wrapper" data-userid="1935989">
+                                                    <img data-src="" class="avatar"/>
+                                                </div>
+                                            </div>
+
+                                            <h1 th:text="${user.username}"></h1>
+                                            <div class="user-info">
+                                                <span class="profile-username" th:text="${user.username}"></span>
+                                            </div>
+
+                                            <a class="button grey-button profile-tip" data-modal="#user-tip" href="/login" target="_blank">Tip Designer</a>
+
+                                            <div class="follow-stats">
+                                                <a th:href="${'/profile/'+user.username+'/followers'}" class="user-count">
+                                                    <span class="box-count">1</span>
+                                                    Followers
+                                                </a>
+
+                                                <a th:href="${'/profile/'+user.username+'/following'}" class="user-count">
+                                                    <span class="box-count">1</span>
+                                                    Following
+                                                </a>
+                                            </div>
+                                        </div>
+
+                                        <div class="user-counts">
+                                            <a th:href="${'/profile/'+user.username+'/designs'}" class="user-count ">
+                                                <span class="box-count">1</span>
+                                                designs
+                                            </a>
+                                            <a th:href="${'/profile/'+user.username+'/collections'}" class="user-count ">
+                                                <span class="box-count">1</span>
+                                                collections
+                                            </a>
+                                            <a th:href="${'/profile/'+user.username+'/makes'}" class="user-count ">
+                                                <span class="box-count">1</span>
+                                                makes
+                                            </a>
+                                            <a th:href="${'/profile/'+user.username+'/likes'}" class="user-count ">
+                                                <span class="box-count">1</span>
+                                                likes
+                                            </a>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="profile-main">
+                                        <nav class="plain-nav justify">
+                                            <span>
+                                    <a th:href="${'/profile/'+user.username+'/about'}" class="active">
+                                        About
+                                    </a>
+                                            </span>
+                                            <span>
+                                    <a th:href="${'/profile/'+user.username+'/designs'}" class="">
+                                        Designs
+                                    </a>
+                                            </span>
+                                            <span>
+                                    <a th:href="${'/profile/'+user.username+'/collections'}" class="">
+                                        Collections
+                                    </a>
+                                            </span>
+                                            <span>
+                                    <a th:href="${'/profile/'+user.username+'/makes'}" class="">
+                                        Makes
+                                    </a>
+                                            </span>
+                                            <span>
+                                    <a th:href="${'/profile/'+user.username+'/likes'}" class="">
+                                        Likes
+                                    </a>
+                                            </span>
+
+                                            <span>
+                                    <a th:href="${'/profile/'+user.username+'/edit'}" class="">
+                                        Edit
+                                    </a>
+                                            </span>
+                                        </nav>
+                                        <div class="results-container top_content inline width-2 share">
+                                            <div class="content-box full-width">
+                                                <h1 th:text="${'About '+user.username}">About Username</h1>
+                                                <div>
+                                                    <div class="bio">
+                                                        <div>
+                                                            <p th:text="${userDetails.bio}">Lorem Ipsum is simply dummy text.</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <nav th:replace="partials/footer :: footer"></nav>
+        <th:block th:include="partials/scripts :: scripts" />
+    </body>
+</html>
