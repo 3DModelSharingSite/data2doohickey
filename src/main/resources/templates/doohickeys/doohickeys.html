@@ -1,13 +1,14 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 
-    <head>
-        <th:block th:replace="partials/head :: head('View Doohickeys')"/>
-        <link rel="stylesheet" href="/css/doohickey-styling.css"/>
-    </head>
-    <body>
-        <nav th:replace="partials/navbar :: nav"></nav>
+<head>
+    <th:block th:replace="partials/head :: head(${title})"/>
+    <link rel="stylesheet" href="/css/doohickey-styling.css"/>
 
+</head>
+<body>
+    <nav th:replace="partials/navbar :: nav"></nav>
+    <nav th:replace="partials/pagination :: pageList"></nav>
         <th:block th:each="doohickey : ${page}">
             <div class="item" th:onclick="${'location=''/doohickeys/'+doohickey.id+''''}">
                 <div class="item-header">
@@ -23,9 +24,9 @@
                     </div>
                 </div>
             </div>
-        </th:block>
-
-        <nav th:replace="partials/footer :: footer"></nav>
-        <th:block th:include="partials/scripts :: scripts" />
-    </body>
+        </div>
+    </th:block>
+    <nav th:replace="partials/footer :: footer"></nav>
+    <th:block th:include="partials/scripts :: scripts" />
+</body>
 </html>
