@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 
-<head th:replace="partials/head :: head(${title})">
+<head th:replace="partials/head :: head('View Doohickeys')">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
     <link rel="stylesheet" href="/css/style.css"/>
 </head>
 <body>
     <nav th:replace="partials/navbar :: nav"></nav>
+    <nav th:replace="partials/pagination :: pageList"></nav>
 
 <!--    <div id="wrapper">-->
 <!--        <div class="loading-screen">-->
@@ -39,8 +40,6 @@
             </div>
         </div>
     </th:block>
-
-
     <nav th:replace="partials/footer :: footer"></nav>
     <th:block th:include="partials/scripts :: scripts" />
 </body>
