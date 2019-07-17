@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 
-<head th:replace="partials/head :: head('View Doohickeys')">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
+<head>
+    <th:block th:replace="partials/head :: head(${title})"/>
     <link rel="stylesheet" href="/css/doohickey-styling.css"/>
+
 </head>
 <body>
     <nav th:replace="partials/navbar :: nav"></nav>
@@ -30,10 +31,10 @@
                 <a class="avatar-link"><div class="avatar-wrapper"></div></a>
                 <div class="item-info center">
                     <span class="ellipsis">
-                        <h3 th:text="${doohickey.title}"></h3>
+                        <h4 th:text="${doohickey.title}"></h4>
                     </span>
                     <div class="justify">
-                        by <h4 th:text="${doohickey.author.username}"></h4>
+                        by <h6 th:text="${doohickey.author.username}"></h6>
                         <span class="item-date">1 mins ago</span>
                     </div>
                 </div>
