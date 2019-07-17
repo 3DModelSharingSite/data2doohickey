@@ -22,11 +22,11 @@
 
                     <!--file upload-->
 
-                        <div id="stl_cont" style="width:500px; height:500px; margin:0 auto;"></div>
-                        <canvas width="495" height="495" style="width: 495px; height: 495px;"></canvas>
+                        <div id="stl_cont" style="width:250px; height:250px; margin:0 auto; border-color: black;"></div>
+                        <canvas width="250" height="250" style="width:250px; height:250px;"></canvas>
 
-                        <input type="file" onchange='stl_viewer.add_model({local_file:this.files[0]});' accept="*.*"/>
-
+                        <label for="doohickey_stl">Doohickey</label>
+                        <input id="doohickey_stl" type="file" onchange='stl_viewer.add_model({local_file:this.files[0]});' accept="*.*"/>
                     </div>
 
                     <div class="form-group">

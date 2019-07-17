@@ -19,10 +19,37 @@
 
     <!--viewstl scripts-->
 
-    <script src="../../static/js/stl_viewer.min.js"></script>
+    <!--<script src="/js/stl_viewer.min.js"></script>-->
     <script>
 
-        var stl_viewer = new StlViewer ( document.getElementById("stl_cont") );
+        var stl_viewer = new StlViewer
+        (
+            document.getElementById("stl_cont"),
+            {
+                zoom: 1500,
+                bgcolor: "#A7AEAC",
+                allow_drag_and_drop: true,
+                auto_resize: true,
+                mouse_zoom: true,
+                models:
+                    [
+                        {
+                            filename: "local_file",
+                            display: "smooth",
+                            rotationx: 0.5,
+                            rotationy: 0.5,
+                            rotationz: 0.5,
+                            animation: {
+                                delta: {
+                                    rotationx: 1,
+                                    msec: 1000,
+                                    loop: true
+                                }
+                            }
+                        }
+                    ]
+            }
+        );
 
     </script>
 
