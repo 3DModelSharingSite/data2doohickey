@@ -7,6 +7,7 @@ import org.hibernate.validator.constraints.NotBlank;
 
 import javax.persistence.*;
 import javax.validation.constraints.Size;
+import java.util.Collection;
 import java.util.List;
 
 @Entity
@@ -41,6 +42,14 @@ public class User {
     @JsonBackReference
     private List<Doohickey> doohickeyList;
 
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(
+            name = "users_favorites",
+            joinColumns = {@JoinColumn(name = "user_id")},
+            inverseJoinColumns = {@JoinColumn(name = "model_id")}
+    )
+    private List<Doohickey> favorites;
+
 
 
     @NotBlank(message = "You must confirm your password!")
@@ -48,6 +57,10 @@ public class User {
     @Transient
     private String cnfmpassword;
 
+    @OneToOne(fetch = FetchType.LAZY,
+            cascade =  CascadeType.ALL,
+            mappedBy = "user")
+    private UserDetails userDetails;
 
     public User() {
     }
@@ -59,7 +72,19 @@ public class User {
         password = copy.password;
         cnfmpassword = copy.cnfmpassword;
         enabled=copy.enabled;
+        favorites=copy.favorites;
+        doohickeyList=copy.doohickeyList;
     }
+
+    public User(String email, String username, String password, boolean enabled, List<Doohickey> favorites, List<Doohickey> doohickeyList) {
+        this.email = email;
+        this.username = username;
+        this.password = password;
+        this.enabled = enabled;
+        this.favorites = favorites;
+        this.doohickeyList = doohickeyList;
+    }
+
     public User(String email, String username, String password, boolean enabled) {
         this.email = email;
         this.username = username;
@@ -114,4 +139,29 @@ public class User {
     public void setEnabled(boolean enabled) {
         this.enabled = enabled;
     }
+
+    public List<Doohickey> getDoohickeyList() {
+        return doohickeyList;
+    }
+
+    public void setDoohickeyList(List<Doohickey> doohickeyList) {
+        this.doohickeyList = doohickeyList;
+    }
+
+    public List<Doohickey> getFavorites() {
+        return favorites;
+    }
+
+    public void setFavorites(List<Doohickey> favorites) {
+        this.favorites = favorites;
+    }
+
+    public UserDetails getUserDetails() {
+        return userDetails;
+    }
+
+    public void setUserDetails(UserDetails userDetails) {
+        this.userDetails = userDetails;
+    }
+
 }

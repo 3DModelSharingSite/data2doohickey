@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+    <head>
+        <meta charset="UTF-8" />
+        <title></title>
+    </head>
+    <body>
+        <nav th:fragment="pageList" aria-label="Page navigation" class="text-center">
+            <ul class="pagination">
+                <li th:class="${'page-item '+(page.hasPrevious()? '' : 'disabled')}">
+                    <a class="page-link" th:href="'?page=1'">
+                        ← First
+                    </a>
+                </li>
+                <li th:class="${'page-item '+(page.hasPrevious()? '' : 'disabled')}">
+                    <a class="page-link"
+                            th:href="'?page=' + ${page.getNumber()}"
+                            title='Go to previous page'
+                    >
+                        «
+                    </a>
+                </li>
+
+                <li th:class="${'page-item ' + ((i) == page.getNumber()+1 ? 'active' : '')}"
+                        th:each="i : ${#numbers.sequence(((page.getNumber()-4 &lt; 1) ? 1 : page.getNumber()-4),
+                                                ((page.getNumber()-4 &lt; 1) ? ((11 &gt; page.getTotalPages()) ? page.getTotalPages() : 11) :
+                                                ((page.getNumber()+6 &lt; page.getTotalPages()) ? page.getNumber()+6 : page.getTotalPages() )))}">
+                    <a class="page-link"
+                            th:href="'?page=' + ${(i)}"
+                            th:text='${i}'
+                    >
+                    </a>
+                </li>
+                <li th:class="${'page-item '+(page.hasNext() ? '' : 'disabled')}">
+                    <a      class="page-link"
+                            th:href="'?page=' + ${page.getNumber() + 2}"
+                            title='Go to next page'
+                    >
+                        »
+                    </a>
+                </li>
+                <li th:class="${'page-item '+(page.hasNext() ? '' : 'disabled')}">
+                    <a      class="page-link"
+                            th:href="'?page=' + ${page.getTotalPages()}"
+                    >
+                        Last →
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        
+    </body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <th:block th:replace="partials/head :: head('Edit Profile')"/>
+    </head>
+    <body>
+        <nav th:replace="partials/navbar :: nav"></nav>
+        <main class="container-fluid w-50 pt-3">
+            <div class="card">
+                <div class="card-header">Edit your profile</div>
+                <div class="card-body">
+                    <div class="col-12">
+                        <form th:action="@{'/profile/'+${user.username}+'/edit'}" method="POST" th:object="${userDetails}">
+
+                            <div class="form-group">
+                                <label for="location">Location</label>
+                                <input class="form-control" id="location" th:field="*{location}" />
+                            </div>
+                            <div class="form-group">
+                                <label for="location">Who are you?</label>
+                                <select class="form-control" th:field="*{classification}" id="classification">
+                                    <option value="0">Artist</option>
+                                    <option value="1">Designer</option>
+                                    <option value="2">Engineer</option>
+                                    <option value="3">Maker</option>
+                                    <option value="4">Professional</option>
+                                    <option value="5">Student</option>
+                                    <option value="6">Teacher</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="bio">Bio</label>
+                                <input class="form-control" id="bio" th:field="*{bio}" />
+                            </div>
+                            <div class="row">
+                                <button type="submit" class="mx-auto btn btn-success">Save!</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <nav th:replace="partials/footer :: footer"></nav>
+        <th:block th:include="partials/scripts :: scripts" />
+
+    </body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+
+<head>
+    <th:block th:replace="partials/head :: head(${title})"/>
+    <link rel="stylesheet" href="/css/doohickey-styling.css"/>
+
+</head>
+<body>
+    <nav th:replace="partials/navbar :: nav"></nav>
+    <nav th:replace="partials/pagination :: pageList"></nav>
+        <th:block th:each="doohickey : ${page}">
+            <div class="item" th:onclick="${'location=''/doohickeys/'+doohickey.id+''''}">
+                <div class="item-header">
+                    <a class="avatar-link"><div class="avatar-wrapper"></div></a>
+                    <div class="item-info center">
+                        <span class="ellipsis">
+                            <h3 th:text="${doohickey.title}"></h3>
+                        </span>
+                        <div class="justify">
+                            by <h4 th:text="${doohickey.author.username}"></h4>
+                            <span class="item-date">1 mins ago</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </th:block>
+    <nav th:replace="partials/footer :: footer"></nav>
+    <th:block th:include="partials/scripts :: scripts" />
+</body>
+</html>

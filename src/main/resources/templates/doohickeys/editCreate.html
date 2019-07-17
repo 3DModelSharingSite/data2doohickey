@@ -2,11 +2,6 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head th:replace="partials/head :: head(${title})">
-
-    <!--<link rel="stylesheet"-->
-          <!--href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"-->
-          <!--integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"-->
-          <!--crossorigin="anonymous"/>-->
 </head>
 
 <body>
@@ -48,17 +43,21 @@
                         <label for="title">Title</label>
                         <input class="form-control" id="title" th:field="*{title}"/>
                     </div>
-
                     <div class="form-group">
                         <label for="description">Description</label>
-                        <input class="form-control" id="description" th:field="*{description}"/>
+                        <input class="form-control" id="description" th:field="*{description}" />
                     </div>
+                    <div class="form-group">
+                        <label for="tagsString">Tags</label>
+                        <input class="form-control" id="tagsString" th:field="*{tagsString}" />
+                        <small id="tagHelp" class="form-text text-muted">* tags must be separated by commas</small>
 
+                    </div>
                     <div class="bg-warning">
-                        <p th:if="${#fields.hasErrors('title')}" th:errors="*{title}"/>
-                        <p th:if="${#fields.hasErrors('description')}" th:errors="*{description}"/>
+                        <p th:if="${#fields.hasErrors('title')}" th:errors="*{title}" />
+                        <p th:if="${#fields.hasErrors('description')}" th:errors="*{description}" />
+                        <p th:if="${#fields.hasErrors('tagsString')}" th:errors="*{tagsString}" />
                     </div>
-
                     <div class="row">
                         <button type="submit" class="mx-auto btn btn-success">Save!</button>
                     </div>
@@ -67,8 +66,7 @@
         </div>
     </div>
 </main>
-
-<th:block th:include="partials/scripts :: scripts"/>
-
-</body>
+        <nav th:replace="partials/footer :: footer"></nav>
+        <th:block th:include="partials/scripts :: scripts" />
+    </body>
 </html>

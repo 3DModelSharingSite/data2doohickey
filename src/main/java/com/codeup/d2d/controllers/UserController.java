@@ -1,7 +1,9 @@
 package com.codeup.d2d.controllers;
 
 import com.codeup.d2d.models.User;
+import com.codeup.d2d.models.UserDetails;
 import com.codeup.d2d.models.UserRole;
+import com.codeup.d2d.repos.UserDetailsRepository;
 import com.codeup.d2d.repos.UserRepository;
 import com.codeup.d2d.repos.UserRoles;
 import com.codeup.d2d.services.AuthenticationService;
@@ -20,6 +22,7 @@ import java.util.Arrays;
 @Controller
 public class UserController {
     private UserRepository userDao;
+    private UserDetailsRepository userDetailsDao;
     private PasswordEncoder passwordEncoder;
 
     @Autowired
@@ -27,10 +30,11 @@ public class UserController {
 
     private AuthenticationService authSvc;
 
-    public UserController(AuthenticationService authSvc, UserRepository users, PasswordEncoder passwordEncoder) {
+    public UserController(UserDetailsRepository userDetailsDao,AuthenticationService authSvc, UserRepository users, PasswordEncoder passwordEncoder) {
         this.authSvc = authSvc;
         this.userDao = users;
         this.passwordEncoder = passwordEncoder;
+        this.userDetailsDao = userDetailsDao;
     }
 
     @GetMapping("/profile")
@@ -40,14 +44,37 @@ public class UserController {
         }
         return "redirect:/profile/"+((User)authSvc.getCurUser()).getUsername();
     }
-
     @GetMapping("/profile/{username}")
     public String showProfileOfUser(@PathVariable String username, Model model){
         User user = userDao.findByUsername(username);
         model.addAttribute("user",user);
-        return "users/profile";
+        model.addAttribute("userDetails",user.getUserDetails());
+        return "users/profile2";
     }
 
+    @GetMapping("/profile/{username}/edit")
+    public String editProfileDetailsOfUser(@PathVariable String username, Model model){
+        User user = userDao.findByUsername(username);
+        model.addAttribute("user",user);
+        model.addAttribute("userDetails",user.getUserDetails());
+        return "users/edit";
+    }
+    @PostMapping("/profile/{username}/edit")
+    public String saveProfileDetailsOfUser(@PathVariable String username,
+                           @Valid UserDetails userDetails,
+                           Errors validation,
+                           Model model){
+        User user = userDao.findByUsername(username);
+        UserDetails oldDetails = user.getUserDetails();
+        System.out.println(oldDetails.getBio());
+        System.out.println(userDetails.getBio());
+        oldDetails.setBio(userDetails.getBio());
+        oldDetails.setClassification(userDetails.getClassification());
+        oldDetails.setLocation(userDetails.getLocation());
+
+        userDetailsDao.save(oldDetails);
+        return "redirect:/profile/"+oldDetails.getUser().getUsername();
+    }
 
     @GetMapping("/sign-up")
     public String showSignupForm(Model model){
@@ -83,6 +110,10 @@ public class UserController {
         String hash = passwordEncoder.encode(user.getPassword());
         user.setPassword(hash);
         user.setEnabled(true);
+
+        UserDetails userDetails = new UserDetails("",3,"");
+        userDetails.setUser(user);
+        user.setUserDetails(userDetails);
 
         User newUser = userDao.save(user);
 
