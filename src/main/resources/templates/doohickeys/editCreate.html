@@ -17,9 +17,7 @@
 
                     <!--file upload-->
 
-                        <div id="stl_cont" style="width:250px; height:250px; margin:0 auto; border-color: black;"></div>
-                        <canvas width="250" height="250" style="width:250px; height:250px;"></canvas>
-
+                        <div id="stl_cont" style="width:500px; height:500px; margin:0 auto; border-color: black;"></div>
                         <label for="doohickey_stl">Doohickey</label>
                         <input id="doohickey_stl" type="file" onchange="stl_viewer.add_model(
                             {
@@ -27,14 +25,7 @@
                                 display: 'smooth',
                                 rotationx: -1.5708,
                                 rotationy: 0.0,
-                                rotationz: 0.0,
-                                animation: {
-                                    delta: {
-                                        rotationy: 1,
-                                        msec: 1500,
-                                        loop: true
-                                    }
-                                }
+                                rotationz: 0.0
                             }
                         );" accept="*.stl"/>
                     </div>
