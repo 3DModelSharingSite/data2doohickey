@@ -1,11 +1,10 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
-<head th:replace="partials/head :: head('View Profile')">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
-    <link rel="stylesheet" href="/css/style.css"/>
-</head>
-<body>
-    <nav th:replace="partials/navbar :: nav"></nav>
-    <main class="container-fluid w-75 pt-3">
+    <head>
+        <th:block th:replace="partials/head :: head('View Profile')"/>
+    </head>
+    <body>
+        <nav th:replace="partials/navbar :: nav"></nav>
+        <main class="container-fluid w-75 pt-3">
             <div id="main">
                 <div class="profile-page row h-75">
                     <div class="profile-user-info col-4 text-center">
