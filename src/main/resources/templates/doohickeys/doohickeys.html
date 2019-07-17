@@ -9,7 +9,7 @@
         <nav th:replace="partials/navbar :: nav"></nav>
 
         <th:block th:each="doohickey : ${page}">
-            <div class="item">
+            <div class="item" th:onclick="${'location=''/doohickeys/'+doohickey.id+''''}">
                 <div class="item-header">
                     <a class="avatar-link"><div class="avatar-wrapper"></div></a>
                     <div class="item-info center">
