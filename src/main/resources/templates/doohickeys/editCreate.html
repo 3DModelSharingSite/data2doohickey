@@ -26,7 +26,22 @@
                         <canvas width="250" height="250" style="width:250px; height:250px;"></canvas>
 
                         <label for="doohickey_stl">Doohickey</label>
-                        <input id="doohickey_stl" type="file" onchange='stl_viewer.add_model({local_file:this.files[0]});' accept="*.*"/>
+                        <input id="doohickey_stl" type="file" onchange="stl_viewer.add_model(
+                            {
+                                local_file:this.files[0],
+                                display: 'smooth',
+                                rotationx: -1.5708,
+                                rotationy: 0.0,
+                                rotationz: 0.0,
+                                animation: {
+                                    delta: {
+                                        rotationy: 1,
+                                        msec: 1500,
+                                        loop: true
+                                    }
+                                }
+                            }
+                        );" accept="*.*"/>
                     </div>
 
                     <div class="form-group">
