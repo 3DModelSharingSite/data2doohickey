@@ -1,0 +1,80 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head th:replace="partials/head :: head('View Profile')">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
+    <link rel="stylesheet" href="/css/style.css"/>
+</head>
+<body>
+    <nav th:replace="partials/navbar :: nav"></nav>
+    <main class="container-fluid w-75 pt-3">
+            <div id="main">
+                <div class="profile-page row h-75">
+                    <div class="profile-user-info col-4 text-center">
+                        <div class="profile-card">
+                            <div class="profile-avatar-wrapper " data-toggle=".avatar-upload">
+                                <div class="avatar-wrapper" data-userid="1935989">
+                                    <img data-src="" class="avatar"/>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-12">
+                                    <h1 th:text="${user.username}"></h1>
+                                </div>
+                                <div class="user-info col-12">
+                                    <span class="profile-username" th:text="${user.username}"></span>
+                                </div>
+                                <div class="col-6 mx-auto bg-dark">
+                                    <a th:href="${'/profile/'+user.username+'/edit'}" class="user-count">
+                                        Edit
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="user-counts row col-10 mx-auto">
+                            <a th:href="${'/profile/'+user.username+'/designs'}" class="user-count col-6">
+                                <div class="row">
+                                    <span class="box-count col-12">1</span>
+                                    <span class="col-12">designs</span>
+                                </div>
+                            </a>
+                            <a th:href="${'/profile/'+user.username+'/favorites'}" class="user-count col-6">
+                                <div class="row">
+                                    <span class="box-count col-12">1</span>
+                                    <span class="col-12">favorites</span>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+
+
+                    <div class="profile-main col-8">
+                        <nav id="profileNav">
+                            <ul class="nav">
+                                <li class="nav-item">
+                                    <a class="nav-link pl-0 uppercase" th:href="${'/profile/'+user.username+'/designs'}">
+                                        Designs
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link uppercase" th:href="${'/profile/'+user.username+'/favorites'}">
+                                        Favorites
+                                    </a>
+                                </li>
+                            </ul>
+                        </nav>
+                        <div id="profileBio">
+                            <h1 class="uppercase" th:text="${'About '+user.username}">About Username</h1>
+                            <div class="bio">
+                                <p th:text="${userDetails.bio}">Lorem Ipsum is simply dummy text.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <nav th:replace="partials/footer :: footer"></nav>
+        <th:block th:include="partials/scripts :: scripts" />
+    </body>
+</html>

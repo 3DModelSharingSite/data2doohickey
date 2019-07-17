@@ -15,13 +15,17 @@
 
 
             <th:block th:each="doohickey : ${page}">
-                <div class="card p-1 my-2" style="cursor:pointer;">
-                    <!--/* Thymeleaf has several built-in string utility functions like capitalizeWords */-->
+                <div class="card">
+                    <div class="card-header" th:onclick="${'location=''/doohickeys/'+doohickey.id+''''}">
+                        <h4 th:text="${doohickey.title}">Doohickey</h4>
+                        <small>by <a th:href="${'/profile/'+doohickey.author.username}" th:text="${doohickey.author.username}">Username</a></small>
+                    </div>
                     <div class="card-body" th:onclick="${'location=''/doohickeys/'+doohickey.id+''''}">
-                        <h3 th:text="${#strings.capitalizeWords(doohickey.title)}">Doohickey</h3>
-                        <p th:text="${doohickey.description}">Lorem ipsum dolor sit amet, consectetur adipisicing elit. A accusamus accusantium alias aliquid architecto eligendi, excepturi explicabo libero maiores non numquam quae recusandae, sapiente suscipit, unde vero voluptatibus! Officiis, temporibus.</p>
-                        <small class="text-muted" th:text="${'-' + doohickey.author.username}">Username</small>
-                        <a sec:authorize="isAuthenticated()" th:if="${#authentication.principal.id} == ${doohickey.author.id}" th:href="@{'/doohickeys/'+${doohickey.id}+'/edit'}">Edit</a>
+                        <div class="col-12">
+                            <p th:text="${doohickey.description}">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+                            <small class="text-muted" th:text="${'-' + doohickey.author.username}">Username</small>
+                            <a sec:authorize="isAuthenticated()" th:if="${#authentication.principal.id} == ${doohickey.author.id}" th:href="@{'/doohickeys/'+${doohickey.id}+'/edit'}">Edit</a>
+                        </div>
                     </div>
                     <div class="card-footer">
                         <button th:if="${user}" class="favButton" th:attr="data-id=${doohickey.id}"><i th:class="${(doohickey.usersFavoritedContains(user.id) ? 'fas' : 'far')+' fa-heart'}"></i></button>
@@ -34,6 +38,7 @@
             </th:block>
         </main>
 
+        <nav th:replace="partials/footer :: footer"></nav>
         <th:block th:include="partials/scripts :: scripts" />
         <script>
             $(".favButton").click(function(e){
