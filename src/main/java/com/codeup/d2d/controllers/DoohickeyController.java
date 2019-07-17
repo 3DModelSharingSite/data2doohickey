@@ -43,7 +43,7 @@ public class DoohickeyController {
     public String showAllDoohickeys(@PageableDefault(page = 1,size=6) Pageable pageable, Model model) {
         Pageable pageable2 = new PageRequest(pageable.getPageNumber()-1,pageable.getPageSize());
         model.addAttribute("page",doohickeyDao.findAll(pageable2));
-        model.addAttribute("user",(User)authSvc.getCurUser());
+        model.addAttribute("user", authSvc.getCurUser());
         return "doohickeys/index";
     }
 
