@@ -20,6 +20,13 @@
                         <a sec:authorize="isAuthenticated()" th:if="${#authentication.principal.id} == ${doohickey.author.id}" th:href="@{'/doohickeys/'+${doohickey.id}+'/edit'}">Edit</a>
                     </div>
                 </div>
+                <div class="card-footer">
+                    <button th:if="${user}" class="favButton" th:attr="data-id=${doohickey.id}"><i th:class="${(doohickey.usersFavoritedContains(user.id) ? 'fas' : 'far')+' fa-heart'}"></i></button>
+
+                    <th:block th:each="tag : ${doohickey.tags}">
+                        <a href="" th:text="${tag.name}"></a>
+                    </th:block>
+                </div>
             </div>
         </main>
     </body>
