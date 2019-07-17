@@ -6,7 +6,7 @@
     </head>
     <body>
         <nav th:fragment="nav" id="mainNav">
-            <ul class="nav bg-dark">
+            <ul class="nav">
                 <li class="nav-item">
                     <a class="nav-link text-light" th:href="@{/}">D2D</a>
                 </li>
@@ -20,7 +20,7 @@
                     <a class="nav-link text-light" th:href="@{/sign-up}">Register</a>
                 </li>
                 <li class="nav-item" sec:authorize="!isAuthenticated()">
-                    <form th:action="@{/login}" th:method="get">
+                    <form th:action="@{/login}" th:method="get" class="my-0">
                         <button class="btn-link btn nav-link text-light">Login</button>
                     </form>
                 </li>
