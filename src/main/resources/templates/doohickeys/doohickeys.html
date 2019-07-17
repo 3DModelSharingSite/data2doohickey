@@ -9,33 +9,18 @@
 <body>
     <nav th:replace="partials/navbar :: nav"></nav>
     <nav th:replace="partials/pagination :: pageList"></nav>
-
-<!--    <div id="wrapper">-->
-<!--        <div class="loading-screen">-->
-<!--            <span class="message center"></span>-->
-<!--        </div>-->
-<!--        <div id="main">-->
-<!--            <form class="menus inline">-->
-<!--                <select name="type" class="select-menu">-->
-<!--                    <option value="newest" selected="">Newest</option>-->
-<!--                    <option value="featured">Featured</option>-->
-<!--                    <option value="popular">Popular</option>-->
-<!--                    <option value="remixes">Remixes</option>-->
-<!--                </select>-->
-<!--            </form>-->
-<!--        </div>-->
-<!--    </div>-->
-    <th:block th:each="doohickey : ${page}">
-        <div class="item">
-            <div class="item-header">
-                <a class="avatar-link"><div class="avatar-wrapper"></div></a>
-                <div class="item-info center">
-                    <span class="ellipsis">
-                        <h4 th:text="${doohickey.title}"></h4>
-                    </span>
-                    <div class="justify">
-                        by <h6 th:text="${doohickey.author.username}"></h6>
-                        <span class="item-date">1 mins ago</span>
+        <th:block th:each="doohickey : ${page}">
+            <div class="item" th:onclick="${'location=''/doohickeys/'+doohickey.id+''''}">
+                <div class="item-header">
+                    <a class="avatar-link"><div class="avatar-wrapper"></div></a>
+                    <div class="item-info center">
+                        <span class="ellipsis">
+                            <h3 th:text="${doohickey.title}"></h3>
+                        </span>
+                        <div class="justify">
+                            by <h4 th:text="${doohickey.author.username}"></h4>
+                            <span class="item-date">1 mins ago</span>
+                        </div>
                     </div>
                 </div>
             </div>
