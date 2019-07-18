@@ -1,171 +1,78 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
-<head>
-    <title>About</title>
-    <meta property="og:type" content="profile"/>
-    <meta property="og:description" content=""/>
-    <link rel="stylesheet" href="https://cdn.thingiverse.com/site/css/build/basic-56d181d3e8.css"/>
-    <link rel="stylesheet" href="https://cdn.thingiverse.com/site/css/build/main-15e4c36516.css"/>
-    <link rel="stylesheet" href="https://cdn.thingiverse.com/site/css/build/explore-70736a40df.css"/>
-    <link rel="stylesheet" href="https://cdn.thingiverse.com/site/css/build/user-214328558a.css"/>
-    <link rel="stylesheet" href="https://cdn.thingiverse.com/site/css/build/dialogs-727e96336d.css"/>
-    <link rel="stylesheet" href="https://cdn.thingiverse.com/site/css/build/orders-85ab2ee1fb.css"/>
-    <script type="text/javascript" async="" src="https://www.google-analytics.com/plugins/ua/ec.js"></script>
-    <script async="" src="https://www.googletagmanager.com/gtm.js?id=GTM-PKW6VF6"></script>
-    <script async="" src="https://www.google-analytics.com/analytics.js"></script>
-    <script src="https://cdn.thingiverse.com/site/js/thingiverse/build/lib-afbc32d766.js"></script>
-    <script src="https://cdn.thingiverse.com/site/js/thingiverse/build/header-aa33d7b171.js"></script>
-    <script src="https://cdn.thingiverse.com/site/js/thingiverse/build/footer-80417f767d.js"></script>
-    <script src="https://cdn.thingiverse.com/site/js/thingiverse/build/users-a81dc7e95c.js"></script>
-    <script src="https://cdn.thingiverse.com/site/js/thingiverse/build/orders-e1ac5a6395.js"></script>
-</head>
-
-<body class="loggedout">
-    <div id="wrapper">
-        <div class="loading-screen">
-            <span class="message center"></span>
-        </div>
-            <div class="page-container">
-                <div id="push-wrap">
-                    <div id="push-main">
-                        <div class="site-header">
-                            <div class="center_content justify">
-                                <nav class="site-header-nav plain-nav justify">
-                                    <span class="dropdown">
-                                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Create</a>
-                                    </span>
-                                    <div class="login">
-                                        <div class="login-box">
-                                            <a href="" class="login-join">Sign in / Join</a>
-                                        </div>
-                                    </div>
-                                </nav>
+    <head>
+        <th:block th:replace="partials/head :: head('View Profile')">
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
+            <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"/>
+            <link rel="stylesheet" href="../../static/css/style.css"/>
+        </th:block>
+    </head>
+    <body>
+        <nav th:replace="partials/navbar :: nav"></nav>
+        <main class="container-fluid w-100 pt-3">
+            <div class="profile-page row h-75 col-10 mx-auto">
+                <div class="profile-user-info col-4 text-center content-box">
+                    <div class="profile-card">
+                        <div class="row">
+                            <div class="col-12">
+                                <span class="content-header" th:text="${user.username}">Display Name</span>
                             </div>
+                            <div class="user-info col-12">
+                                <span class="profile-username" th:text="${user.username}">Username</span>
+                            </div>
+                            <a th:href="${'/profile/'+user.username+'/edit'}" class="user-count col-6 p-2 mx-auto abgc3">
+                                Edit
+                            </a>
                         </div>
-                        <div id="main">
-                            <div class="center_content">
-                                <div class="profile-page">
-                                    <div class="profile-user-info">
-                                        <div class="profile-card tv-profile-image-card">
-                                            <div class="cover-img-wrapper " data-toggle=".cover-upload">
-                                                <div class="cover-img" style="background-image: url();"></div>
-                                            </div>
+                    </div>
+
+                    <div class="user-counts row col-10 mx-auto">
+<!--                        <a th:href="${'/profile/'+user.username+'/doohickeys'}" class="user-count col-6">-->
+<!--                            <div class="row">-->
+<!--                                <span class="box-count col-12" th:text="${user.doohickeyList.size()}">1</span>-->
+<!--                                <span class="col-12">doohickeys</span>-->
+<!--                            </div>-->
+<!--                        </a>-->
+<!--                        <a th:href="${'/profile/'+user.username+'/favorites'}" class="user-count col-6">-->
+<!--                            <div class="row">-->
+<!--                                <span class="box-count col-12" th:text="${user.favorites.size()}">1</span>-->
+<!--                                <span class="col-12">favorites</span>-->
+<!--                            </div>-->
+<!--                        </a>-->
+                    </div>
+                </div>
 
 
-                                            <div class="profile-avatar-wrapper " data-toggle=".avatar-upload">
-                                                <div class="avatar-wrapper" data-userid="1935989">
-                                                    <img data-src="" class="avatar"/>
-                                                </div>
-                                            </div>
-
-                                            <h1 th:text="${user.username}"></h1>
-                                            <div class="user-info">
-                                                <span class="profile-username" th:text="${user.username}"></span>
-                                            </div>
-
-                                            <a class="button grey-button profile-tip" data-modal="#user-tip" href="/login" target="_blank">Tip Designer</a>
-
-                                            <div class="follow-stats">
-                                                <a href="/Joshrms/followers/" class="user-count">
-                                                    <span class="box-count">1</span>
-                                                    Followers
-                                                </a>
-
-                                                <a href="/Joshrms/following/" class="user-count">
-                                                    <span class="box-count">1</span>
-                                                    Following
-                                                </a>
-                                            </div>
-                                        </div>
-
-                                        <div class="user-counts">
-                                            <a href="/Joshrms/designs" class="user-count ">
-                                                <span class="box-count">1</span>
-                                                designs
-                                            </a>
-                                            <a href="/Joshrms/collections" class="user-count ">
-                                                <span class="box-count">1</span>
-                                                collections
-                                            </a>
-                                            <a href="/Joshrms/makes" class="user-count ">
-                                                <span class="box-count">1</span>
-                                                makes
-                                            </a>
-                                            <a href="/Joshrms/likes" class="user-count ">
-                                                <span class="box-count">1</span>
-                                                likes
-                                            </a>
-                                        </div>
-                                    </div>
-
-
-                                    <div class="profile-main">
-                                        <nav class="plain-nav justify">
-                                            <span>
-                                    <a th:href="${'/profile/'+user.username+'/about'}" class="active">
-                                        About
-                                    </a>
-                                            </span>
-                                            <span>
-                                    <a th:href="${'/profile/'+user.username+'/designs'}" class="">
-                                        Designs
-                                    </a>
-                                            </span>
-                                            <span>
-                                    <a th:href="${'/profile/'+user.username+'/collections'}" class="">
-                                        Collections
-                                    </a>
-                                            </span>
-                                            <span>
-                                    <a th:href="${'/profile/'+user.username+'/makes'}" class="">
-                                        Makes
-                                    </a>
-                                            </span>
-                                            <span>
-                                    <a th:href="${'/profile/'+user.username+'/likes'}" class="">
-                                        Likes
-                                    </a>
-                                            </span>
-
-                                            <span>
-                                    <a th:href="${'/profile/'+user.username+'/edit'}" class="">
-                                        Edit
-                                    </a>
-                                            </span>
-                                        </nav>
-                                        <div class="results-container top_content inline width-2 share">
-                                            <div class="content-box full-width">
-                                                <h1 th:text="${'About '+user.username}">About Username</h1>
-                                                <div>
-                                                    <div class="bio">
-                                                        <div>
-                                                            <p th:text="${userDetails.bio}">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="content-box profile-about-more full-width justify">
-                                                <div class="half share">
-                                                    <h1>Tools I Use:</h1>
-                                                    <p><strong>Printers:</strong>
-                                                        <a href="http://bit.ly/2DNsRkI" target="_blank">Ender 5</a>
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                <div class="profile-main col-7 ml-auto">
+                    <nav id="profileNav">
+                        <ul class="nav">
+                            <li class="nav-item">
+                                <a class="nav-link pl-0 py-0 uppercase" th:href="${'/profile/'+user.username}">
+                                    About
+                                </a>
+                            </li>
+<!--                            <li class="nav-item">-->
+<!--                                <a class="nav-link py-0 uppercase" th:href="${'/profile/'+user.username+'/doohickeys'}">-->
+<!--                                    Doohickeys-->
+<!--                                </a>-->
+<!--                            </li>-->
+<!--                            <li class="nav-item">-->
+<!--                                <a class="nav-link py-0 uppercase" th:href="${'/profile/'+user.username+'/favorites'}">-->
+<!--                                    Favorites-->
+<!--                                </a>-->
+<!--                            </li>-->
+                        </ul>
+                    </nav>
+                    <div id="profileBio" class="content-box row">
+                        <span class="content-header uppercase col-12" th:text="${'About '+user.username}">About Username</span>
+                        <div class="bio col-12">
+                            <p th:text="${userDetails.bio}">Lorem Ipsum is simply dummy text.</p>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="site-footer">
-                <div class="center_content center justify">
-                    <nav class="footer-links">
-                        <a href="/about/">About Data2Doohickey</a>
-                    </nav>
-                </div>
-            </div>
-        </div>
+        </main>
+
+        <nav th:replace="partials/footer :: footer"></nav>
+        <th:block th:include="partials/scripts :: scripts" />
     </body>
 </html>
