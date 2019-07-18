@@ -1,78 +1,94 @@
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
-    <head>
-        <th:block th:replace="partials/head :: head('View Profile')">
-            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
-            <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"/>
-            <link rel="stylesheet" href="../../static/css/style.css"/>
-        </th:block>
-    </head>
-    <body>
-        <nav th:replace="partials/navbar :: nav"></nav>
-        <main class="container-fluid w-100 pt-3">
-            <div class="profile-page row col-10 mx-auto">
-                <div class="profile-user-info col-md-4 col-sm-12 text-center content-box">
-                    <div class="profile-card">
-                        <div class="row">
-                            <div class="col-12">
-                                <span class="content-header" th:text="${user.username}">Display Name</span>
-                            </div>
-                            <div class="user-info col-12">
-                                <span class="profile-username" th:text="${user.username}">Username</span>
-                            </div>
-                            <a th:href="${'/profile/'+user.username+'/edit'}" class="user-count col-6 p-2 mx-auto abgc3">
-                                Edit
-                            </a>
-                        </div>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+    <th:block th:replace="partials/head :: head('View Profile')">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+              integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+              crossorigin="anonymous"/>
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"/>
+        <link rel="stylesheet" href="/css/style.css"/>
+    </th:block>
+</head>
+<body>
+<nav th:replace="partials/navbar :: nav"></nav>
+<main class="container-fluid w-100 pt-3">
+    <div class="profile-page row h-75 col-10 mx-auto">
+        <div class="profile-user-info col-4 text-center content-box">
+            <div class="profile-card">
+                <div class="row user-info">
+                    <div class="col-12 profile-image-header">
+                        <img src="/placeholder-profile.jpg" alt="placeholder image" id="profile-image"/>
+                        <div class="content-header" th:text="${user.username}">Display Name</div>
                     </div>
-
-                    <div class="user-counts row col-10 mx-auto">
-<!--                        <a th:href="${'/profile/'+user.username+'/doohickeys'}" class="user-count col-6">-->
-<!--                            <div class="row">-->
-<!--                                <span class="box-count col-12" th:text="${user.doohickeyList.size()}">1</span>-->
-<!--                                <span class="col-12">doohickeys</span>-->
-<!--                            </div>-->
-<!--                        </a>-->
-<!--                        <a th:href="${'/profile/'+user.username+'/favorites'}" class="user-count col-6">-->
-<!--                            <div class="row">-->
-<!--                                <span class="box-count col-12" th:text="${user.favorites.size()}">1</span>-->
-<!--                                <span class="col-12">favorites</span>-->
-<!--                            </div>-->
-<!--                        </a>-->
+                    <!--<div class="col-12">-->
+                    <!--<span class="content-header" th:text="${user.username}">Display Name</span>-->
+                    <!--</div>-->
+                    <div class="col-12">
+                        <img id="user-icon" src="/icons/user-circle-solid.svg" alt="user icon"/>
+                        <span class="profile-username" th:text="${user.username}">Username</span>
+                    </div>
+                    <div class="user-location col-12">
+                        <img id="user-location" src="/icons/globe-solid.svg" alt="location icon"/>
+                        <span class="profile-location">Location</span>
                     </div>
                 </div>
+                <div class="row">
+                    <button class="profile-info-btns col-4 ml-auto btn-dark">User Doohickeys</button>
+                    <button class="profile-info-btns col-4 mr-auto btn-dark">Tip Designer</button>
+                </div>
+                <div class="row user-classification col-12"></div>
+                <a th:href="${'/profile/'+user.username+'/edit'}" class="user-count col-6 p-2 mx-auto abgc3">
+                    Edit
+                </a>
+            </div>
 
-
-                <div class="profile-main col-sm-12 col-md-7 ml-auto">
-                    <nav id="profileNav">
-                        <ul class="nav">
-                            <li class="nav-item">
-                                <a class="nav-link pl-0 py-0 uppercase" th:href="${'/profile/'+user.username}">
-                                    About
-                                </a>
-                            </li>
-<!--                            <li class="nav-item">-->
-<!--                                <a class="nav-link py-0 uppercase" th:href="${'/profile/'+user.username+'/doohickeys'}">-->
-<!--                                    Doohickeys-->
-<!--                                </a>-->
-<!--                            </li>-->
-<!--                            <li class="nav-item">-->
-<!--                                <a class="nav-link py-0 uppercase" th:href="${'/profile/'+user.username+'/favorites'}">-->
-<!--                                    Favorites-->
-<!--                                </a>-->
-<!--                            </li>-->
-                        </ul>
-                    </nav>
-                    <div id="profileBio" class="content-box row">
-                        <span class="content-header uppercase col-12" th:text="${'About '+user.username}">About Username</span>
-                        <div class="bio col-12">
-                            <p th:text="${userDetails.bio}">Lorem Ipsum is simply dummy text.</p>
-                        </div>
-                    </div>
+            <div class="user-counts row col-10 mx-auto">
+                <!--                        <a th:href="${'/profile/'+user.username+'/doohickeys'}" class="user-count col-6">-->
+                <!--                            <div class="row">-->
+                <!--                                <span class="box-count col-12" th:text="${user.doohickeyList.size()}">1</span>-->
+                <!--                                <span class="col-12">doohickeys</span>-->
+                <!--                            </div>-->
+                <!--                        </a>-->
+                <!--                        <a th:href="${'/profile/'+user.username+'/favorites'}" class="user-count col-6">-->
+                <!--                            <div class="row">-->
+                <!--                                <span class="box-count col-12" th:text="${user.favorites.size()}">1</span>-->
+                <!--                                <span class="col-12">favorites</span>-->
+                <!--                            </div>-->
+                <!--                        </a>-->
+            </div>
+        </div>
+        <div class="profile-main col-7 ml-auto">
+            <nav id="profileNav">
+                <ul class="nav">
+                    <li class="nav-item">
+                        <a class="nav-link pl-0 py-0 uppercase" th:href="${'/profile/' + user.username}">
+                            About
+                        </a>
+                    </li>
+                    <!--                            <li class="nav-item">-->
+                    <!--                                <a class="nav-link py-0 uppercase" th:href="${'/profile/'+user.username+'/doohickeys'}">-->
+                    <!--                                    Doohickeys-->
+                    <!--                                </a>-->
+                    <!--                            </li>-->
+                    <!--                            <li class="nav-item">-->
+                    <!--                                <a class="nav-link py-0 uppercase" th:href="${'/profile/'+user.username+'/favorites'}">-->
+                    <!--                                    Favorites-->
+                    <!--                                </a>-->
+                    <!--                            </li>-->
+                </ul>
+            </nav>
+            <div id="profileBio" class="content-box row">
+                <span class="content-header uppercase col-12"
+                      th:text="${'About ' + user.username}">About Username</span>
+                <div class="bio col-12">
+                    <p th:text="${userDetails.bio}">Lorem Ipsum is simply dummy text.</p>
                 </div>
             </div>
-        </main>
+        </div>
+    </div>
+</main>
 
-        <nav th:replace="partials/footer :: footer"></nav>
-        <th:block th:include="partials/scripts :: scripts" />
-    </body>
+<nav th:replace="partials/footer :: footer"></nav>
+<th:block th:include="partials/scripts :: scripts"/>
+</body>
 </html>
