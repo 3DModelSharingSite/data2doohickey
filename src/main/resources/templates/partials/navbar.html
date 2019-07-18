@@ -7,7 +7,7 @@
     <body>
 
         <nav th:fragment="nav" id="mainNav" class="navbar navbar-expand-lg navbar-light">
-            <a class="navbar-brand" th:href="@{/}">D2D</a>
+            <a class="navbar-brand text-light" th:href="@{/}">D2D</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -31,13 +31,16 @@
                         </form>
                     </li>
                     <li class="nav-item dropdown" sec:authorize="isAuthenticated()">
-                        <a class="nav-link dropdown-toggle" th:href="@{/profile}" id="navbarProfileDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <a class="nav-link dropdown-toggle text-light" th:href="@{/profile}">
                             Profile (<span th:text="${#authentication.principal.username}"></span>)
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="nav-link" th:href="@{'/profile/'+${#authentication.principal.username}+'/edit'}">
+                                Settings
+                            </a>
                             <div class="dropdown-divider"></div>
                             <form th:action="@{/logout}" th:method="post" class="my-0">
-                                <button class="btn-link btn nav-link text-light">Logout</button>
+                                <button class="btn-link btn nav-link">Logout</button>
                             </form>
                         </div>
                     </li>
