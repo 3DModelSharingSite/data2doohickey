@@ -49,3 +49,8 @@ a{
     transition: 0.2s ease;
     opacity: 0.9;
 }
+.dropdown:hover .dropdown-menu {
+    display: block;
+    top:95%;
+    left:-5px;
+}
