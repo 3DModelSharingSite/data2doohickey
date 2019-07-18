@@ -52,4 +52,5 @@ a{
 .dropdown:hover .dropdown-menu {
     display: block;
     top:95%;
+    left:-5px;
 }

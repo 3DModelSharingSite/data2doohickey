@@ -6,7 +6,7 @@
     </head>
     <body>
 
-        <nav th:fragment="nav" id="mainNav" class="navbar navbar-expand-lg navbar-light">
+        <nav th:fragment="nav" id="mainNav" class="navbar navbar-expand-md navbar-light">
             <a class="navbar-brand text-light" th:href="@{/}">D2D</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -22,15 +22,17 @@
                     </li>
                 </ul>
                 <ul class="navbar-nav ml-auto">
-                    <li class="nav-item ml-auto" sec:authorize="!isAuthenticated()">
+                    <li class="nav-item" sec:authorize="!isAuthenticated()">
                         <a class="nav-link text-light" th:href="@{/sign-up}">Register</a>
                     </li>
                     <li class="nav-item" sec:authorize="!isAuthenticated()">
                         <form th:action="@{/login}" th:method="get" class="my-0">
-                            <button class="btn-link btn nav-link text-light">Login</button>
+                            <button class="btn-link btn nav-link text-light border-0">Login</button>
                         </form>
                     </li>
-                    <li class="nav-item dropdown" sec:authorize="isAuthenticated()">
+
+                    <!-- Hide these on smaller screens -->
+                    <li class="nav-item dropdown d-none d-md-block" sec:authorize="isAuthenticated()">
                         <a class="nav-link dropdown-toggle text-light" th:href="@{/profile}">
                             Profile (<span th:text="${#authentication.principal.username}"></span>)
                         </a>
@@ -39,11 +41,32 @@
                                 Settings
                             </a>
                             <div class="dropdown-divider"></div>
-                            <form th:action="@{/logout}" th:method="post" class="my-0">
-                                <button class="btn-link btn nav-link">Logout</button>
+                            <form th:action="@{/logout}" th:method="post" class="my-0 nav-link">
+                                <button class="btn-link btn nav-link border-0">Logout</button>
                             </form>
                         </div>
                     </li>
+
+                    <!-- Only show these on smaller screens -->
+                    <div sec:authorize="isAuthenticated()" class="d-md-none">
+                        <li class="nav-item">
+                            <a class="nav-link text-light" th:href="@{/profile}">
+                                Profile (<span th:text="${#authentication.principal.username}"></span>)
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-light" th:href="@{'/profile/'+${#authentication.principal.username}+'/edit'}">
+                                Settings
+                            </a>
+                        </li>
+                        <div class="dropdown-divider"></div>
+                        <li class="nav-item">
+                            <form th:action="@{/logout}" th:method="post" class="my-0 py-0 nav-link">
+                                <button class="btn-link btn nav-link text-light">Logout</button>
+                            </form>
+                        </li>
+
+                    </div>
                 </ul>
             </div>
         </nav>
