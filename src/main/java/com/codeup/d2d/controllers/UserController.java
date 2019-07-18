@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.validation.Valid;
-import java.util.Arrays;
 
 @Controller
 public class UserController {
@@ -49,7 +48,7 @@ public class UserController {
         User user = userDao.findByUsername(username);
         model.addAttribute("user",user);
         model.addAttribute("userDetails",user.getUserDetails());
-        return "users/profile2";
+        return "users/profile";
     }
 
     @GetMapping("/profile/{username}/edit")
