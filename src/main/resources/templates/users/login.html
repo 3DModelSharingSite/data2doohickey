@@ -4,9 +4,10 @@
         <th:block th:replace="partials/head :: head('Login')"/>
     </head>
     <body>
+        <th:block th:include="partials/scripts :: scripts" />
         <nav th:replace="partials/navbar :: nav"></nav>
-        <main class="container-fluid w-50 pt-3">
-            <div class="card">
+        <main class="container-fluid row col-md-8 col-sm-12 mx-auto pt-3">
+            <div class="card col-12 mx-auto px-0">
 
                 <div class="card-header">Log in</div>
                 <div class="card-body">
@@ -43,7 +44,6 @@
             </div>
         </main>
         <nav th:replace="partials/footer :: footer"></nav>
-        <th:block th:include="partials/scripts :: scripts" />
 
     </body>
 </html>

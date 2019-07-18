@@ -65,6 +65,7 @@ public class UserController {
                            Model model){
         User user = userDao.findByUsername(username);
         UserDetails oldDetails = user.getUserDetails();
+
         System.out.println(oldDetails.getBio());
         System.out.println(userDetails.getBio());
         oldDetails.setBio(userDetails.getBio());
