@@ -137,4 +137,12 @@ public class UserController {
         model.addAttribute("userDetails", user.getFavorites());
         return "users/favorites";
     }
+
+    @GetMapping("/profile/{username}/doohickeys")
+    public String userDoohickeys(@PathVariable String username, Model model){
+        User user = userDao.findByUsername(username);
+        model.addAttribute("user", user);
+        model.addAttribute("userDetails", user.getDoohickeyList());
+        return "users/doohickeys";
+    }
 }
