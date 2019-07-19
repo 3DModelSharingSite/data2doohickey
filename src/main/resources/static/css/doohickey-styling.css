@@ -3,11 +3,25 @@ a{
 }
 .center{
     position:absolute;
-    top:0;
+    top:8px;
     bottom:0;
-    left:0;
-    right:0;
+    right:8px;
     margin:auto
+}
+
+
+.doohickey {
+    cursor: pointer;
+}
+
+.doohickey:hover {
+    -webkit-transform: scale(1.003);
+    -moz-transform: scale(1.003);
+    -ms-transform: scale(1.003);
+    -o-transform: scale(1.003);
+    transform: scale(1.003);
+    transition: 0.2s ease;
+    opacity: 0.9;
 }
 .justify{
     display:flex;
@@ -24,23 +38,15 @@ a{
     flex-grow:1
 }
 .ellipsis{
+    font-size:24px;
     white-space:nowrap;
     text-overflow:ellipsis;
-    overflow:hidden
-}
-.item-size{
-    display:inline-block;
-    width:296px;
-    height:265px;
     overflow:hidden
 }
 .item-info{
     display:inline-block;
     height:3em;
     left:50px
-}
-.item-info span{
-    display:block
 }
 .item-info a{
     color:#fff;
@@ -52,10 +58,33 @@ a{
     height:60px;
     padding:5px;
     font-size:12px;
-    line-height:1.25em;
+    line-height:1.75em;
     font-weight:bold;
     color:#fff;
     background:linear-gradient(to bottom, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0) 100%)
+}
+.item-body{
+    position: absolute;
+    bottom:50px;
+    top:0;
+    left:0;
+    right:0;
+    background:url("https://cdn.filestackcontent.com/AsZ4wkm4kSSCPWhIZYFqEz/urlscreenshot/crop=dim:[307,142,495,495]/http://data2doohickey.com/doohickeys/create");
+    -webkit-background-size: cover;
+    background-size: cover;
+}
+.item-footer{
+    font-size:24px;
+    position:absolute;
+    bottom:0;
+    left:0;
+    right:0;
+}
+
+.item-footer-button{
+    bottom:-1px;
+    left:-1px;
+    height:50px;
 }
 .avatar-wrapper{
     box-sizing:border-box;
@@ -69,8 +98,9 @@ a{
     height:40px;width:40px
 }
 .item{
-    width:296px;
-    height:265px;
+    width:300px;
+    max-width:300px;
+    height:300px;
     display:inline-block;
     border:2px solid #ececec;
     border-radius:3px;

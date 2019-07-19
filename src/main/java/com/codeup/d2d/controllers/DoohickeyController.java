@@ -40,7 +40,7 @@ public class DoohickeyController {
     }
 
     @GetMapping("/doohickeys")
-    public String showAllDoohickeys(@PageableDefault(page = 1,size=9) Pageable pageable, Model model) {
+    public String showAllDoohickeys(@PageableDefault(page = 1,size=1) Pageable pageable, Model model) {
         Pageable pageable2 = new PageRequest(pageable.getPageNumber()-1,pageable.getPageSize());
         model.addAttribute("page",doohickeyDao.findAll(pageable2));
         model.addAttribute("user", authSvc.getCurUser());

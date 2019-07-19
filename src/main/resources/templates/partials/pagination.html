@@ -5,11 +5,12 @@
         <title></title>
     </head>
     <body>
-        <nav th:fragment="pageList" aria-label="Page navigation" class="text-center">
-            <ul class="pagination">
+        <nav th:fragment="pageList" aria-label="Page navigation" class="text-center mx-auto col-12">
+            <ul class="pagination center-align">
                 <li th:class="${'page-item '+(page.hasPrevious()? '' : 'disabled')}">
                     <a class="page-link" th:href="'?page=1'">
-                        ← First
+                        <span class="d-md-none">First</span>
+                        <span class="d-none d-md-block">← First</span>
                     </a>
                 </li>
                 <li th:class="${'page-item '+(page.hasPrevious()? '' : 'disabled')}">
@@ -43,7 +44,9 @@
                     <a      class="page-link"
                             th:href="'?page=' + ${page.getTotalPages()}"
                     >
-                        Last →
+
+                        <span class="d-md-none">Last</span>
+                        <span class="d-none d-md-block">Last →</span>
                     </a>
                 </li>
             </ul>
