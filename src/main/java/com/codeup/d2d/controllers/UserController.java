@@ -15,6 +15,7 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.validation.Valid;
 
@@ -127,5 +128,13 @@ public class UserController {
         model.addAttribute("user", user);
 
         return "redirect:/";
+    }
+
+    @GetMapping("/profile/{username}/favorites")
+    public String userFavorites(@PathVariable String username, Model model){
+        User user = userDao.findByUsername(username);
+        model.addAttribute("user", user);
+        model.addAttribute("userDetails", user.getFavorites());
+        return "users/favorites";
     }
 }
