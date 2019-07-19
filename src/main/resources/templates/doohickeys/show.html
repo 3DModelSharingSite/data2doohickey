@@ -14,14 +14,20 @@
                 <div class="card-body">
                     <div class="row">
 
-                    <div class="col-md-5">
-                        <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" role="img">
+                        <div class="col-md-5">
+                        <!--Main picture block-->
+                            <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" role="img">
                             <rect width="100%" height="100%" fill="#eee"></rect></svg>
-                    </div>
-                    <div class="w-100 h-100 col-5 float-right" style="border: solid 1px black;">PlaceHolder Description</div>
+                        </div>
+                        <div>
+                        <!--Small picture block-->
+                            <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="150" height="150" role="img">
+                                <rect width="90%" height="90%" fill="#eee"></rect></svg>
+                        </div>
+                        <div class="w-100 h-100 col-5 float-right" style="border: solid 1px black;" th:text="${doohickey.description}"></div>
+                        <button class="w-100 h-100 col-5" style="background-color: #55759D; color: white;">Download This Doohickey</button></div>
                     </div>
                     <div class="col-12">
-                        <small class="text-muted" th:text="${'-' + doohickey.author.username}">Username</small>
                         <a sec:authorize="isAuthenticated()" th:if="${#authentication.principal.id} == ${doohickey.author.id}" th:href="@{'/doohickeys/'+${doohickey.id}+'/edit'}">Edit</a>
                     </div>
                 </div>
@@ -29,10 +35,9 @@
                     <button th:if="${user}" class="favButton" th:attr="data-id=${doohickey.id}"><i th:class="${(doohickey.usersFavoritedContains(user.id) ? 'fas' : 'far')+' fa-heart'}"></i></button>
 
                     <th:block th:each="tag : ${doohickey.tags}">
-                        <a href="" th:text="${tag.name}"></a>
+                        <h4><a href="" th:text="${tag.name}"></a></h4>
                     </th:block>
                 </div>
-            </div>
         </main>
         <nav th:replace="partials/footer :: footer"></nav>
         <th:block th:include="partials/scripts :: scripts" />

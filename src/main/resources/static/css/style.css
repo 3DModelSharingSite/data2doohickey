@@ -174,3 +174,8 @@ ul.nav.bg-dark {
 #edit-btn:hover {
     opacity: .75;
 }
+.dropdown:hover .dropdown-menu {
+    display: block;
+    top:95%;
+  left:-5px;
+}
