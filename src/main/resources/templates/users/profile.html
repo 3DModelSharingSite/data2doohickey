@@ -65,21 +65,6 @@
                 </div>
 
             </div>
-
-            <div class="user-counts row col-10 mx-auto">
-                <a th:href="${'/profile/' + user.username + '/doohickeys'}" class="user-count col-6">
-                    <div class="row">
-                        <span class="box-count col-12" th:text="${user.doohickeyList.size()}">1</span>
-                        <span class="col-12">doohickeys</span>
-                    </div>
-                </a>
-                <a th:href="${'/profile/' + user.username + '/favorites'}" class="user-count col-6">
-                    <div class="row">
-                        <span class="box-count col-12" th:text="${user.favorites.size()}">1</span>
-                        <span class="col-12">favorites</span>
-                    </div>
-                </a>
-            </div>
         </div>
         <div class="profile-main col-7 ml-auto">
             <nav id="profileNav">
