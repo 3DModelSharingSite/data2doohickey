@@ -70,7 +70,7 @@ ul.nav.bg-dark {
 /*Profile page*/
 
 .profile-username {
-    padding-bottom: 5em;
+    /*padding-bottom: 5em;*/
 }
 
 .user-info {
@@ -90,6 +90,10 @@ ul.nav.bg-dark {
     height: 1em;
     width: 1em;
     padding-bottom: 2px;
+}
+
+.user-location {
+    margin-bottom: 3px;
 }
 
 .user-classification {
@@ -113,13 +117,41 @@ ul.nav.bg-dark {
     background-color: rgba(150, 182, 191, 1.0);
 }
 
-.profile-info-btns {
-    margin: 10px 0px 0px 0px;
-    font-size: x-small;
+.tip-maker-btn {
+    margin: 0 10px 0 10px;
+    padding-bottom: 4px;
+    font-size: small;
+    height: 35px;
+    width: 120px;
+    background-color: var(--accent-color-2);
+    color: var(--main-color-2);
+    border-color: var(--main-color-2);
+    text-align: center;
+}
+
+.tip-maker-btn:hover {
+    background-color: transparent;
+    color: var(--accent-color-2);
+    border-color: var(--accent-color-2);
 }
 
 .content-header {
     margin-bottom: 5px;
+}
+
+.profile-sidebar-btns {
+    height: 100px;
+    width: 100px;
+    color: var(--main-color-2);
+    border-color: var(--main-color-2);
+    background-color: rgba(85, 117, 157, .7);
+    border-radius: 5px;
+}
+
+.profile-sidebar-btns:hover {
+    color: rgba(85, 117, 157, .7);
+    border-color: rgba(85, 117, 157, .7);
+    background-color: transparent;
 }
 
 #profile-image {
@@ -129,4 +161,16 @@ ul.nav.bg-dark {
     border-radius: 50%;
     height: 10em;
     width: 10em;
+    opacity: .5;
+    border-color: var(--main-color-2);
+}
+
+#edit-btn {
+    height: 19px;
+    width: 19px;
+    margin-bottom: 12px;
+}
+
+#edit-btn:hover {
+    opacity: .75;
 }

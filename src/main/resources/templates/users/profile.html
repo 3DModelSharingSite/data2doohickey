@@ -16,45 +16,69 @@
         <div class="profile-user-info col-4 text-center content-box">
             <div class="profile-card">
                 <div class="row user-info">
+
                     <div class="col-12 profile-image-header">
-                        <img src="/placeholder-profile.jpg" alt="placeholder image" id="profile-image"/>
+                        <div>
+                            <img src="/icons/user-regular.svg" alt="placeholder image" id="profile-image"/>
+                        </div>
                         <div class="content-header" th:text="${user.username}">Display Name</div>
+                        <span><a th:href="${'/profile/' + user.username + '/edit'}"><img src="/icons/edit-regular.svg"
+                                                                                         id="edit-btn"
+                                                                                         alt="edit icon button"/></a></span>
                     </div>
-                    <!--<div class="col-12">-->
-                    <!--<span class="content-header" th:text="${user.username}">Display Name</span>-->
-                    <!--</div>-->
+
                     <div class="col-12">
                         <img id="user-icon" src="/icons/user-circle-solid.svg" alt="user icon"/>
                         <span class="profile-username" th:text="${user.username}">Username</span>
                     </div>
+
                     <div class="user-location col-12">
                         <img id="user-location" src="/icons/globe-solid.svg" alt="location icon"/>
                         <span class="profile-location">Location</span>
                     </div>
+
                 </div>
                 <div class="row">
-                    <button class="profile-info-btns col-4 ml-auto btn-dark">User Doohickeys</button>
-                    <button class="profile-info-btns col-4 mr-auto btn-dark">Tip Designer</button>
+                    <button class="tip-maker-btn m-auto btn">Tip Designer</button>
+                    <br/>
                 </div>
-                <div class="row user-classification col-12"></div>
-                <a th:href="${'/profile/'+user.username+'/edit'}" class="user-count col-6 p-2 mx-auto abgc3">
-                    Edit
-                </a>
+
+                <hr/>
+
+                <!-- User doohickeys and favourites-->
+
+                <div class="row">
+                    <div class="col-6 mx-auto">
+                        <button class="profile-sidebar-btns" th:href="${'/profile/' + user.username + '/doohickeys'}">
+                            <span th:text="${user.doohickeyList.size()}">1</span>
+                            <br/>
+                            <span>Doohickeys</span>
+                        </button>
+                    </div>
+                    <div class="col-6 mx-auto">
+                        <button class="profile-sidebar-btns" th:href="${'/profile/' + user.username + '/favorites'}">
+                            <span th:text="${user.favorites.size()}">1</span>
+                            <br/>
+                            <span>Favorites</span>
+                        </button>
+                    </div>
+                </div>
+
             </div>
 
             <div class="user-counts row col-10 mx-auto">
-                <!--                        <a th:href="${'/profile/'+user.username+'/doohickeys'}" class="user-count col-6">-->
-                <!--                            <div class="row">-->
-                <!--                                <span class="box-count col-12" th:text="${user.doohickeyList.size()}">1</span>-->
-                <!--                                <span class="col-12">doohickeys</span>-->
-                <!--                            </div>-->
-                <!--                        </a>-->
-                <!--                        <a th:href="${'/profile/'+user.username+'/favorites'}" class="user-count col-6">-->
-                <!--                            <div class="row">-->
-                <!--                                <span class="box-count col-12" th:text="${user.favorites.size()}">1</span>-->
-                <!--                                <span class="col-12">favorites</span>-->
-                <!--                            </div>-->
-                <!--                        </a>-->
+                <a th:href="${'/profile/' + user.username + '/doohickeys'}" class="user-count col-6">
+                    <div class="row">
+                        <span class="box-count col-12" th:text="${user.doohickeyList.size()}">1</span>
+                        <span class="col-12">doohickeys</span>
+                    </div>
+                </a>
+                <a th:href="${'/profile/' + user.username + '/favorites'}" class="user-count col-6">
+                    <div class="row">
+                        <span class="box-count col-12" th:text="${user.favorites.size()}">1</span>
+                        <span class="col-12">favorites</span>
+                    </div>
+                </a>
             </div>
         </div>
 
@@ -67,16 +91,16 @@
                             About
                         </a>
                     </li>
-                    <!--                            <li class="nav-item">-->
-                    <!--                                <a class="nav-link py-0 uppercase" th:href="${'/profile/'+user.username+'/doohickeys'}">-->
-                    <!--                                    Doohickeys-->
-                    <!--                                </a>-->
-                    <!--                            </li>-->
-                    <!--                            <li class="nav-item">-->
-                    <!--                                <a class="nav-link py-0 uppercase" th:href="${'/profile/'+user.username+'/favorites'}">-->
-                    <!--                                    Favorites-->
-                    <!--                                </a>-->
-                    <!--                            </li>-->
+                    <li class="nav-item">
+                        <a class="nav-link py-0 uppercase" th:href="${'/profile/'+user.username+'/doohickeys'}">
+                            Doohickeys
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link py-0 uppercase" th:href="${'/profile/'+user.username+'/favorites'}">
+                            Favorites
+                        </a>
+                    </li>
                 </ul>
             </nav>
             <div id="profileBio" class="content-box row">
