@@ -47,20 +47,6 @@ a {
     font-weight: bold;
 }
 
-.doohickey {
-    cursor: pointer;
-}
-
-.doohickey:hover {
-    -webkit-transform: scale(1.01);
-    -moz-transform: scale(1.01);
-    -ms-transform: scale(1.01);
-    -o-transform: scale(1.01);
-    transform: scale(1.01);
-    transition: 0.2s ease;
-    opacity: 0.9;
-}
-
 ul.nav.bg-dark {
     position: absolute;
     bottom: 0;
@@ -134,4 +120,10 @@ ul.nav.bg-dark {
     display: block;
     top:95%;
   left:-5px;
+}
+
+.center-align {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }

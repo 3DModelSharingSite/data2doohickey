@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title></title>
+</head>
+<body>
+
+    <th:block th:fragment="doohickeyList">
+        <nav th:replace="partials/pagination :: pageList"></nav>
+        <th:block th:each="doohickey, iStat : ${page}">
+            <th:block th:if="${iStat.index % 3 == 0}">
+                <th:block th:if="${!iStat.first}" th:utext="'&lt;/div&gt;'">
+                </th:block>
+                <th:block th:utext="${'&lt;div class='+'''row col-12 mx-auto'''+'&gt;'}"/>
+            </th:block>
+            <div th:class="${'item doohickey col-sm-12 col-md-4 px-0 mx-sm-auto '+ (iStat.index % 3 == 0? 'ml-md-auto mr-md-0' : (iStat.index % 3 == 2 ? 'mr-md-auto ml-md-0' : 'mx-md-0'))}">
+                <div class="item-body" th:onclick="${'location=''/doohickeys/'+doohickey.id+''''}">
+
+                </div>
+                <div class="item-header">
+                    <a class="avatar-link"><div class="avatar-wrapper"></div></a>
+                    <div class="item-info center my-0">
+                        <div class="ellipsis">
+                            <span th:text="${doohickey.title}"></span>
+                        </div>
+                        <div class="justify">
+                            by <h5 th:text="${doohickey.author.username}"></h5>
+                            <span class="item-date">1 mins ago</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="item-footer">
+                    <div th:if="${user}" class="favButton item-footer-button col-4 content-box center-align" th:attr="data-id=${doohickey.id}">
+                        <i th:class="${(doohickey.usersFavoritedContains(user.id) ? 'fas' : 'far')+' fa-heart'}"></i>
+                        <span class="mx-2" th:text="${doohickey.usersFavorited.size()}"></span>
+                    </div>
+                    <div th:if="${user == null}" class="item-footer-button col-4 content-box center-align">
+                        <i class="far fa-heart"></i>
+                        <span class="mx-2" th:text="${doohickey.usersFavorited.size()}"></span>
+                    </div>
+                </div>
+            </div>
+            <th:block th:if="${iStat.last}" th:utext="'&lt;/div&gt;'">
+            </th:block>
+        </th:block>
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+        <script>
+            $(".favButton").click(function(e){
+                var button = $(this);
+                var id = button.attr("data-id");
+                console.log(button);
+                $.get("/doohickeys/"+id+"/favorite",function(data){
+                    console.log(data);
+                    if(data == "Favorited") {
+                        console.log(data);
+                        button.find("i").removeClass("far");
+                        button.find("i").addClass("fas");
+                    }else if (data == "UnFavorited"){
+                        console.log(data);
+                        button.find("i").addClass("far");
+                        button.find("i").removeClass("fas");
+                    }else {
+                        document.location = "/login";
+                    }
+                });
+            });
+        </script>
+    </th:block>
+
+</body>
+</html>
