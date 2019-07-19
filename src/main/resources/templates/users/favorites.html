@@ -63,7 +63,6 @@
                         </button>
                     </div>
                 </div>
-
             </div>
         </div>
         <div class="profile-main col-7 ml-auto">
@@ -86,11 +85,14 @@
                     </li>
                 </ul>
             </nav>
+
+            <!--User favorites-->
+
             <div id="profileBio" class="content-box row">
                 <span class="content-header uppercase col-12"
-                      th:text="${'About ' + user.username}">About Username</span>
+                      th:text="${user.username + 's Favorites'}">Username's Favorites</span>
                 <div class="bio col-12">
-                    <p th:text="${userDetails.bio}">Lorem Ipsum is simply dummy text.</p>
+                    <p>Lorem Ipsum is simply dummy text.</p>
                 </div>
             </div>
         </div>
