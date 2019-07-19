@@ -30,7 +30,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="item-footer">
+                <div class="item-footer center-align">
                     <div th:if="${user}" class="favButton item-footer-button col-4 content-box center-align" th:attr="data-id=${doohickey.id}">
                         <i th:class="${(doohickey.usersFavoritedContains(user.id) ? 'fas' : 'far')+' fa-heart'}"></i>
                         <span class="mx-2" th:text="${doohickey.usersFavorited.size()}"></span>
@@ -38,6 +38,15 @@
                     <div th:if="${user == null}" class="item-footer-button col-4 content-box center-align">
                         <i class="far fa-heart"></i>
                         <span class="mx-2" th:text="${doohickey.usersFavorited.size()}"></span>
+                    </div>
+
+                    <div class="item-footer-button col-4 content-box center-align">
+                        <i class="far fa-eye"></i>
+                        <span class="mx-2" th:text="${doohickey.views}"></span>
+                    </div>
+                    <div class="item-footer-button col-4 content-box center-align">
+                        <i class="fas fa-download"></i>
+                        <span class="mx-2" th:text="${doohickey.downloads}"></span>
                     </div>
                 </div>
             </div>
