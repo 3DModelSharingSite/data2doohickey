@@ -14,7 +14,7 @@
                 </th:block>
                 <th:block th:utext="${'&lt;div class='+'''row col-12 mx-auto'''+'&gt;'}"/>
             </th:block>
-            <div th:class="${'item doohickey col-sm-12 col-md-4 px-0 mx-sm-auto '+ (iStat.index % 3 == 0? 'ml-md-auto mr-md-0' : (iStat.index % 3 == 2 ? 'mr-md-auto ml-md-0' : 'mx-md-0'))}">
+            <div th:class="${'item doohickey col-sm-12 col-md-4 px-0 mx-sm-auto '+ (iStat.index % 3 == 0? (iStat.last ? ' mr-auto ':'ml-md-auto mr-md-0') : (iStat.index % 3 == 2 ? 'mr-md-auto ml-md-0' : (iStat.last ? ' mr-auto ':'mx-md-0')))}">
                 <div class="item-body" th:onclick="${'location=''/doohickeys/'+doohickey.id+''''}">
 
                 </div>
@@ -30,7 +30,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="item-footer">
+                <div class="item-footer center-align">
                     <div th:if="${user}" class="favButton item-footer-button col-4 content-box center-align" th:attr="data-id=${doohickey.id}">
                         <i th:class="${(doohickey.usersFavoritedContains(user.id) ? 'fas' : 'far')+' fa-heart'}"></i>
                         <span class="mx-2" th:text="${doohickey.usersFavorited.size()}"></span>
@@ -38,6 +38,15 @@
                     <div th:if="${user == null}" class="item-footer-button col-4 content-box center-align">
                         <i class="far fa-heart"></i>
                         <span class="mx-2" th:text="${doohickey.usersFavorited.size()}"></span>
+                    </div>
+
+                    <div class="item-footer-button col-4 content-box center-align">
+                        <i class="far fa-eye"></i>
+                        <span class="mx-2" th:text="${doohickey.views}"></span>
+                    </div>
+                    <div class="item-footer-button col-4 content-box center-align">
+                        <i class="fas fa-download"></i>
+                        <span class="mx-2" th:text="${doohickey.downloads}"></span>
                     </div>
                 </div>
             </div>
@@ -56,10 +65,12 @@
                         console.log(data);
                         button.find("i").removeClass("far");
                         button.find("i").addClass("fas");
+                        button.find("span").text(parseInt(button.find("span").text())+1);
                     }else if (data == "UnFavorited"){
                         console.log(data);
                         button.find("i").addClass("far");
                         button.find("i").removeClass("fas");
+                        button.find("span").text(parseInt(button.find("span").text())-1);
                     }else {
                         document.location = "/login";
                     }
