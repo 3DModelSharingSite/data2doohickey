@@ -26,7 +26,7 @@
                         th:each="i : ${#numbers.sequence(((page.getNumber()-4 &lt; 1) ? 1 : page.getNumber()-4),
                                                 ((page.getNumber()-4 &lt; 1) ? ((11 &gt; page.getTotalPages()) ? page.getTotalPages() : 11) :
                                                 ((page.getNumber()+6 &lt; page.getTotalPages()) ? page.getNumber()+6 : page.getTotalPages() )))}">
-                    <a class="page-link"
+                    <a th:class="${'page-link ' + ((i&lt;page.getNumber() || i&gt;page.getNumber()+2 ) ? 'd-none d-md-block' : '')}"
                             th:href="'?page=' + ${(i)}"
                             th:text='${i}'
                     >
