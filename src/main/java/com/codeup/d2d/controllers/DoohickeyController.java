@@ -115,6 +115,9 @@ public class DoohickeyController {
 
     @GetMapping("/doohickeys/create")
     public String showCreateDoohickeyForm(Model model){
+        if(authSvc.getCurUser() == null){
+            return "redirect:/login";
+        }
         model.addAttribute("doohickey", new Doohickey());
         model.addAttribute("action", "/doohickeys/create");
         model.addAttribute("title", "Create a Doohickey");
