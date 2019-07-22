@@ -45,7 +45,6 @@ public class Doohickey {
     private List<User> usersFavorited;
 
     @Transient
-    @NotBlank(message = "A doohickey must have tags!")
     private String tagsString;
 
 
@@ -70,6 +69,7 @@ public class Doohickey {
         author=copy.author;
         usersFavorited=copy.usersFavorited;
         tags=copy.tags;
+        tagsString = copy.tagsString;
     }
 
     public Doohickey(String title, String description, long views, long downloads, Date created_at, User author) {
@@ -169,4 +169,6 @@ public class Doohickey {
     public void setTagsString(String tagsString) {
         this.tagsString = tagsString;
     }
+
+
 }

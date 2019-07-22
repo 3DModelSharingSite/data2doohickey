@@ -8,23 +8,13 @@
 </head>
 <body>
     <nav th:replace="partials/navbar :: nav"></nav>
-    <nav th:replace="partials/pagination :: pageList"></nav>
-        <th:block th:each="doohickey : ${page}">
-            <div class="item doohickey" th:onclick="${'location=''/doohickeys/'+doohickey.id+''''}">
-                <div class="item-header">
-                    <a class="avatar-link"><div class="avatar-wrapper"></div></a>
-                    <div class="item-info center">
-                        <span class="ellipsis">
-                            <h3 th:text="${doohickey.title}"></h3>
-                        </span>
-                        <div class="justify">
-                            by <h4 th:text="${doohickey.author.username}"></h4>
-                            <span class="item-date">1 mins ago</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </th:block>
+
+
+    <div th:include="partials/doohickeyList :: doohickeyList" class="container-fluid pt-3 row col-10 mx-auto">
+        Pass in List of Doohickeys
+    </div>
+
+
     <nav th:replace="partials/footer :: footer"></nav>
     <th:block th:include="partials/scripts :: scripts" />
 </body>

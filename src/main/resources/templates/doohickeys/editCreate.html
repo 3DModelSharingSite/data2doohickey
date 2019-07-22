@@ -39,24 +39,12 @@
                 <div class="card-body">
                     <div class="col-12">
                         <form th:action="${action}" method="POST" th:object="${doohickey}">
-
                             <div class="form-group">
 
                             <!--file upload-->
                                 <div id="stl_cont" style="width:500px; height:500px; margin:0 auto; border-color: black;"></div>
-                                <input id="doohickey_stl" type="file" onchange="stl_viewer.add_model(
-                                    {
-                                        local_file:this.files[0],
-                                        display: 'smooth',
-                                        rotationx: -1.5708,
-                                        rotationy: 0.0,
-                                        rotationz: 0.0
-                                    }
-                                );" accept="*.stl"/>
-
                                 <input class="btn btn-primary" type="button" id="doohickey_stl" onclick="client.picker(fsoptions).open()" value="Upload Model"/>
                             </div>
-
                             <div class="form-group">
                                 <label for="title">Title</label>
                                 <input class="form-control" id="title" th:field="*{title}"/>

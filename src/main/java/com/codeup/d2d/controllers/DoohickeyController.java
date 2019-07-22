@@ -40,7 +40,7 @@ public class DoohickeyController {
     }
 
     @GetMapping("/doohickeys")
-    public String showAllDoohickeys(@PageableDefault(page = 1,size=9) Pageable pageable, Model model) {
+    public String showAllDoohickeys(@PageableDefault(page = 1,size=3) Pageable pageable, Model model) {
         Pageable pageable2 = new PageRequest(pageable.getPageNumber()-1,pageable.getPageSize());
         model.addAttribute("page",doohickeyDao.findAll(pageable2));
         model.addAttribute("user", authSvc.getCurUser());
@@ -50,6 +50,8 @@ public class DoohickeyController {
     @GetMapping("/doohickeys/{id}")
     public String showDoohickey(@PathVariable Long id, Model model){
         Doohickey doohickey = doohickeyDao.findOne(id);
+        doohickey.setViews(doohickey.getViews()+1);
+        doohickeyDao.save(doohickey);
         model.addAttribute("doohickey", doohickey);
         model.addAttribute("title", doohickey.getTitle() + " by " + doohickey.getAuthor().getUsername());
         return "doohickeys/show";
@@ -130,6 +132,9 @@ public class DoohickeyController {
                            @RequestParam String tagsString) {
         if(authSvc.getCurUser() == null){
             return "redirect:/login";
+        }
+        if(doohickey.getTagsString().equals("")){
+            validation.rejectValue("tagsString",null,"A doohickey must have tags!");
         }
         if (validation.hasErrors()) {
             model.addAttribute("errors", validation);

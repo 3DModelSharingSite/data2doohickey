@@ -9,11 +9,7 @@
 
         <nav th:replace="partials/navbar :: nav"></nav>
         <main class="container-fluid w-75 pt-3">
-
-
             <nav th:replace="partials/pagination :: pageList"></nav>
-
-
             <th:block th:each="doohickey : ${page}">
                 <div class="card">
                     <div class="card-header" th:onclick="${'location=''/doohickeys/'+doohickey.id+''''}">
@@ -36,30 +32,28 @@
                     </div>
                 </div>
             </th:block>
-        </main>
-
-        <nav th:replace="partials/footer :: footer"></nav>
-        <th:block th:include="partials/scripts :: scripts" />
-        <script>
-            $(".favButton").click(function(e){
-                var button = $(this);
-                var id = button.attr("data-id");
-                console.log(button);
-                $.get("/doohickeys/"+id+"/favorite",function(data){
-                    console.log(data);
-                    if(data == "Favorited") {
+            <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+            <script>
+                $(".favButton").click(function(e){
+                    var button = $(this);
+                    var id = button.attr("data-id");
+                    console.log(button);
+                    $.get("/doohickeys/"+id+"/favorite",function(data){
                         console.log(data);
-                        button.find("i").removeClass("far");
-                        button.find("i").addClass("fas");
-                    }else if (data == "UnFavorited"){
-                        console.log(data);
-                        button.find("i").addClass("far");
-                        button.find("i").removeClass("fas");
-                    }else {
-                        document.location = "/login";
-                    }
+                        if(data == "Favorited") {
+                            console.log(data);
+                            button.find("i").removeClass("far");
+                            button.find("i").addClass("fas");
+                        }else if (data == "UnFavorited"){
+                            console.log(data);
+                            button.find("i").addClass("far");
+                            button.find("i").removeClass("fas");
+                        }else {
+                            document.location = "/login";
+                        }
+                    });
                 });
-            });
-        </script>
+            </script>
+        </main>
     </body>
 </html>
