@@ -11,6 +11,22 @@
 </head>
 <body>
 <nav th:replace="partials/navbar :: nav"></nav>
+<script src="https://static.filestackapi.com/filestack-js/3.x.x/filestack.min.js"></script>
+<script>
+    const client = filestack.init('AsZ4wkm4kSSCPWhIZYFqEz');
+    const fsoptions = {
+            fromSources: ["local_file_system"],
+            accept: ["image/*"],
+            storeTo: {
+                path:'/models/'
+            },
+            onUploadDone: res => {
+                let file = res.filesUploaded[0];
+                $('<input/>').attr({'type':'hidden','value':file.key,'name':'key'}).appendTo('#newPFP');
+                $("#newPFP").submit();
+            }
+     }
+ </script>
 <main class="container-fluid w-100 pt-3">
     <div class="profile-page row h-75 col-10 mx-auto">
         <div class="profile-user-info col-4 text-center content-box">
@@ -19,7 +35,17 @@
 
                     <div class="col-12 profile-image-header">
                         <div>
-                            <img src="/icons/user-regular.svg" alt="placeholder image" id="profile-image"/>
+                            <div sec:authorize="isAuthenticated()" th:if="${#authentication.principal.id == user.id}">
+                                <form id="newPFP" action="/profile/updatePicture" method="post">
+                                </form>
+                                <img th:src="${user.photoURL}" onclick="client.picker(fsoptions).open();"
+                                     alt="Profile Photo" id="profile-image"
+                                     style="cursor:pointer"/>
+                            </div>
+                            <div sec:authorize="!isAuthenticated()">
+                                <img th:src="${user.photoURL}" alt="Profile Photo" id="profile-image"/>
+                            </div>
+
                         </div>
                         <div class="content-header" th:text="${user.username}">Display Name</div>
                         <span><a th:href="${'/profile/' + user.username + '/edit'}"><img src="/icons/edit-regular.svg"

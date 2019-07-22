@@ -50,7 +50,8 @@ public class User {
     )
     private List<Doohickey> favorites;
 
-
+    @Column
+    private String photoURL;
 
     @NotBlank(message = "You must confirm your password!")
     @JsonIgnore
@@ -74,6 +75,7 @@ public class User {
         enabled=copy.enabled;
         favorites=copy.favorites;
         doohickeyList=copy.doohickeyList;
+        photoURL=copy.photoURL;
     }
 
     public User(String email, String username, String password, boolean enabled, List<Doohickey> favorites, List<Doohickey> doohickeyList) {
@@ -164,5 +166,14 @@ public class User {
         this.userDetails = userDetails;
     }
 
+    public String getPhotoURL() {
+        if(photoURL == null){
+            return "/icons/user-regular.svg";
+        }
+        return "https://data2doohickey.s3.us-east-2.amazonaws.com/"+photoURL;
+    }
 
+    public void setPhotoURL(String photoURL) {
+        this.photoURL = photoURL;
+    }
 }
