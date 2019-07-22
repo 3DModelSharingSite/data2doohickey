@@ -5,68 +5,73 @@
 </head>
 
 <body>
-<nav th:replace="partials/navbar :: nav"></nav>
-<script src="//static.filestackapi.com/filestack-js/3.x.x/filestack.min.js"></script>
-<script>
-    const client = filestack.init('AsZ4wkm4kSSCPWhIZYFqEz');
-    const options = {
-            onUploadDone: (res) => {
-                console.log(res);
-                stl_viewer.add_model(
-                {
-                    filename:res.filesUploaded[0].url,
-                    display: 'smooth',
-                    rotationx: -1.5708,
-                    rotationy: 0.0,
-                    rotationz: 0.0
-                });
-            }
-        };
-</script>
-<main class="container-fluid w-50 pt-3">
-    <div class="card">
-        <div class="card-header" th:text="${title}"></div>
-        <div class="card-body">
-            <div class="col-12">
-                <form th:action="${action}" method="POST" th:object="${doohickey}">
+        <nav th:replace="partials/navbar :: nav"></nav>
+        <script src="//static.filestackapi.com/filestack-js/3.x.x/filestack.min.js"></script>
+        <script>
+            const client = filestack.init('AsZ4wkm4kSSCPWhIZYFqEz');
+            const fsoptions = {
+                fromSources: ["local_file_system"],
+                accept: [".stl"],
+                storeTo: {
+                    access:'public',
+                    container:'data2doohickey',
+                    location: 's3',
+                    path:'/models/'
+                }
+            };
+            const options = {
+                    onUploadDone: (res) => {
+                        console.log(res);
+                        stl_viewer.add_model(
+                        {
+                            filename:res.filesUploaded[0].url,
+                            display: 'smooth',
+                            rotationx: -1.5708,
+                            rotationy: 0.0,
+                            rotationz: 0.0
+                        });
+                    }
+                };
+        </script>
+        <main class="container-fluid w-50 pt-3">
+            <div class="card">
+                <div class="card-header" th:text="${title}"></div>
+                <div class="card-body">
+                    <div class="col-12">
+                        <form th:action="${action}" method="POST" th:object="${doohickey}">
+                            <div class="form-group">
 
-                    <div class="form-group">
+                            <!--file upload-->
+                                <div id="stl_cont" style="width:500px; height:500px; margin:0 auto; border-color: black;"></div>
+                                <input class="btn btn-primary" type="button" id="doohickey_stl" onclick="client.picker(fsoptions).open()" value="Upload Model"/>
+                            </div>
+                            <div class="form-group">
+                                <label for="title">Title</label>
+                                <input class="form-control" id="title" th:field="*{title}"/>
+                            </div>
+                            <div class="form-group">
+                                <label for="description">Description</label>
+                                <input class="form-control" id="description" th:field="*{description}" />
+                            </div>
+                            <div class="form-group">
+                                <label for="tagsString">Tags</label>
+                                <input class="form-control" id="tagsString" th:field="*{tagsString}" />
+                                <small id="tagHelp" class="form-text text-muted">* tags must be separated by commas</small>
 
-                    <!--file upload-->
-
-                        <div id="stl_cont" style="width:500px; height:500px; margin:0 auto; border-color: black;"></div>
-                        <label for="doohickey_stl">Doohickey</label>
-                        <div onclick="client.picker(options).open()" style="cursor:pointer">Upload Model</div>
-                        <input id="doohickey_stl" type="file" accept="*.*"/>
+                            </div>
+                            <div class="bg-warning">
+                                <p th:if="${#fields.hasErrors('title')}" th:errors="*{title}" />
+                                <p th:if="${#fields.hasErrors('description')}" th:errors="*{description}" />
+                                <p th:if="${#fields.hasErrors('tagsString')}" th:errors="*{tagsString}" />
+                            </div>
+                            <div class="row">
+                                <button type="submit" class="mx-auto btn btn-success">Save!</button>
+                            </div>
+                        </form>
                     </div>
-
-                    <div class="form-group">
-                        <label for="title">Title</label>
-                        <input class="form-control" id="title" th:field="*{title}"/>
-                    </div>
-                    <div class="form-group">
-                        <label for="description">Description</label>
-                        <input class="form-control" id="description" th:field="*{description}" />
-                    </div>
-                    <div class="form-group">
-                        <label for="tagsString">Tags</label>
-                        <input class="form-control" id="tagsString" th:field="*{tagsString}" />
-                        <small id="tagHelp" class="form-text text-muted">* tags must be separated by commas</small>
-
-                    </div>
-                    <div class="bg-warning">
-                        <p th:if="${#fields.hasErrors('title')}" th:errors="*{title}" />
-                        <p th:if="${#fields.hasErrors('description')}" th:errors="*{description}" />
-                        <p th:if="${#fields.hasErrors('tagsString')}" th:errors="*{tagsString}" />
-                    </div>
-                    <div class="row">
-                        <button type="submit" class="mx-auto btn btn-success">Save!</button>
-                    </div>
-                </form>
+                </div>
             </div>
-        </div>
-    </div>
-</main>
+        </main>
         <nav th:replace="partials/footer :: footer"></nav>
         <th:block th:include="partials/scripts :: scripts" />
     </body>

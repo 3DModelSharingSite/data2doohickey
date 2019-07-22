@@ -114,7 +114,6 @@ public class DoohickeyController {
         doohickeyDao.save(doohickey);
         return "redirect:/doohickeys";
     }
-
     @GetMapping("/doohickeys/create")
     public String showCreateDoohickeyForm(Model model){
         if(authSvc.getCurUser() == null){
