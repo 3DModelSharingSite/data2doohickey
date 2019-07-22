@@ -18,12 +18,16 @@
             fromSources: ["local_file_system"],
             accept: ["image/*"],
             storeTo: {
-                path:'/models/'
+                path:'/profiles/'
             },
             onUploadDone: res => {
                 let file = res.filesUploaded[0];
                 $('<input/>').attr({'type':'hidden','value':file.key,'name':'key'}).appendTo('#newPFP');
                 $("#newPFP").submit();
+            },
+            transformations: {
+                circle:true,
+                force:true
             }
      }
  </script>
@@ -36,14 +40,15 @@
                     <div class="col-12 profile-image-header">
                         <div>
                             <div sec:authorize="isAuthenticated()" th:if="${#authentication.principal.id == user.id}">
-                                <form id="newPFP" action="/profile/updatePicture" method="post">
+                                <form id="newPFP" th:action="@{/profile/updatePicture}" th:method="post">
                                 </form>
-                                <img th:src="${user.photoURL}" onclick="client.picker(fsoptions).open();"
+                                <img th:src="${user.getPhotoURL()}" onclick="client.picker(fsoptions).open();"
                                      alt="Profile Photo" id="profile-image"
-                                     style="cursor:pointer"/>
+                                     th:style="${'cursor:pointer;'+(user.photoURL.equals('/icons/user-regular.svg') ? '' :'opacity:1;')} "/>
                             </div>
                             <div sec:authorize="!isAuthenticated()">
-                                <img th:src="${user.photoURL}" alt="Profile Photo" id="profile-image"/>
+                                <img th:src="${user.getPhotoURL()}" th:style="${user.photoURL.equals('/icons/user-regular.svg') ? '' :'opacity:1;'} "
+                                     alt="Profile Photo" id="profile-image"/>
                             </div>
 
                         </div>

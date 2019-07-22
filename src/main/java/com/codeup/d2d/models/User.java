@@ -53,7 +53,6 @@ public class User {
     @Column
     private String photoURL;
 
-    @NotBlank(message = "You must confirm your password!")
     @JsonIgnore
     @Transient
     private String cnfmpassword;

@@ -96,6 +96,9 @@ public class UserController {
         if(userDao.findByUsername(user.getUsername()) != null){
             validation.rejectValue("username",null,"This username already exists!");
         }
+        if(user.getCnfmpassword().equals("")){
+            validation.rejectValue("password",null,"You must confirm your password!");
+        }
         if(!user.getCnfmpassword().equals(user.getPassword())){
             validation.rejectValue("password",null,
                     "The passwords must match!");
@@ -147,6 +150,7 @@ public class UserController {
             return "redirect:/login";
         }
         User user = (User)authSvc.getCurUser();
+        user = userDao.findOne(user.getId());
         user.setPhotoURL(key);
         userDao.save(user);
         return "redirect:/profile";
