@@ -145,7 +145,6 @@ public class DoohickeyController {
         }
         List<String> tagStrings = Arrays.asList(tagsString.toLowerCase().split("\\s*,\\s*"));
         List<Tag> tags = new ArrayList<>();
-        System.out.println(tagStrings);
         for(String tag :tagStrings){
             System.out.println(tag);
             if(tagDao.findByName(tag) != null) {
@@ -160,7 +159,7 @@ public class DoohickeyController {
         doohickey.setViews(0);
         doohickey.setDownloads(0);
         doohickeyDao.save(doohickey);
-        return "redirect:/doohickeys";
+        return "redirect:/doohickeys/"+doohickey.getId();
     }
 
 }

@@ -6,45 +6,42 @@
 
 <body>
         <nav th:replace="partials/navbar :: nav"></nav>
-        <script src="//static.filestackapi.com/filestack-js/3.x.x/filestack.min.js"></script>
+        <script src="https://static.filestackapi.com/filestack-js/3.x.x/filestack.min.js"></script>
         <script>
             const client = filestack.init('AsZ4wkm4kSSCPWhIZYFqEz');
             const fsoptions = {
                 fromSources: ["local_file_system"],
                 accept: [".stl"],
                 storeTo: {
-                    access:'public',
-                    container:'data2doohickey',
-                    location: 's3',
                     path:'/models/'
+                },
+                onUploadDone: res => {
+                    console.log(res);
+                    res.filesUploaded.forEach(function(file){
+                        $('<input/>').attr({'type':'hidden','value':file.key,'name':'keys'}).appendTo('#doohickeyForm');
+                    });
+                    stl_viewer.add_model({
+                        filename:"https://data2doohickey.s3.us-east-2.amazonaws.com/"+res.filesUploaded[0].key,
+                        display: 'smooth',
+                        rotationx: -1.5708,
+                        rotationy: 0.0,
+                        rotationz: 0.0
+                    });
                 }
             };
-            const options = {
-                    onUploadDone: (res) => {
-                        console.log(res);
-                        stl_viewer.add_model(
-                        {
-                            filename:res.filesUploaded[0].url,
-                            display: 'smooth',
-                            rotationx: -1.5708,
-                            rotationy: 0.0,
-                            rotationz: 0.0
-                        });
-                    }
-                };
         </script>
         <main class="container-fluid w-50 pt-3">
             <div class="card">
                 <div class="card-header" th:text="${title}"></div>
                 <div class="card-body">
                     <div class="col-12">
-                        <form th:action="${action}" method="POST" th:object="${doohickey}">
-                            <div class="form-group">
+                        <form id="doohickeyForm" th:action="${action}" method="POST" th:object="${doohickey}">
+<!--                            <div class="form-group">-->
 
-                            <!--file upload-->
-                                <div id="stl_cont" style="width:500px; height:500px; margin:0 auto; border-color: black;"></div>
-                                <input class="btn btn-primary" type="button" id="doohickey_stl" onclick="client.picker(fsoptions).open()" value="Upload Model"/>
-                            </div>
+<!--                            &lt;!&ndash;file upload&ndash;&gt;-->
+<!--                                <div id="stl_cont" style="width:500px; height:500px; margin:0 auto; border-color: black;"></div>-->
+<!--                                <input class="btn btn-primary" type="button" id="doohickey_stl" onclick="client.picker(fsoptions).open()" value="Upload Model"/>-->
+<!--                            </div>-->
                             <div class="form-group">
                                 <label for="title">Title</label>
                                 <input class="form-control" id="title" th:field="*{title}"/>
