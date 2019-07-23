@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+    <th:block th:replace="partials/head :: head('Search Results')"/>
+</head>
+<body>
+<nav th:replace="partials/navbar :: nav"></nav>
+
+<div class="container-fluid w-75 pt-3" style="background-color: lightgray;">
+    <h2 class="center-align">Search for doohickeys</h2>
+    <form class="form-group" th:object="${doohickey}" th:action="@{/doohickeys/search-doohickeys}" method="GET">
+        <label for="search"></label>
+        <input class="form-control" type="text" name="search" id="search" th:value="${search}"/>
+        <button class="form-control btn" type="submit">Search</button>
+
+        <div th:if="${not #lists.isEmpty(search)}">
+            <div class="card">
+                <div class="card-header" th:each="doohickey: ${search}">
+                    <h4 th:text="${doohickey.title}">Title</h4>
+                </div>
+                <div class="card-body" th:text="${doohickey.description}"></div>
+                <th:block th:each="tag : ${doohickey.tags}">
+                    <a href="" th:text="${tag.name}"></a>
+                </th:block>
+            </div>
+        </div>
+    </form>
+</div>
+</body>
+</html>
