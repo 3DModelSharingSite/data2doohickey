@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+    <head>
+        <th:block th:replace="partials/head :: head('3D view Doohickeys')"/>
+    </head>
+    <body>
+    <th:block th:fragment="3dView">
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+        <div id="stl_cont" style="width:500px; height:500px; border-color: black;"></div>
+        <input id="s3Key" type="hidden" th:value="${file.getS3_key()}"/>
+        <script src="/js/stl_viewer.min.js"></script>
+        <script>
+            var key = $("#s3Key")[0].value;
+            var stl_viewer = new StlViewer
+            (
+                document.getElementById("stl_cont"),
+                {
+                    zoom:200,
+                    bgcolor: "#A7AEAC",
+                    allow_drag_and_drop: true,
+                    auto_resize: true,
+                    auto_rotate: true,
+                    mouse_zoom: false,
+                    models:[{
+                        filename:"https://data2doohickey.s3.us-east-2.amazonaws.com/"+key,
+                        display: "smooth",
+                        rotationx: -1.5708,
+                        rotationy: 0.308,
+                        rotationz: 0.0
+
+                    }]
+                }
+            );
+        </script>
+
+    </th:block>
+    </body>
+</html>
