@@ -6,6 +6,7 @@ import org.hibernate.validator.constraints.NotBlank;
 
 import javax.persistence.*;
 import javax.validation.constraints.Size;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 import java.util.List;
@@ -47,6 +48,9 @@ public class Doohickey {
     @Transient
     private String tagsString;
 
+    @OneToMany(cascade = CascadeType.ALL,mappedBy = "doohickey")
+    private List<File> files;
+
 
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
@@ -70,15 +74,7 @@ public class Doohickey {
         usersFavorited=copy.usersFavorited;
         tags=copy.tags;
         tagsString = copy.tagsString;
-    }
-
-    public Doohickey(String title, String description, long views, long downloads, Date created_at, User author) {
-        this.title = title;
-        this.description = description;
-        this.views = views;
-        this.downloads = downloads;
-        this.created_at = created_at;
-        this.author=author;
+        files=copy.files;
     }
 
     public boolean usersFavoritedContains(long id){
@@ -170,5 +166,11 @@ public class Doohickey {
         this.tagsString = tagsString;
     }
 
+    public List<File> getFiles() {
+        return files;
+    }
 
+    public void setFiles(List<File> files) {
+        this.files = files;
+    }
 }
