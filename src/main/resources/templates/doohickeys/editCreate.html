@@ -15,6 +15,8 @@
                 storeTo: {
                     path:'/pre-models/'
                 },
+                maxFiles:1,
+                startUploadingWhenMaxFilesReached:true,
                 onUploadDone: res => {
                     console.log(res);
                     res.filesUploaded.forEach(function(file){
@@ -39,7 +41,11 @@
                             <div class="form-group">
 
                                 <!--file upload-->
-                                <div id="stl_cont" style="width:500px; height:500px; margin:0 auto; border-color: black;"></div>
+                                <div style="position:absolute;line-height:2em;" class="row col-5">
+                                    <span class="mx-auto text-white">Doohickey Preview:</span>
+                                </div>
+                                <div id="stl_cont" style="width:500px; height:500px; margin:0 auto; border-color: black;">
+                                </div>
                                 <input class="btn btn-primary" type="button" id="doohickey_stl" onclick="client.picker(fsoptions).open()" value="Upload Model"/>
 
                             </div>
