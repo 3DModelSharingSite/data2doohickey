@@ -58,71 +58,44 @@ ul.nav.bg-dark {
     width: 100%;
 }
 
+footer {
+    margin-top: 5em;
+}
 
 
 /*Profile page*/
 
-.profile-page-spacing {
-    height: 100%;
+#profile-image, #newPFP {
+    padding: 10px;
+    margin-top: 8px;
+    border-radius: 50%;
+    height: 10em;
+    width: 10em;
+    opacity: .5;
+    border-color: var(--main-color-2);
 }
 
-.btn-padding {
-    padding-bottom: 25%;
-    /*margin-left: 2px;*/
-    /*margin-right: 2px;*/
+#edit-btn {
+    height: 19px;
+    width: 19px;
+    margin-bottom: 12px;
 }
 
-.profile-username {
-    /*padding-bottom: 5em;*/
+#edit-btn:hover {
+    opacity: .75;
 }
 
-.user-info {
-    /*background-color: rgba(150, 182, 191, 1.0);*/
-    /*border-color: rgba(150, 182, 191, 1.0);*/
-    /*padding-bottom: 2em;*/
-    /*border-width: 3em;*/
-}
-
-#user-icon {
+#location-img {
     height: 1em;
     width: 1em;
     padding-bottom: 2px;
 }
 
-#user-location {
+#user-icon-img {
     height: 1em;
     width: 1em;
     padding-bottom: 2px;
 }
-
-.user-location {
-    margin-bottom: 3px;
-}
-
-.user-classification {
-    margin-top: 5em;
-}
-
-.user-info {
-    /*background-color: rgba(150, 182, 191, 1.0);*/
-}
-
-.user-info-body {
-    margin: 2px;
-}
-
-.user-count {
-    margin-top: 14em;
-}
-
-.user-count:hover {
-    border-color: white;
-    color: white;
-}
-
-/*.profile-image-header {*/
-    /*background-color: rgba(150, 182, 191, 1.0);*/
-/*}*/
 
 .tip-maker-btn {
     margin: 0 10px 0 10px;
@@ -142,61 +115,34 @@ ul.nav.bg-dark {
     border-color: var(--accent-color-2);
 }
 
-.content-header {
-    margin-bottom: 5px;
-}
-
-.profile-sidebar-btns {
+.doo-fav-btns {
     height: 100px;
     width: 100px;
     color: var(--main-color-2);
     border-color: var(--main-color-2);
     background-color: rgba(85, 117, 157, .7);
     border-radius: 5px;
+    margin-bottom: 15px;
 }
 
-.profile-sidebar-btns:hover {
+.doo-fav-btns:hover {
     color: rgba(85, 117, 157, .7);
     border-color: rgba(85, 117, 157, .7);
     background-color: transparent;
 }
 
-#profile-image {
-    /*z-index: 5;*/
-    padding: 10px;
-    margin-top: 8px;
-    border-radius: 50%;
-    height: 10em;
-    width: 10em;
-    opacity: .5;
-    border-color: var(--main-color-2);
+.profile-left, .profile-right {
+    margin-bottom: 1em;
 }
 
-#edit-btn {
-    height: 19px;
-    width: 19px;
-    margin-bottom: 12px;
-}
-
-#edit-btn:hover {
-    opacity: .75;
-}
-.dropdown:hover .dropdown-menu {
-    display: block;
-    top:95%;
-  left:-5px;
-}
-
-.center-align {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.profile-right {
+    margin-top: 1em;
 }
 
 .small-nav {
-    font-size: medium;
+    margin-bottom: 1em;
+    font-size: x-large;
 }
-
 
 
 
@@ -205,59 +151,31 @@ ul.nav.bg-dark {
 /* Custom, iPhone Retina */
 @media only screen and (min-width : 320px) {
 
+    .container-fluid {
+        margin: auto;
+        position: absolute;
+        top: 5em; left: 0; bottom: 0; right: 0;
+    }
+
     .small-nav {
-        margin: 6px 1px 6px 1px;
-        font-size: x-large;
+        text-align: center;
+        font-size: medium;
     }
 }
 
 /* Extra Small Devices, Phones */
 @media only screen and (min-width : 480px) {
 
-    .small-nav {
-        margin: 6px 1px 6px 1px;
-        font-size: x-large;
+    .container-fluid {
+        margin: auto;
+        position: absolute;
+        top: 5em; left: 0; bottom: 0; right: 0;
     }
-}
 
-/* Small Devices, Tablets */
-@media only screen and (min-width : 768px) {
-
-}
-
-/* Medium Devices, Desktops */
-@media only screen and (min-width : 992px) {
+    .small-nav {
+        text-align: center;
+        font-size: medium;
+    }
 
 }
 
-/* Large Devices, Wide Screens */
-@media only screen and (min-width : 1200px) {
-
-}
-
-/*==========  Non-Mobile First Method  ==========*/
-
-/* Large Devices, Wide Screens */
-@media only screen and (max-width : 1200px) {
-
-}
-
-/* Medium Devices, Desktops */
-@media only screen and (max-width : 992px) {
-
-}
-
-/* Small Devices, Tablets */
-@media only screen and (max-width : 768px) {
-
-}
-
-/* Extra Small Devices, Phones */
-@media only screen and (max-width : 480px) {
-
-}
-
-/* Custom, iPhone Retina */
-@media only screen and (max-width : 320px) {
-
-}
