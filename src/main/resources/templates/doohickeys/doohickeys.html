@@ -10,9 +10,11 @@
     <nav th:replace="partials/navbar :: nav"></nav>
 
 
-    <div th:include="partials/doohickeyList :: doohickeyList" class="container-fluid pt-3 row col-10 mx-auto">
-        Pass in List of Doohickeys
-    </div>
+    <main class="container-fluid pt-3 row col-10 mx-auto">
+        <div th:include="partials/doohickeyList :: doohickeyList" class="col-10 mx-auto">
+            Pass in List of Doohickeys
+        </div>
+    </main>
 
 
     <nav th:replace="partials/footer :: footer"></nav>
