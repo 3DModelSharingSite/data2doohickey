@@ -68,8 +68,8 @@ ul.nav.bg-dark {
 
 .btn-padding {
     padding-bottom: 25%;
-    margin-left: 2px;
-    margin-right: 2px;
+    /*margin-left: 2px;*/
+    /*margin-right: 2px;*/
 }
 
 .profile-username {
@@ -104,7 +104,7 @@ ul.nav.bg-dark {
 }
 
 .user-info {
-    background-color: rgba(150, 182, 191, 1.0);
+    /*background-color: rgba(150, 182, 191, 1.0);*/
 }
 
 .user-info-body {
