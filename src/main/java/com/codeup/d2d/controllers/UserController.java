@@ -7,6 +7,7 @@ import com.codeup.d2d.repos.UserDetailsRepository;
 import com.codeup.d2d.repos.UserRepository;
 import com.codeup.d2d.repos.UserRoles;
 import com.codeup.d2d.services.AuthenticationService;
+import com.codeup.d2d.services.HaveIBeenPwndService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -21,17 +22,19 @@ public class UserController {
     private UserRepository userDao;
     private UserDetailsRepository userDetailsDao;
     private PasswordEncoder passwordEncoder;
+    private HaveIBeenPwndService hibp;
 
     @Autowired
     private UserRoles userRoles;
 
     private AuthenticationService authSvc;
 
-    public UserController(UserDetailsRepository userDetailsDao,AuthenticationService authSvc, UserRepository users, PasswordEncoder passwordEncoder) {
+    public UserController(HaveIBeenPwndService hibp, UserDetailsRepository userDetailsDao,AuthenticationService authSvc, UserRepository users, PasswordEncoder passwordEncoder) {
         this.authSvc = authSvc;
         this.userDao = users;
         this.passwordEncoder = passwordEncoder;
         this.userDetailsDao = userDetailsDao;
+        this.hibp = hibp;
     }
 
     @GetMapping("/profile")
@@ -98,6 +101,10 @@ public class UserController {
         }
         if(user.getCnfmpassword().equals("")){
             validation.rejectValue("password",null,"You must confirm your password!");
+        }
+        if(hibp.CheckPasswordForPwnage(user.getPassword())){
+            validation.rejectValue("password",null,
+                    "This password has been compromised in the past!");
         }
         if(!user.getCnfmpassword().equals(user.getPassword())){
             validation.rejectValue("password",null,
