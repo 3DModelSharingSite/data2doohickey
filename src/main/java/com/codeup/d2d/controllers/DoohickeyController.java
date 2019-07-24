@@ -45,10 +45,22 @@ public class DoohickeyController {
     }
 
     @GetMapping("/doohickeys")
-    public String showAllDoohickeys(@PageableDefault(page = 1,size=3) Pageable pageable, Model model) {
+    public String showAllDoohickeys(@RequestParam(required = false) String search, @PageableDefault(page = 1,size=3) Pageable pageable, Model model) {
+
+        if(search == null) {
+            search="";
+        }
+        model.addAttribute("search",search);
+        if(search.equals("")){
+            search = "%";
+        }else{
+            search = "%" + search + "%";
+        }
         Pageable pageable2 = new PageRequest(pageable.getPageNumber()-1,pageable.getPageSize());
-        model.addAttribute("page",doohickeyDao.findAll(pageable2));
+
+        model.addAttribute("page",doohickeyDao.findByTitleIsLikeOrDescriptionIsLike(search,search,pageable2));
         model.addAttribute("user", authSvc.getCurUser());
+
         return "doohickeys/doohickeys";
     }
 
@@ -181,15 +193,6 @@ public class DoohickeyController {
         }
 
         return "redirect:/doohickeys/"+doohickey.getId();
-    }
-
-
-    @RequestMapping(value = "/doohickeys/search-doohickeys", method = RequestMethod.GET)
-    public String searchDoohickeys(@RequestParam (value = "search", required = false) String title, String description, String tag, Model model) {
-        model.addAttribute("search", doohickeyDao.findByTitle(title));
-        model.addAttribute("search", doohickeyDao.findByDescription(description));
-        model.addAttribute("search", tagDao.findByName(tag));
-        return "doohickeys/search-doohickeys";
     }
 
     @GetMapping("/doohickeys/{id}/3d")
