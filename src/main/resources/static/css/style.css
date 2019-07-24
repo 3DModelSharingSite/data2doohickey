@@ -8,8 +8,13 @@
     --dark-color-2: rgba(85, 117, 157, 0.1); /*  #55759D  */
 }
 
+html {
+    height: 100%;
+}
+
 body {
     background: var(--main-color-1);
+    height: 100%;
 }
 
 a {
@@ -53,7 +58,19 @@ ul.nav.bg-dark {
     width: 100%;
 }
 
+
+
 /*Profile page*/
+
+.profile-page-spacing {
+    height: 100%;
+}
+
+.btn-padding {
+    padding-bottom: 25%;
+    margin-left: 2px;
+    margin-right: 2px;
+}
 
 .profile-username {
     /*padding-bottom: 5em;*/
@@ -86,6 +103,10 @@ ul.nav.bg-dark {
     margin-top: 5em;
 }
 
+.user-info {
+    background-color: rgba(150, 182, 191, 1.0);
+}
+
 .user-info-body {
     margin: 2px;
 }
@@ -99,9 +120,9 @@ ul.nav.bg-dark {
     color: white;
 }
 
-.profile-image-header {
-    background-color: rgba(150, 182, 191, 1.0);
-}
+/*.profile-image-header {*/
+    /*background-color: rgba(150, 182, 191, 1.0);*/
+/*}*/
 
 .tip-maker-btn {
     margin: 0 10px 0 10px;
@@ -141,7 +162,7 @@ ul.nav.bg-dark {
 }
 
 #profile-image {
-    z-index: 5;
+    /*z-index: 5;*/
     padding: 10px;
     margin-top: 8px;
     border-radius: 50%;
@@ -170,4 +191,73 @@ ul.nav.bg-dark {
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.small-nav {
+    font-size: medium;
+}
+
+
+
+
+/*==========  Mobile First Method  ==========*/
+
+/* Custom, iPhone Retina */
+@media only screen and (min-width : 320px) {
+
+    .small-nav {
+        margin: 6px 1px 6px 1px;
+        font-size: x-large;
+    }
+}
+
+/* Extra Small Devices, Phones */
+@media only screen and (min-width : 480px) {
+
+    .small-nav {
+        margin: 6px 1px 6px 1px;
+        font-size: x-large;
+    }
+}
+
+/* Small Devices, Tablets */
+@media only screen and (min-width : 768px) {
+
+}
+
+/* Medium Devices, Desktops */
+@media only screen and (min-width : 992px) {
+
+}
+
+/* Large Devices, Wide Screens */
+@media only screen and (min-width : 1200px) {
+
+}
+
+/*==========  Non-Mobile First Method  ==========*/
+
+/* Large Devices, Wide Screens */
+@media only screen and (max-width : 1200px) {
+
+}
+
+/* Medium Devices, Desktops */
+@media only screen and (max-width : 992px) {
+
+}
+
+/* Small Devices, Tablets */
+@media only screen and (max-width : 768px) {
+
+}
+
+/* Extra Small Devices, Phones */
+@media only screen and (max-width : 480px) {
+
+}
+
+/* Custom, iPhone Retina */
+@media only screen and (max-width : 320px) {
+
 }
