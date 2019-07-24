@@ -139,11 +139,11 @@ public class DoohickeyController {
                            Errors validation,
                            Model model,
                            @RequestParam String tagsString,
-                           @RequestParam List<String> keys) {
+                           @RequestParam(required=false)List<String> keys) {
         if(authSvc.getCurUser() == null){
             return "redirect:/login";
         }
-        if(keys.size() < 1){
+        if(keys == null || keys.size() < 1){
             validation.rejectValue("files",null,"A doohickey must have files!");
         }
         if(doohickey.getTagsString().equals("")){
