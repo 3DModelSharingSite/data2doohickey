@@ -20,8 +20,11 @@
                         </div>
                         <div class="col-md-5 content-box" th:text="${'About ' + doohickey.title + ': ' + doohickey.description}">
                         </div>
-                        <div sec:authorize="isAuthenticated()" class="col-1">
-                            <a th:if="${#authentication.principal.id} == ${doohickey.author.id}" th:href="@{'/doohickeys/'+${doohickey.id}+'/edit'}">Edit</a>
+                        <div sec:authorize="isAuthenticated()" th:if="${#authentication.principal.id} == ${doohickey.author.id}" class="col-1">
+                            <a th:href="@{'/doohickeys/'+${doohickey.id}+'/edit'}">Edit</a>
+                            <form th:action="@{'/doohickeys/'+${doohickey.id}+'/delete'}" th:method="post">
+                                <button class="btn btn-danger">Delete</button>
+                            </form>
                         </div>
                         <a target="_blank" class="col-md-5" th:href="${'https://data2doohickey.s3.us-east-2.amazonaws.com/'+doohickey.files[0].getS3_key()}">
                             <button class="w-100 h-100" style="background-color: #55759D; color: white;">Download This Doohickey</button>
