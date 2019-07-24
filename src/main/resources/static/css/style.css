@@ -63,7 +63,7 @@ footer {
 }
 
 
-/*Profile page*/
+/*profile.html*/
 
 #profile-image, #newPFP {
     padding: 10px;
@@ -95,6 +95,10 @@ footer {
     height: 1em;
     width: 1em;
     padding-bottom: 2px;
+}
+
+#newPFP {
+    display: none;
 }
 
 .tip-maker-btn {
@@ -144,7 +148,9 @@ footer {
     font-size: x-large;
 }
 
-/*EDIT PAGE*/
+/*doohickeyList.html*/
+
+
 
 
 

@@ -10,6 +10,35 @@
     </th:block>
 </head>
 <body>
+<script src="https://static.filestackapi.com/filestack-js/3.x.x/filestack.min.js"></script>
+<script>
+    (function () {
+        const client = filestack.init('AsZ4wkm4kSSCPWhIZYFqEz');
+        const fsoptions = {
+            fromSources: ["local_file_system"],
+            accept: ["image/jpg", "image/jpeg", "image/png", "image/bmp"],
+            imageDim: [800, 800],
+            maxFiles: 1,
+            storeTo: {
+                path: '/profiles/'
+            },
+            onUploadDone: res => {
+            let file = res.filesUploaded[0];
+        $('<input/>').attr({'type': 'hidden', 'value': file.key, 'name': 'key'}).appendTo('#newPFP');
+        $("#newPFP").submit();
+    },
+        transformations: {
+            circle:true,
+                force:true
+        }
+    }
+        $(document).ready(function () {
+            $(document).on("click", "#profile-image", function () {
+                client.picker(fsoptions).open();
+            });
+        });
+    })();
+</script>
 
 <nav th:replace="partials/navbar :: nav"></nav>
 
@@ -42,7 +71,7 @@
                         <span class="profile-username" th:text="${user.username}">Username</span>
                     </div>
                     <div class="user-location">
-                        <img id="location-img" src="/icons/globe-solid.svg" alt="location icon"/>
+                        <img id="location-img" th:text="${userDetails.location}" src="/icons/globe-solid.svg" alt="location icon"/>
                         <span class="profile-location">Location</span>
                     </div>
 
@@ -114,34 +143,6 @@
 <nav th:replace="partials/footer :: footer"></nav>
 
 <th:block th:include="partials/scripts :: scripts"/>
-<script src="https://static.filestackapi.com/filestack-js/3.x.x/filestack.min.js"></script>
-<script>
-    (function () {
-        const client = filestack.init('AsZ4wkm4kSSCPWhIZYFqEz');
-        const fsoptions = {
-            fromSources: ["local_file_system"],
-            accept: ["image/jpg", "image/jpeg", "image/png", "image/bmp"],
-            imageDim: [800, 800],
-            maxFiles: 1,
-            storeTo: {
-                path: '/profiles/'
-            },
-            onUploadDone: res = > {
-            let file = res.filesUploaded[0];
-        $('<input/>').attr({'type': 'hidden', 'value': file.key, 'name': 'key'}).appendTo('#newPFP');
-        $("#newPFP").submit();
-    },
-        transformations: {
-            circle:true,
-                force:true
-        }
-    }
-        $(document).ready(function () {
-            $(document).on("click", "#profile-image", function () {
-                client.picker(fsoptions).open();
-            });
-        });
-    })();
-</script>
+
 </body>
 </html>
