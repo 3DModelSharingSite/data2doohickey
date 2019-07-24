@@ -11,7 +11,6 @@ import com.codeup.d2d.repos.UserRepository;
 import com.codeup.d2d.services.AuthenticationService;
 import com.codeup.d2d.services.S3Service;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
@@ -23,7 +22,6 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collection;
 import java.util.List;
 
 
@@ -185,6 +183,14 @@ public class DoohickeyController {
         return "redirect:/doohickeys/"+doohickey.getId();
     }
 
+
+    @RequestMapping(value = "/doohickeys/search-doohickeys", method = RequestMethod.GET)
+    public String searchDoohickeys(@RequestParam (value = "search", required = false) String title, String description, String tag, Model model) {
+        model.addAttribute("search", doohickeyDao.findByTitle(title));
+        model.addAttribute("search", doohickeyDao.findByDescription(description));
+        model.addAttribute("search", tagDao.findByName(tag));
+        return "doohickeys/search-doohickeys";
+    }
 
     @GetMapping("/doohickeys/{id}/3d")
     public String showDoohickey3D(@PathVariable Long id, Model model){

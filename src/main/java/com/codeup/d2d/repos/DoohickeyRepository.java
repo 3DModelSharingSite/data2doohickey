@@ -11,6 +11,7 @@ import java.util.List;
 
 @Repository
 public interface DoohickeyRepository extends CrudRepository<Doohickey, Long> {
-    List<Doohickey> findByTitle(String findString);
+    List<Doohickey> findByTitle(String findTitle);
+    List<Doohickey> findByDescription(String findDescription);
     Page<Doohickey> findAll(Pageable pageable);
 }
