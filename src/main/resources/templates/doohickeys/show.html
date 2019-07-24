@@ -18,16 +18,14 @@
                         <!--Main picture block-->
                             <th:block th:replace="doohickeys/3dShow :: 3dView"></th:block>
                         </div>
-                        <div>
-                        <!--Small picture block-->
-                            <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="150" height="150" role="img">
-                                <rect width="90%" height="90%" fill="#eee"></rect></svg>
+                        <div class="col-md-5 content-box" th:text="${'About ' + doohickey.title + ': ' + doohickey.description}">
                         </div>
-                        <div class="w-100 h-100 col-5 float-right" style="border: solid 1px black;" th:text="${'About ' + doohickey.title + ': ' + doohickey.description}"></div>
-                        <button class="w-100 h-100 col-5" style="background-color: #55759D; color: white;">Download This Doohickey</button></div>
-                    </div>
-                    <div class="col-12">
-                        <a sec:authorize="isAuthenticated()" th:if="${#authentication.principal.id} == ${doohickey.author.id}" th:href="@{'/doohickeys/'+${doohickey.id}+'/edit'}">Edit</a>
+                        <div sec:authorize="isAuthenticated()" class="col-1">
+                            <a th:if="${#authentication.principal.id} == ${doohickey.author.id}" th:href="@{'/doohickeys/'+${doohickey.id}+'/edit'}">Edit</a>
+                        </div>
+                        <a target="_blank" class="col-md-5" th:href="${'https://data2doohickey.s3.us-east-2.amazonaws.com/'+doohickey.files[0].getS3_key()}">
+                            <button class="w-100 h-100" style="background-color: #55759D; color: white;">Download This Doohickey</button>
+                        </a>
                     </div>
                 </div>
                 <div class="card-footer">
@@ -37,6 +35,7 @@
                         <h4><a href="" th:text="${tag.name}"></a></h4>
                     </th:block>
                 </div>
+            </div>
         </main>
         <nav th:replace="partials/footer :: footer"></nav>
         <th:block th:include="partials/scripts :: scripts" />
