@@ -20,13 +20,15 @@
 
                 </div>
                 <div class="item-header">
-                    <a class="avatar-link"><div class="avatar-wrapper"></div></a>
+                    <div class="avatar-wrapper" th:onclick="${'location=''/profile/'+doohickey.author.username+''''}">
+                        <img th:src="${doohickey.author.getPhotoURL()}" style="height:100%"/>
+                    </div>
                     <div class="item-info center my-0">
                         <div class="ellipsis">
-                            <span th:text="${doohickey.title}"></span>
+                            <span th:text="${doohickey.title}" th:onclick="${'location=''/doohickeys/'+doohickey.id+''''}"></span>
                         </div>
                         <div class="justify">
-                            by <h5 th:text="${doohickey.author.username}"></h5>
+                            by <h5 th:text="${doohickey.author.username}" th:onclick="${'location=''/profile/'+doohickey.author.username+''''}"></h5>
                             <span class="item-date" th:datetime="${doohickey.created_at}"></span>
                         </div>
                     </div>
