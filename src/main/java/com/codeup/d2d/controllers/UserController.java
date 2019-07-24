@@ -12,10 +12,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
@@ -99,6 +96,9 @@ public class UserController {
         if(userDao.findByUsername(user.getUsername()) != null){
             validation.rejectValue("username",null,"This username already exists!");
         }
+        if(user.getCnfmpassword().equals("")){
+            validation.rejectValue("password",null,"You must confirm your password!");
+        }
         if(!user.getCnfmpassword().equals(user.getPassword())){
             validation.rejectValue("password",null,
                     "The passwords must match!");
@@ -124,7 +124,6 @@ public class UserController {
         userRoles.save(ur);
 
         authSvc.authenticate(user);
-
         model.addAttribute("user", user);
 
         return "redirect:/";
@@ -144,5 +143,16 @@ public class UserController {
         model.addAttribute("user", user);
         model.addAttribute("userDetails", user.getDoohickeyList());
         return "users/doohickeys";
+    }
+    @PostMapping("/profile/updatePicture")
+    public String updatePFP(@RequestParam String key){
+        if(authSvc.getCurUser() == null){
+            return "redirect:/login";
+        }
+        User user = (User)authSvc.getCurUser();
+        user = userDao.findOne(user.getId());
+        user.setPhotoURL(key);
+        userDao.save(user);
+        return "redirect:/profile";
     }
 }

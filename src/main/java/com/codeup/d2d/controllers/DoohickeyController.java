@@ -1,12 +1,15 @@
 package com.codeup.d2d.controllers;
 
 import com.codeup.d2d.models.Doohickey;
+import com.codeup.d2d.models.File;
 import com.codeup.d2d.models.Tag;
 import com.codeup.d2d.models.User;
 import com.codeup.d2d.repos.DoohickeyRepository;
+import com.codeup.d2d.repos.FileRepository;
 import com.codeup.d2d.repos.TagRepository;
 import com.codeup.d2d.repos.UserRepository;
 import com.codeup.d2d.services.AuthenticationService;
+import com.codeup.d2d.services.S3Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -24,17 +27,21 @@ import java.util.List;
 
 @Controller
 public class DoohickeyController {
-    private UserRepository userDao;
-    private TagRepository tagDao;
-    private DoohickeyRepository doohickeyDao;
-    private AuthenticationService authSvc;
+    private final UserRepository userDao;
+    private final TagRepository tagDao;
+    private final DoohickeyRepository doohickeyDao;
+    private final FileRepository fileDao;
+    private final S3Service s3svc;
+    private final AuthenticationService authSvc;
 
     @Autowired
-    public DoohickeyController(TagRepository tagDao,AuthenticationService authSvc, UserRepository users, DoohickeyRepository doohickeyDao) {
+    public DoohickeyController(S3Service s3svc, FileRepository fileDao, TagRepository tagDao, AuthenticationService authSvc, UserRepository users, DoohickeyRepository doohickeyDao) {
         this.authSvc = authSvc;
         this.userDao = users;
         this.doohickeyDao = doohickeyDao;
         this.tagDao=tagDao;
+        this.fileDao=fileDao;
+        this.s3svc = s3svc;
     }
 
     @GetMapping("/doohickeys")
@@ -50,6 +57,8 @@ public class DoohickeyController {
         Doohickey doohickey = doohickeyDao.findOne(id);
         doohickey.setViews(doohickey.getViews()+1);
         doohickeyDao.save(doohickey);
+        File file = fileDao.findByDoohickey_Id(id);
+        model.addAttribute("file",file);
         model.addAttribute("doohickey", doohickey);
         model.addAttribute("title", doohickey.getTitle() + " by " + doohickey.getAuthor().getUsername());
         return "doohickeys/show";
@@ -112,7 +121,6 @@ public class DoohickeyController {
         doohickeyDao.save(doohickey);
         return "redirect:/doohickeys";
     }
-
     @GetMapping("/doohickeys/create")
     public String showCreateDoohickeyForm(Model model){
         if(authSvc.getCurUser() == null){
@@ -128,9 +136,13 @@ public class DoohickeyController {
     public String CreateDoohickey(@Valid Doohickey doohickey,
                            Errors validation,
                            Model model,
-                           @RequestParam String tagsString) {
+                           @RequestParam String tagsString,
+                           @RequestParam(required=false)List<String> keys) {
         if(authSvc.getCurUser() == null){
             return "redirect:/login";
+        }
+        if(keys == null || keys.size() < 1){
+            validation.rejectValue("files",null,"A doohickey must have files!");
         }
         if(doohickey.getTagsString().equals("")){
             validation.rejectValue("tagsString",null,"A doohickey must have tags!");
@@ -144,7 +156,6 @@ public class DoohickeyController {
         }
         List<String> tagStrings = Arrays.asList(tagsString.toLowerCase().split("\\s*,\\s*"));
         List<Tag> tags = new ArrayList<>();
-        System.out.println(tagStrings);
         for(String tag :tagStrings){
             System.out.println(tag);
             if(tagDao.findByName(tag) != null) {
@@ -158,9 +169,20 @@ public class DoohickeyController {
         doohickey.setAuthor((User)authSvc.getCurUser());
         doohickey.setViews(0);
         doohickey.setDownloads(0);
-        doohickeyDao.save(doohickey);
-        return "redirect:/doohickeys";
+        doohickey = doohickeyDao.save(doohickey);
+
+        for(String key : keys){
+            boolean isModel=key.endsWith(".stl");
+            String newKey = key.substring(4);
+            s3svc.moveObject(key,"data2doohickey",
+                    "data2doohickey",newKey);
+            File file = new File(doohickey,newKey,isModel);
+            fileDao.save(file);
+        }
+
+        return "redirect:/doohickeys/"+doohickey.getId();
     }
+
 
     @RequestMapping(value = "/doohickeys/search-doohickeys", method = RequestMethod.GET)
     public String searchDoohickeys(@RequestParam (value = "search", required = false) String title, String description, String tag, Model model) {
@@ -168,5 +190,12 @@ public class DoohickeyController {
         model.addAttribute("search", doohickeyDao.findByDescription(description));
         model.addAttribute("search", tagDao.findByName(tag));
         return "doohickeys/search-doohickeys";
+    }
+
+    @GetMapping("/doohickeys/{id}/3d")
+    public String showDoohickey3D(@PathVariable Long id, Model model){
+        File file = fileDao.findByDoohickey_Id(id);
+        model.addAttribute("file",file);
+        return "doohickeys/3dShow";
     }
 }
