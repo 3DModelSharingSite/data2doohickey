@@ -201,4 +201,16 @@ public class DoohickeyController {
         model.addAttribute("file",file);
         return "doohickeys/3dShow";
     }
+    @PostMapping("/doohickeys/{id}/delete")
+    public String deleteDoohickey(@PathVariable Long id, Model model){
+        if(authSvc.getCurUser() == null){
+            return "redirect:/login";
+        }
+        User logUser = (User)authSvc.getCurUser();
+        User dhkyAuthor = doohickeyDao.findOne(id).getAuthor();
+        if(logUser.getId() == dhkyAuthor.getId()) {
+            doohickeyDao.delete(id);
+        }
+        return "redirect:/doohickeys";
+    }
 }
