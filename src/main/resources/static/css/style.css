@@ -147,6 +147,17 @@ footer {
     margin-bottom: 1em;
     font-size: x-large;
 }
+.dropdown:hover .dropdown-menu {
+    display: block;
+    top:95%;
+    left:-5px;
+}
+
+.center-align {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 
 /*show.html*/
 
