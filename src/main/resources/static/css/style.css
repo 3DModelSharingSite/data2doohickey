@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Comfortaa|Open+Sans|Playfair+Display|Raleway|Roboto&display=swap');
+
 *, :root {
     --main-color-1: rgba(249, 246, 244, 0.5); /*  #F9F6F4  */
     --main-color-2: rgba(249, 246, 244, 0.75); /*  #F9F6F4  */
@@ -6,6 +8,7 @@
     --accent-color-3: rgba(167, 174, 172, 1.0); /*  #A7AEAC  */
     --dark-color-1: rgba(85, 117, 157, 1.0); /*  #55759D  */
     --dark-color-2: rgba(85, 117, 157, 0.1); /*  #55759D  */
+    --font-color-general: rgba(69, 69, 69, 69); /* #454545 */
 }
 
 html {
@@ -13,12 +16,40 @@ html {
 }
 
 body {
-    background: var(--main-color-1);
+    /*background: var(--main-color-1);*/
     height: 100%;
 }
 
 a {
-    color: var(--accent-color-2);
+    color: rgba(255, 255, 255, 1);
+}
+
+footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    margin-bottom: 0;
+    background-color: rgba(85, 117, 157, 1);
+}
+
+.font-heading-1 {
+    font-family: 'Comfortaa', cursive;
+}
+
+.font-heading-2 {
+    font-family: 'Roboto', sans-serif;
+}
+
+.font-body-1 {
+    font-family: 'Open Sans', sans-serif;
+}
+
+.font-body-2 {
+    font-family: 'Raleway', sans-serif;
+}
+
+.navbar-expand-md {
+    z-index: 50;
 }
 
 #mainNav {
@@ -47,31 +78,62 @@ a {
     background: var(--main-color-2);
 }
 
-.content-header {
-    font-size: 1.5em;
-    font-weight: bold;
-}
-
 ul.nav.bg-dark {
     position: absolute;
     bottom: 0;
     width: 100%;
 }
 
-footer {
-    margin-top: 5em;
+.center-align {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.box-shadow-style {
+    box-shadow: 5px 5px 2px rgba(85, 117, 157, 0.1);
 }
 
 
 /*profile.html*/
 
+.profile-nav {
+    align-content: center;
+}
+
+.small-nav-link {
+    color: rgba(85, 117, 157, 1);
+    padding: 1em;
+    font-size: large;
+}
+
+.small-nav-link:hover {
+    text-shadow: 5px 5px 2px lightgrey;
+}
+
+.content-header {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: var(--font-color-general);
+}
+
+.user-location {
+    color: var(--font-color-general);
+}
+
+.bio {
+    color: var(--font-color-general);
+}
+
 #profile-image, #newPFP {
-    padding: 10px;
-    margin-top: 8px;
+    /*padding: 10px;*/
+    margin-top: 10px;
+    margin-bottom: 2px;
     border-radius: 50%;
+    border-width: 0;
     height: 10em;
     width: 10em;
-    border-color: var(--main-color-2);
+    opacity: .5;
 }
 .stockPFP{
     opacity:0.5;
@@ -132,6 +194,10 @@ footer {
     background-color: rgba(85, 117, 157, .7);
     border-radius: 5px;
     margin-bottom: 15px;
+    font-family: 'Raleway', sans-serif;
+    font-size: medium;
+    padding-left: 0;
+    padding-right:0;
 }
 
 .doo-fav-btns:hover {
@@ -148,21 +214,12 @@ footer {
     margin-top: 1em;
 }
 
-.small-nav {
-    margin-bottom: 1em;
-    font-size: x-large;
-}
 .dropdown:hover .dropdown-menu {
     display: block;
     top:95%;
     left:-5px;
 }
 
-.center-align {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
 
 /*show.html*/
 
@@ -243,11 +300,6 @@ footer {
     color: rgba(197, 91, 74, 1);
 }
 
-
-
-
-
-
 /*==========  Mobile First Method  ==========*/
 
 /* Custom, iPhone Retina */
@@ -270,6 +322,10 @@ footer {
 
     .about-stl-model {
         margin-left: 0;
+    }
+
+    .profile-right {
+        margin-bottom: 10em;
     }
 }
 
@@ -294,6 +350,4 @@ footer {
     .about-stl-model {
         margin-left: 0;
     }
-
 }
-
