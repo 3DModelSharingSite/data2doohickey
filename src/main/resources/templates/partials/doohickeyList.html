@@ -24,8 +24,7 @@
                         <img th:src="${doohickey.author.getPhotoURL()}" style="height:100%"/>
                     </div>
                     <div class="item-info center my-0">
-                        <div class="ellipsis">
-                            <span th:text="${doohickey.title}" th:onclick="${'location=''/doohickeys/'+doohickey.id+''''}"></span>
+                        <div class="ellipsis" th:text="${doohickey.title}" th:onclick="${'location=''/doohickeys/'+doohickey.id+''''}">
                         </div>
                         <div class="justify">
                             by <h5 th:text="${doohickey.author.username}" th:onclick="${'location=''/profile/'+doohickey.author.username+''''}"></h5>
