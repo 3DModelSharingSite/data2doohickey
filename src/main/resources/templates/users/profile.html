@@ -62,17 +62,16 @@
                              th:style="${user.photoURL.equals('/icons/user-regular.svg') ? '' :'opacity:1;'} "
                              alt="Profile Photo" id="profile-image"/>
                     </div>
-                    <div class="content-header" th:text="${user.username}">Display name</div>
+                    <div class="content-header" >
+                        <img id="user-icon-img" src="/icons/user-circle-solid.svg" alt="user icon"/>
+                        <div th:text="${user.username}">Display name</div>
+                    </div>
                     <span><a th:href="${'/profile/' + user.username + '/edit'}"><img src="/icons/edit-regular.svg"
                                                                                      id="edit-btn"
                                                                                      alt="edit icon button"/></a></span>
-                    <div>
-                        <img id="user-icon-img" src="/icons/user-circle-solid.svg" alt="user icon"/>
-                        <span class="profile-username" th:text="${user.username}">Username</span>
-                    </div>
                     <div class="user-location">
-                        <img id="location-img" th:text="${userDetails.location}" src="/icons/globe-solid.svg" alt="location icon"/>
-                        <span class="profile-location">Location</span>
+                        <img id="location-img" src="/icons/globe-solid.svg" alt="location icon"/>
+                        <span class="profile-location" th:text="${userDetails.location}">Location</span>
                     </div>
 
                                             <!--HIDE UNTIL FUNCTIONAL-->

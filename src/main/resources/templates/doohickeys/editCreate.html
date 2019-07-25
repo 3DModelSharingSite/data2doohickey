@@ -43,7 +43,6 @@
                                 <div style="position:absolute;line-height:2em;" class="row col-8">
                                     <span class="mx-auto text-white">Doohickey Preview:</span>
                                 </div>
-                                <input type="hidden" id="s3Key" th:value="${doohickey.files[0].s3_key}"/>
                                 <div id="stl_cont" style="width:300px; height:300px; margin:0 auto; border-color: black;">
                                 </div>
                                 <div class="row" th:if="${action == '/doohickeys/create'}">
@@ -108,23 +107,27 @@
                 }
             );
         </script>
-        <script th:if="${action == '/doohickeys/'+doohickey.id+'/edit'}">
-            $(document).ready(function(){
-                var interv = setInterval(function(){
-                    var key = $("#s3Key")[0].value;
-                    if(key != null){
-                        stl_viewer.add_model({
-                            filename: "https://data2doohickey.s3.us-east-2.amazonaws.com/" + key,
-                            display: 'smooth',
-                            rotationx: -1.5708,
-                            rotationy: 0.0,
-                            rotationz: 0.0
-                        });
-                        clearInterval(interv);
-                    }
-                },100);
-            });
-        </script>
+        <th:block th:if="${action == '/doohickeys/'+doohickey.id+'/edit'}">
+            <input type="hidden" id="s3Key" th:value="${doohickey.files[0].s3_key}"/>
+
+            <script>
+                $(document).ready(function(){
+                    var interv = setInterval(function(){
+                        var key = $("#s3Key")[0].value;
+                        if(key != null){
+                            stl_viewer.add_model({
+                                filename: "https://data2doohickey.s3.us-east-2.amazonaws.com/" + key,
+                                display: 'smooth',
+                                rotationx: -1.5708,
+                                rotationy: 0.0,
+                                rotationz: 0.0
+                            });
+                            clearInterval(interv);
+                        }
+                    },100);
+                });
+            </script>
+        </th:block>
         <th:block th:include="partials/scripts :: scripts" />
     </body>
 </html>
