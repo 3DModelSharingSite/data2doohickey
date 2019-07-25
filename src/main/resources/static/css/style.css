@@ -135,6 +135,12 @@ ul.nav.bg-dark {
     width: 10em;
     opacity: .5;
 }
+.stockPFP{
+    opacity:0.5;
+}
+.opOnHover:hover{
+    opacity:0.5;
+}
 
 #edit-btn {
     height: 19px;

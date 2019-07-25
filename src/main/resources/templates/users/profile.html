@@ -8,8 +8,9 @@
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"/>
         <link rel="stylesheet" href="/css/style.css"/>
     </th:block>
+    <link rel="stylesheet" href="/css/doohickey-styling.css"/>
 </head>
-<body>
+<body
 
 <nav th:replace="partials/navbar :: nav"></nav>
 
@@ -20,17 +21,16 @@
         <div class="profile-card card text-center box-shadow-style">
             <div class="row">
                 <div class="user-info mx-auto">
-                    <div sec:authorize="isAuthenticated()"
-                         th:if="${#authentication.principal.id == user.id}">
+                    <div sec:authorize="isAuthenticated()" class="profile-img-container">
                         <form id="newPFP" th:action="@{/profile/updatePicture}" th:method="post">
                         </form>
                         <img th:src="${user.getPhotoURL()}"
-                             alt="Profile Photo" id="profile-image"
-                             th:style="${'cursor:pointer;'+(user.photoURL.equals('/icons/user-regular.svg') ? '' :'opacity:1;')} "/>
+                             alt="Profile Photo" id="profile-image" th:class="${(user.photoURL.equals('/icons/user-regular.svg') ? ' stockPFP' : '')+(#authentication.principal.id == user.id ? ' opOnHover' : '')}"
+                             th:style="${'cursor:pointer;'} "/>
                     </div>
                     <div sec:authorize="!isAuthenticated()">
                         <img th:src="${user.getPhotoURL()}"
-                             th:style="${user.photoURL.equals('/icons/user-regular.svg') ? '' :'opacity:1;'} "
+                             th:class="${user.photoURL.equals('/icons/user-regular.svg') ? ' stockPFP' :''} "
                              alt="Profile Photo" id="profile-image"/>
                     </div>
                     <div class="content-header font-heading-1">
@@ -40,6 +40,20 @@
                                                                                      id="edit-btn"
                                                                                      alt="edit icon button"/></a></span>
                     <div class="user-location font-body-2">
+                    <div class="content-header" >
+                        <span th:text="${user.username}">Display name</span>
+                    </div>
+                    <div>
+                        <span th:text="${userDetails.getClassificationName()}">User Type</span>
+                    </div>
+                    <span  sec:authorize="isAuthenticated()" th:if="${#authentication.principal.id == user.id}">
+                        <a th:href="${'/profile/' + user.username + '/edit'}">
+                            <img src="/icons/edit-regular.svg"
+                                 id="edit-btn"
+                                 alt="edit icon button"/>
+                        </a>
+                    </span>
+                    <div class="user-location" th:if="${!userDetails.location.equals('')}">
                         <img id="location-img" src="/icons/globe-solid.svg" alt="location icon"/>
                         <span class="profile-location" th:text="${userDetails.location}">Location</span>
                     </div>
@@ -60,13 +74,15 @@
                                 <span>Doohickeys</span>
                             </button>
                         </div>
+                
                         <div class="col col-6 mx-auto">
-                            <button class="doo-fav-btns"
-                                    th:href="${'/profile/' + user.username + '/favorites'}">
-                                <span class="font-body-2" th:text="${user.favorites.size()}">1</span>
-                                <br/>
-                                <span>Favorites</span>
-                            </button>
+                            <a th:href="${'/profile/' + user.username + '/favorites'}">
+                                <button class="doo-fav-btns">
+                                    <span th:text="${user.favorites.size()}">1</span>
+                                    <br/>
+                                    <span>Favorites</span>
+                                </button>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -99,13 +115,19 @@
                 </li>
             </ul>
         </nav>
-        <div id="profileBio" class="card box-shadow-style">
+
+        <div id="profileBio" class="card box-shadow-style" th:if="${pageType.equals('about')}">
                 <span class="content-header uppercase mx-auto font-heading-1 pt-4"
                       th:text="${'About ' + user.username}">About Username</span>
             <div class="bio col-12 px-4 card-body font-body-1">
                 <p th:text="${userDetails.bio}">Lorem Ipsum is simply dummy text.</p>
             </div>
         </div>
+        <th:block  th:if="${!pageType.equals('about')}">
+            <div th:include="partials/doohickeyList :: doohickeyList" class="col-12 mx-auto">
+                Pass in List of Doohickeys
+            </div>
+        </th:block>
     </div>
 
 </main>

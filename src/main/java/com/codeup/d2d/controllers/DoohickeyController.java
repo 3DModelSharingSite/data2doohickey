@@ -58,10 +58,19 @@ public class DoohickeyController {
         }
         Pageable pageable2 = new PageRequest(pageable.getPageNumber()-1,pageable.getPageSize());
 
-        model.addAttribute("page",doohickeyDao.findByTitleIsLikeOrDescriptionIsLike(search,search,pageable2));
+        model.addAttribute("page",doohickeyDao.findByTitleIsLikeOrDescriptionIsLikeOrderByIdDesc(search,search,pageable2));
         model.addAttribute("user", authSvc.getCurUser());
 
         return "doohickeys/doohickeys";
+    }
+
+    @GetMapping("/doohickeys/{id}/download")
+    @ResponseBody
+    public String downloadDoohickey(@PathVariable Long id, Model model){
+        Doohickey doohickey = doohickeyDao.findOne(id);
+        doohickey.setDownloads(doohickey.getDownloads()+1);
+        doohickeyDao.save(doohickey);
+        return "Downloaded";
     }
 
     @GetMapping("/doohickeys/{id}")
