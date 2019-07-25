@@ -31,17 +31,12 @@
         <div class="row">
             <div sec:authorize="isAuthenticated()" th:if="${#authentication.principal.id} == ${doohickey.author.id}"
                  class="stl-edit col-6">
-                <form th:action="@{'/doohickeys/' + ${doohickey.id} + '/edit'}" th:method="post">
-                    <button class="stl-edit-btn py-2">
-                        <a th:href="@{'/doohickeys/' + ${doohickey.id} + '/edit'}">Edit</a>
-                    </button>
-                </form>
-
-                <!--<button class="stl-edit-btn py-2">-->
-                    <!--<a th:href="@{'/doohickeys/' + ${doohickey.id} + '/edit'}">Edit</a>-->
-                <!--</button>-->
+                <button class="stl-edit-btn py-2">
+                    <a th:href="@{'/doohickeys/' + ${doohickey.id} + '/edit'}">Edit</a>
+                </button>
             </div>
-            <div sec:authorize="isAuthenticated()" th:if="${#authentication.principal.id} == ${doohickey.author.id}" class="stl-delete col-6">
+            <div sec:authorize="isAuthenticated()" th:if="${#authentication.principal.id} == ${doohickey.author.id}"
+                 class="stl-delete col-6">
                 <form th:action="@{'/doohickeys/' + ${doohickey.id} + '/delete'}" th:method="post">
                     <button class="stl-delete-btn py-2">Delete</button>
                 </form>

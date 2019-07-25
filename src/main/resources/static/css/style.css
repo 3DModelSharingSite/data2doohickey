@@ -215,11 +215,12 @@ footer {
 
 .stl-edit-btn a {
     color: rgba(255, 255, 255, 1);
-
+    text-decoration: none;
 }
 
 .stl-edit-btn a:hover {
     color: rgba(120, 196, 159, 1);
+    text-decoration: none;
 }
 
 .stl-delete-btn {
