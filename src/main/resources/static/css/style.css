@@ -189,15 +189,52 @@ footer {
     margin-bottom: 1em;
     width: 100%;
     border-radius: 5px;
-    border-color: var(--main-color-2);
+    border-color: rgba(255, 255, 255, 1);
     background-color: rgba(85, 117, 157, 1);
-    color: var(--main-color-2);
+    color: rgba(255, 255, 255, 1);
 }
 
 .stl-download-btn:hover {
     border-color: rgba(85, 117, 157, 1);
-    background-color: var(--main-color-2);
+    background-color: transparent;
     color: rgba(85, 117, 157, 1);
+}
+
+.stl-edit-btn {
+    margin-bottom: 1em;
+    width: 100%;
+    border-radius: 5px;
+    border-color: rgba(255, 255, 255, 1);
+    background-color: rgba(120, 196, 159, 1);
+}
+
+.stl-edit-btn:hover {
+    border-color: rgba(120, 196, 159, 1);
+    background-color: transparent;
+}
+
+.stl-edit-btn a {
+    color: rgba(255, 255, 255, 1);
+
+}
+
+.stl-edit-btn a:hover {
+    color: rgba(120, 196, 159, 1);
+}
+
+.stl-delete-btn {
+    margin-bottom: 1em;
+    width: 100%;
+    border-radius: 5px;
+    border-color: rgba(255, 255, 255, 1);
+    background-color: rgba(197, 91, 74, 1);
+    color: rgba(255, 255, 255, 1);
+}
+
+.stl-delete-btn:hover {
+    border-color: rgba(197, 91, 74, 1);
+    background-color: transparent;
+    color: rgba(197, 91, 74, 1);
 }
 
 
