@@ -6,13 +6,11 @@
 </head>
 <body>
 
-<nav th:fragment="footer" class="fixed-bottom" id="footer">
-    <ul class="nav bg-dark">
-        <li class="nav-item mx-auto">
-            <a class="nav-link text-light" th:href="@{/about/}">About Data2Doohickey</a>
-        </li>
-    </ul>
-</nav>
+<footer th:fragment="footer" id="footer">
+    <div class="footer-about-link center-align">
+        <p><a class="nav-link text-light" th:href="@{/about/}">About Data2Doohickey</a></p>
+    </div>
+</footer>
 
 </body>
 </html>

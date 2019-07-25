@@ -10,6 +10,109 @@
     </th:block>
 </head>
 <body>
+
+<nav th:replace="partials/navbar :: nav"></nav>
+
+<main class="container-fluid w-100 row profile-page">
+
+    <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-4 pt-3 pb-0 profile-left">
+        <!--USER PROFILE INFO CARD-->
+        <div class="profile-card card text-center box-shadow-style">
+            <div class="row">
+                <div class="user-info mx-auto">
+                    <div sec:authorize="isAuthenticated()"
+                         th:if="${#authentication.principal.id == user.id}">
+                        <form id="newPFP" th:action="@{/profile/updatePicture}" th:method="post">
+                        </form>
+                        <img th:src="${user.getPhotoURL()}"
+                             alt="Profile Photo" id="profile-image"
+                             th:style="${'cursor:pointer;'+(user.photoURL.equals('/icons/user-regular.svg') ? '' :'opacity:1;')} "/>
+                    </div>
+                    <div sec:authorize="!isAuthenticated()">
+                        <img th:src="${user.getPhotoURL()}"
+                             th:style="${user.photoURL.equals('/icons/user-regular.svg') ? '' :'opacity:1;'} "
+                             alt="Profile Photo" id="profile-image"/>
+                    </div>
+                    <div class="content-header font-heading-1">
+                        <div th:text="${user.username}"><span><img id="user-icon-img" src="/icons/user-circle-solid.svg" alt="user icon"/></span>Display name</div>
+                    </div>
+                    <span><a th:href="${'/profile/' + user.username + '/edit'}"><img src="/icons/edit-regular.svg"
+                                                                                     id="edit-btn"
+                                                                                     alt="edit icon button"/></a></span>
+                    <div class="user-location font-body-2">
+                        <img id="location-img" src="/icons/globe-solid.svg" alt="location icon"/>
+                        <span class="profile-location" th:text="${userDetails.location}">Location</span>
+                    </div>
+
+                                            <!--HIDE UNTIL FUNCTIONAL-->
+                    <!--<div class="row">-->
+                        <!--<button class="tip-maker-btn m-auto btn">Tip Designer</button>-->
+                    <!--</div>-->
+
+                    <hr/>
+
+                    <div class="row pb-4">
+                        <div class="col col-6 mx-auto">
+                            <button class="doo-fav-btns"
+                                    th:href="${'/profile/' + user.username + '/doohickeys'}">
+                                <span class="font-body-2" th:text="${user.doohickeyList.size()}">1</span>
+                                <br/>
+                                <span>Doohickeys</span>
+                            </button>
+                        </div>
+                        <div class="col col-6 mx-auto">
+                            <button class="doo-fav-btns"
+                                    th:href="${'/profile/' + user.username + '/favorites'}">
+                                <span class="font-body-2" th:text="${user.favorites.size()}">1</span>
+                                <br/>
+                                <span>Favorites</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--TOGGLE INFO-->
+
+    <div class="profile-page-spacing col-xs-12 col-sm-12 col-md-8 col-lg-8 col-xl-8 profile-right">
+        <nav class="profile-nav" id="profileNav">
+            <ul class="nav small-nav">
+                <li class="nav-item">
+                    <a class="small-nav-link nav-link pb-3 py-1 font-heading-1"
+                       th:href="${'/profile/' + user.username}">
+                        ABOUT
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="small-nav-link nav-link pb-3 py-1 font-heading-1"
+                       th:href="${'/profile/'+user.username+'/doohickeys'}">
+                        DOOHICKEYS
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="small-nav-link nav-link pb-3 py-1 font-heading-1"
+                       th:href="${'/profile/'+user.username+'/favorites'}">
+                        FAVORITES
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        <div id="profileBio" class="card box-shadow-style">
+                <span class="content-header uppercase mx-auto font-heading-1 pt-4"
+                      th:text="${'About ' + user.username}">About Username</span>
+            <div class="bio col-12 px-4 card-body font-body-1">
+                <p th:text="${userDetails.bio}">Lorem Ipsum is simply dummy text.</p>
+            </div>
+        </div>
+    </div>
+
+</main>
+
+<footer th:replace="partials/footer :: footer"></footer>
+
+<th:block th:include="partials/scripts :: scripts"/>
 <script src="https://static.filestackapi.com/filestack-js/3.x.x/filestack.min.js"></script>
 <script>
     (function () {
@@ -39,109 +142,9 @@
         });
     })();
 </script>
+<script>
 
-<nav th:replace="partials/navbar :: nav"></nav>
-
-<main class="container-fluid w-100 row">
-
-    <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-4 pt-3 pb-0 profile-left">
-        <!--USER PROFILE INFO CARD-->
-        <div class="profile-card card text-center">
-            <div class="row">
-                <div class="user-info mx-auto">
-                    <div sec:authorize="isAuthenticated()"
-                         th:if="${#authentication.principal.id == user.id}">
-                        <form id="newPFP" th:action="@{/profile/updatePicture}" th:method="post">
-                        </form>
-                        <img th:src="${user.getPhotoURL()}"
-                             alt="Profile Photo" id="profile-image"
-                             th:style="${'cursor:pointer;'+(user.photoURL.equals('/icons/user-regular.svg') ? '' :'opacity:1;')} "/>
-                    </div>
-                    <div sec:authorize="!isAuthenticated()">
-                        <img th:src="${user.getPhotoURL()}"
-                             th:style="${user.photoURL.equals('/icons/user-regular.svg') ? '' :'opacity:1;'} "
-                             alt="Profile Photo" id="profile-image"/>
-                    </div>
-                    <div class="content-header" >
-                        <img id="user-icon-img" src="/icons/user-circle-solid.svg" alt="user icon"/>
-                        <div th:text="${user.username}">Display name</div>
-                    </div>
-                    <span><a th:href="${'/profile/' + user.username + '/edit'}"><img src="/icons/edit-regular.svg"
-                                                                                     id="edit-btn"
-                                                                                     alt="edit icon button"/></a></span>
-                    <div class="user-location">
-                        <img id="location-img" src="/icons/globe-solid.svg" alt="location icon"/>
-                        <span class="profile-location" th:text="${userDetails.location}">Location</span>
-                    </div>
-
-                                            <!--HIDE UNTIL FUNCTIONAL-->
-                    <!--<div class="row">-->
-                        <!--<button class="tip-maker-btn m-auto btn">Tip Designer</button>-->
-                    <!--</div>-->
-
-                    <hr/>
-
-                    <div class="row btn-padding">
-                        <div class="col col-6 mx-auto">
-                            <button class="doo-fav-btns"
-                                    th:href="${'/profile/' + user.username + '/doohickeys'}">
-                                <span th:text="${user.doohickeyList.size()}">1</span>
-                                <br/>
-                                <span>Doohickeys</span>
-                            </button>
-                        </div>
-                        <div class="col col-6 mx-auto">
-                            <button class="doo-fav-btns"
-                                    th:href="${'/profile/' + user.username + '/favorites'}">
-                                <span th:text="${user.favorites.size()}">1</span>
-                                <br/>
-                                <span>Favorites</span>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!--TOGGLE INFO-->
-
-    <div class="profile-page-spacing col-xs-12 col-sm-12 col-md-8 col-lg-8 col-xl-8 profile-right">
-        <nav id="profileNav">
-            <ul class="nav small-nav">
-                <li class="nav-item">
-                    <a class="small-nav-link nav-link pl-3 py-0 uppercase" th:href="${'/profile/' + user.username}">
-                        About
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="small-nav-link nav-link pl-3 py-0 uppercase"
-                       th:href="${'/profile/'+user.username+'/doohickeys'}">
-                        Doohickeys
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="small-nav-link nav-link pl-3 py-0 uppercase"
-                       th:href="${'/profile/'+user.username+'/favorites'}">
-                        Favorites
-                    </a>
-                </li>
-            </ul>
-        </nav>
-        <div id="profileBio" class="card">
-                <span class="content-header uppercase mx-auto"
-                      th:text="${'About ' + user.username}">About Username</span>
-            <div class="bio col-12 px-4 card-body">
-                <p th:text="${userDetails.bio}">Lorem Ipsum is simply dummy text.</p>
-            </div>
-        </div>
-    </div>
-
-</main>
-
-<nav th:replace="partials/footer :: footer"></nav>
-
-<th:block th:include="partials/scripts :: scripts"/>
+</script>
 
 </body>
 </html>
