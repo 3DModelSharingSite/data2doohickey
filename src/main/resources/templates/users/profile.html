@@ -33,13 +33,16 @@
                 force:true
         }
     }
-        $(document).ready(function () {
-            $(document).on("click", "#profile-image", function () {
-                client.picker(fsoptions).open();
+    </script>
+    <script sec:authorize="isAuthenticated()" th:if="${#authentication.principal.id == user.id}">
+        $(document).ready(
+            function () {
+                $(document).on("click", "#profile-image", function () {
+                    client.picker(fsoptions).open();
+                });
             });
-        });
-    })();
-</script>
+        })();
+    </script>
 
 <nav th:replace="partials/navbar :: nav"></nav>
 
@@ -50,8 +53,7 @@
         <div class="profile-card card text-center">
             <div class="row">
                 <div class="user-info mx-auto">
-                    <div sec:authorize="isAuthenticated()"
-                         th:if="${#authentication.principal.id == user.id}">
+                    <div sec:authorize="isAuthenticated()">
                         <form id="newPFP" th:action="@{/profile/updatePicture}" th:method="post">
                         </form>
                         <img th:src="${user.getPhotoURL()}"
@@ -67,9 +69,13 @@
                         <img id="user-icon-img" src="/icons/user-circle-solid.svg" alt="user icon"/>
                         <div th:text="${user.username}">Display name</div>
                     </div>
-                    <span><a th:href="${'/profile/' + user.username + '/edit'}"><img src="/icons/edit-regular.svg"
-                                                                                     id="edit-btn"
-                                                                                     alt="edit icon button"/></a></span>
+                    <span  sec:authorize="isAuthenticated()" th:if="${#authentication.principal.id == user.id}">
+                        <a th:href="${'/profile/' + user.username + '/edit'}">
+                            <img src="/icons/edit-regular.svg"
+                                 id="edit-btn"
+                                 alt="edit icon button"/>
+                        </a>
+                    </span>
                     <div class="user-location">
                         <img id="location-img" src="/icons/globe-solid.svg" alt="location icon"/>
                         <span class="profile-location" th:text="${userDetails.location}">Location</span>
