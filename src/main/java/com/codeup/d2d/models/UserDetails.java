@@ -66,6 +66,20 @@ public class UserDetails {
         return classification;
     }
 
+    public String getClassificationName(){
+        String[] Classifications = new String[7];
+        Classifications[0] = "Artist";
+        Classifications[1] = "Designer";
+        Classifications[2] = "Engineer";
+        Classifications[3] = "Maker";
+        Classifications[4] = "Professional";
+        Classifications[5] = "Student";
+        Classifications[6] = "Teacher";
+
+        return Classifications[this.classification];
+
+    }
+
     public void setClassification(int classification) {
         this.classification = classification;
     }

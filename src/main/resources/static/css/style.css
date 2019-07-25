@@ -71,8 +71,13 @@ footer {
     border-radius: 50%;
     height: 10em;
     width: 10em;
-    opacity: .5;
     border-color: var(--main-color-2);
+}
+.stockPFP{
+    opacity:0.5;
+}
+.opOnHover:hover{
+    opacity:0.5;
 }
 
 #edit-btn {
