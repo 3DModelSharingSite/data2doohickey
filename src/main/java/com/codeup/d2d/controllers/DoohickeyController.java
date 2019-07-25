@@ -64,6 +64,15 @@ public class DoohickeyController {
         return "doohickeys/doohickeys";
     }
 
+    @GetMapping("/doohickeys/{id}/download")
+    @ResponseBody
+    public String downloadDoohickey(@PathVariable Long id, Model model){
+        Doohickey doohickey = doohickeyDao.findOne(id);
+        doohickey.setDownloads(doohickey.getDownloads()+1);
+        doohickeyDao.save(doohickey);
+        return "Downloaded";
+    }
+
     @GetMapping("/doohickeys/{id}")
     public String showDoohickey(@PathVariable Long id, Model model){
         Doohickey doohickey = doohickeyDao.findOne(id);
