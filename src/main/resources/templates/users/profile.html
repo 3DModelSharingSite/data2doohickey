@@ -8,6 +8,7 @@
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"/>
         <link rel="stylesheet" href="/css/style.css"/>
     </th:block>
+    <link rel="stylesheet" href="/css/doohickey-styling.css"/>
 </head>
 <body>
 <script src="https://static.filestackapi.com/filestack-js/3.x.x/filestack.min.js"></script>
@@ -83,20 +84,22 @@
 
                     <div class="row btn-padding">
                         <div class="col col-6 mx-auto">
-                            <button class="doo-fav-btns"
-                                    th:href="${'/profile/' + user.username + '/doohickeys'}">
-                                <span th:text="${user.doohickeyList.size()}">1</span>
-                                <br/>
-                                <span>Doohickeys</span>
-                            </button>
+                            <a th:href="${'/profile/' + user.username + '/doohickeys'}">
+                                <button class="doo-fav-btns">
+                                    <span th:text="${user.doohickeyList.size()}">1</span>
+                                    <br/>
+                                    <span>Doohickeys</span>
+                                </button>
+                            </a>
                         </div>
                         <div class="col col-6 mx-auto">
-                            <button class="doo-fav-btns"
-                                    th:href="${'/profile/' + user.username + '/favorites'}">
-                                <span th:text="${user.favorites.size()}">1</span>
-                                <br/>
-                                <span>Favorites</span>
-                            </button>
+                            <a th:href="${'/profile/' + user.username + '/favorites'}">
+                                <button class="doo-fav-btns">
+                                    <span th:text="${user.favorites.size()}">1</span>
+                                    <br/>
+                                    <span>Favorites</span>
+                                </button>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -128,13 +131,19 @@
                 </li>
             </ul>
         </nav>
-        <div id="profileBio" class="card">
+
+        <div id="profileBio" class="card" th:if="${pageType.equals('about')}">
                 <span class="content-header uppercase mx-auto"
                       th:text="${'About ' + user.username}">About Username</span>
             <div class="bio col-12 px-4 card-body">
                 <p th:text="${userDetails.bio}">Lorem Ipsum is simply dummy text.</p>
             </div>
         </div>
+        <th:block  th:if="${!pageType.equals('about')}">
+            <div th:include="partials/doohickeyList :: doohickeyList" class="mx-auto">
+                Pass in List of Doohickeys
+            </div>
+        </th:block>
     </div>
 
 </main>

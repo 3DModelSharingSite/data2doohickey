@@ -3,12 +3,16 @@ package com.codeup.d2d.controllers;
 import com.codeup.d2d.models.User;
 import com.codeup.d2d.models.UserDetails;
 import com.codeup.d2d.models.UserRole;
+import com.codeup.d2d.repos.DoohickeyRepository;
 import com.codeup.d2d.repos.UserDetailsRepository;
 import com.codeup.d2d.repos.UserRepository;
 import com.codeup.d2d.repos.UserRoles;
 import com.codeup.d2d.services.AuthenticationService;
 import com.codeup.d2d.services.HaveIBeenPwndService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,6 +25,8 @@ import javax.validation.Valid;
 public class UserController {
     private UserRepository userDao;
     private UserDetailsRepository userDetailsDao;
+    private final DoohickeyRepository doohickeyDao;
+
     private PasswordEncoder passwordEncoder;
     private HaveIBeenPwndService hibp;
 
@@ -29,12 +35,13 @@ public class UserController {
 
     private AuthenticationService authSvc;
 
-    public UserController(HaveIBeenPwndService hibp, UserDetailsRepository userDetailsDao,AuthenticationService authSvc, UserRepository users, PasswordEncoder passwordEncoder) {
+    public UserController(HaveIBeenPwndService hibp, DoohickeyRepository doohickeyDao, UserDetailsRepository userDetailsDao,AuthenticationService authSvc, UserRepository users, PasswordEncoder passwordEncoder) {
         this.authSvc = authSvc;
         this.userDao = users;
         this.passwordEncoder = passwordEncoder;
         this.userDetailsDao = userDetailsDao;
         this.hibp = hibp;
+        this.doohickeyDao = doohickeyDao;
     }
 
     @GetMapping("/profile")
@@ -44,13 +51,44 @@ public class UserController {
         }
         return "redirect:/profile/"+((User)authSvc.getCurUser()).getUsername();
     }
+
     @GetMapping("/profile/{username}")
     public String showProfileOfUser(@PathVariable String username, Model model){
         User user = userDao.findByUsername(username);
         model.addAttribute("user",user);
         model.addAttribute("userDetails",user.getUserDetails());
+        model.addAttribute("pageType","about");
         return "users/profile";
     }
+
+    @GetMapping("/profile/{username}/favorites")
+    public String userFavorites(@PageableDefault(page = 1,size=3) Pageable pageable,
+                                @PathVariable String username, Model model){
+        User user = userDao.findByUsername(username);
+        model.addAttribute("user", user);
+        model.addAttribute("userDetails", user.getUserDetails());
+        model.addAttribute("pageType","favorites");
+
+        Pageable pageable2 = new PageRequest(pageable.getPageNumber()-1,pageable.getPageSize());
+
+        model.addAttribute("page",doohickeyDao.findByUsersFavoritedOrderByIdDesc(user,pageable2));
+        return "users/profile";
+    }
+
+    @GetMapping("/profile/{username}/doohickeys")
+    public String userDoohickeys(@PageableDefault(page = 1,size=3) Pageable pageable,
+                                 @PathVariable String username, Model model){
+        User user = userDao.findByUsername(username);
+        model.addAttribute("user", user);
+        model.addAttribute("userDetails", user.getUserDetails());
+        model.addAttribute("pageType","doohickeys");
+
+        Pageable pageable2 = new PageRequest(pageable.getPageNumber()-1,pageable.getPageSize());
+
+        model.addAttribute("page",doohickeyDao.findByAuthorOrderByIdDesc(user,pageable2));
+        return "users/profile";
+    }
+
 
     @GetMapping("/profile/{username}/edit")
     public String editProfileDetailsOfUser(@PathVariable String username, Model model){
@@ -149,22 +187,6 @@ public class UserController {
         model.addAttribute("user", user);
 
         return "redirect:/";
-    }
-
-    @GetMapping("/profile/{username}/favorites")
-    public String userFavorites(@PathVariable String username, Model model){
-        User user = userDao.findByUsername(username);
-        model.addAttribute("user", user);
-        model.addAttribute("userDetails", user.getFavorites());
-        return "users/favorites";
-    }
-
-    @GetMapping("/profile/{username}/doohickeys")
-    public String userDoohickeys(@PathVariable String username, Model model){
-        User user = userDao.findByUsername(username);
-        model.addAttribute("user", user);
-        model.addAttribute("userDetails", user.getDoohickeyList());
-        return "users/doohickeys";
     }
     @PostMapping("/profile/updatePicture")
     public String updatePFP(@RequestParam String key){

@@ -58,7 +58,7 @@ public class DoohickeyController {
         }
         Pageable pageable2 = new PageRequest(pageable.getPageNumber()-1,pageable.getPageSize());
 
-        model.addAttribute("page",doohickeyDao.findByTitleIsLikeOrDescriptionIsLike(search,search,pageable2));
+        model.addAttribute("page",doohickeyDao.findByTitleIsLikeOrDescriptionIsLikeOrderByIdDesc(search,search,pageable2));
         model.addAttribute("user", authSvc.getCurUser());
 
         return "doohickeys/doohickeys";
