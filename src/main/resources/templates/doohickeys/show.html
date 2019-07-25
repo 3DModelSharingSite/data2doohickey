@@ -1,46 +1,78 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
-    <head>
-        <th:block th:replace="partials/head :: head(${title})"/>
-    </head>
-    <body>
-        <nav th:replace="partials/navbar :: nav"></nav>
-        <main class="container-fluid w-100 pt-3">
-            <div class="card">
-                <div class="card-header">
-                    <h2 th:text="${doohickey.title}"></h2>
-                    <small>by <a th:href="${'/profile/'+doohickey.author.username}" th:text="${doohickey.author.username}">Username</a></small>
-                </div>
-                <div class="card-body">
-                    <div class="row">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+    <th:block th:replace="partials/head :: head(${title})"/>
+</head>
+<body>
+<nav th:replace="partials/navbar :: nav"></nav>
 
-                        <div class="col-md-5">
-                        <!--Main picture block-->
-                            <th:block th:replace="doohickeys/3dShow :: 3dView"></th:block>
-                        </div>
-                        <div class="col-md-5 content-box" th:text="${'About ' + doohickey.title + ': ' + doohickey.description}">
-                        </div>
-                        <div sec:authorize="isAuthenticated()" th:if="${#authentication.principal.id} == ${doohickey.author.id}" class="col-1">
-                            <a th:href="@{'/doohickeys/'+${doohickey.id}+'/edit'}">Edit</a>
-                            <form th:action="@{'/doohickeys/'+${doohickey.id}+'/delete'}" th:method="post">
-                                <button class="btn btn-danger">Delete</button>
-                            </form>
-                        </div>
-                        <a target="_blank" class="col-md-5" th:href="${'https://data2doohickey.s3.us-east-2.amazonaws.com/'+doohickey.files[0].getS3_key()}">
-                            <button class="w-100 h-100" style="background-color: #55759D; color: white;">Download This Doohickey</button>
-                        </a>
-                    </div>
-                </div>
-                <div class="card-footer">
-                    <button th:if="${user}" class="favButton" th:attr="data-id=${doohickey.id}"><i th:class="${(doohickey.usersFavoritedContains(user.id) ? 'fas' : 'far')+' fa-heart'}"></i></button>
+<main class="container-fluid row w-100 pt-3">
+    <div class="view-stl-model content-box col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+        <div class="content-header" th:text="${doohickey.title}">Title</div>
+        <small>by: <a th:href="${'/profile/' + doohickey.author.username}" th:text="${doohickey.author.username}">Username</a>
+        </small>
+        <hr/>
+        <div class="row center-align">
+            <th:block th:replace="doohickeys/3dShow :: 3dView"></th:block>
+        </div>
+        <div class="stl-tags-box">
+            <hr/>
+            <th:block th:each="tag : ${doohickey.tags}">
+                <h4><a href="" th:text="${tag.name}"></a></h4>
+            </th:block>
+        </div>
+        <div class="stl-download">
+            <hr/>
+            <a th:href="${'https://data2doohickey.s3.us-east-2.amazonaws.com/' + doohickey.files[0].getS3_key()}">
+                <button class="stl-download-btn py-2">Download this doohickey</button>
+            </a>
+        </div>
+    </div>
+    <div class="about-stl-model content-box col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 pb-2">
+        <div class="stl-about-box" th:text="${'About ' + doohickey.title + ': ' + doohickey.description}">
+        </div>
+    </div>
+</main>
 
-                    <th:block th:each="tag : ${doohickey.tags}">
-                        <h4><a href="" th:text="${tag.name}"></a></h4>
-                    </th:block>
-                </div>
-            </div>
-        </main>
-        <nav th:replace="partials/footer :: footer"></nav>
-        <th:block th:include="partials/scripts :: scripts" />
-    </body>
+<!--<main class="container-fluid w-100 pt-3">-->
+<!--<div class="card">-->
+<!--<div class="card-header">-->
+<!--<h2 th:text="${doohickey.title}"></h2>-->
+<!--<small>by <a th:href="${'/profile/'+doohickey.author.username}" th:text="${doohickey.author.username}">Username</a></small>-->
+<!--</div>-->
+<!--<div class="card-body">-->
+<!--<div class="row">-->
+
+<!--<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">-->
+<!--&lt;!&ndash;Main picture block&ndash;&gt;-->
+<!--<div class="three-d-show">-->
+<!--<th:block th:replace="doohickeys/3dShow :: 3dView"></th:block>-->
+<!--</div>-->
+<!--</div>-->
+<!--<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 stl-about-box content-box mb-4" th:text="${'About ' + doohickey.title + ': ' + doohickey.description}">-->
+<!--</div>-->
+<!--<div sec:authorize="isAuthenticated()" th:if="${#authentication.principal.id} == ${doohickey.author.id}" class="col-1">-->
+<!--<a th:href="@{'/doohickeys/'+${doohickey.id}+'/edit'}">Edit</a>-->
+<!--<form th:action="@{'/doohickeys/'+${doohickey.id}+'/delete'}" th:method="post">-->
+<!--<button class="btn btn-danger">Delete</button>-->
+<!--</form>-->
+<!--</div>-->
+<!--<a target="_blank" class="col-md-5" th:href="${'https://data2doohickey.s3.us-east-2.amazonaws.com/'+doohickey.files[0].getS3_key()}">-->
+<!--<button class="w-100 h-100" style="background-color: #55759D; color: white;">Download This Doohickey</button>-->
+<!--</a>-->
+<!--</div>-->
+<!--</div>-->
+<!--<div class="card-footer">-->
+<!--<button th:if="${user}" class="favButton" th:attr="data-id=${doohickey.id}"><i th:class="${(doohickey.usersFavoritedContains(user.id) ? 'fas' : 'far')+' fa-heart'}"></i></button>-->
+
+<!--<th:block th:each="tag : ${doohickey.tags}">-->
+<!--<h4><a href="" th:text="${tag.name}"></a></h4>-->
+<!--</th:block>-->
+<!--</div>-->
+<!--</div>-->
+<!--</main>-->
+<!--&lt;!&ndash;<nav th:replace="partials/footer :: footer"></nav>&ndash;&gt;-->
+<!--<th:block th:include="partials/scripts :: scripts" />-->
+</body>
 </html>
