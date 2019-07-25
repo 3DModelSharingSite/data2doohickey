@@ -12,7 +12,7 @@
 </head>
 <body>
 <script src="https://static.filestackapi.com/filestack-js/3.x.x/filestack.min.js"></script>
-<script>
+<script sec:authorize="isAuthenticated()" th:if="${#authentication.principal.id == user.id}">
     (function () {
         const client = filestack.init('AsZ4wkm4kSSCPWhIZYFqEz');
         const fsoptions = {
@@ -24,23 +24,22 @@
                 path: '/profiles/'
             },
             onUploadDone: res => {
-            let file = res.filesUploaded[0];
-        $('<input/>').attr({'type': 'hidden', 'value': file.key, 'name': 'key'}).appendTo('#newPFP');
-        $("#newPFP").submit();
-    },
-        transformations: {
-            circle:true,
-                force:true
-        }
-    }
-    </script>
-    <script sec:authorize="isAuthenticated()" th:if="${#authentication.principal.id == user.id}">
+                let file = res.filesUploaded[0];
+                $('<input/>').attr({'type': 'hidden', 'value': file.key, 'name': 'key'}).appendTo('#newPFP');
+                $("#newPFP").submit();
+            },
+                transformations: {
+                    circle:true,
+                    force:true
+                }
+            }
         $(document).ready(
             function () {
                 $(document).on("click", "#profile-image", function () {
                     client.picker(fsoptions).open();
                 });
-            });
+            }
+        );
         })();
     </script>
 
@@ -53,21 +52,23 @@
         <div class="profile-card card text-center">
             <div class="row">
                 <div class="user-info mx-auto">
-                    <div sec:authorize="isAuthenticated()">
+                    <div sec:authorize="isAuthenticated()" class="profile-img-container">
                         <form id="newPFP" th:action="@{/profile/updatePicture}" th:method="post">
                         </form>
                         <img th:src="${user.getPhotoURL()}"
-                             alt="Profile Photo" id="profile-image"
-                             th:style="${'cursor:pointer;'+(user.photoURL.equals('/icons/user-regular.svg') ? '' :'opacity:1;')} "/>
+                             alt="Profile Photo" id="profile-image" th:class="${(user.photoURL.equals('/icons/user-regular.svg') ? ' stockPFP' : '')+(#authentication.principal.id == user.id ? ' opOnHover' : '')}"
+                             th:style="${'cursor:pointer;'} "/>
                     </div>
                     <div sec:authorize="!isAuthenticated()">
                         <img th:src="${user.getPhotoURL()}"
-                             th:style="${user.photoURL.equals('/icons/user-regular.svg') ? '' :'opacity:1;'} "
+                             th:class="${user.photoURL.equals('/icons/user-regular.svg') ? ' stockPFP' :''} "
                              alt="Profile Photo" id="profile-image"/>
                     </div>
                     <div class="content-header" >
-                        <img id="user-icon-img" src="/icons/user-circle-solid.svg" alt="user icon"/>
-                        <div th:text="${user.username}">Display name</div>
+                        <span th:text="${user.username}">Display name</span>
+                    </div>
+                    <div>
+                        <span th:text="${userDetails.getClassificationName()}">User Type</span>
                     </div>
                     <span  sec:authorize="isAuthenticated()" th:if="${#authentication.principal.id == user.id}">
                         <a th:href="${'/profile/' + user.username + '/edit'}">
@@ -76,7 +77,7 @@
                                  alt="edit icon button"/>
                         </a>
                     </span>
-                    <div class="user-location">
+                    <div class="user-location" th:if="${!userDetails.location.equals('')}">
                         <img id="location-img" src="/icons/globe-solid.svg" alt="location icon"/>
                         <span class="profile-location" th:text="${userDetails.location}">Location</span>
                     </div>
