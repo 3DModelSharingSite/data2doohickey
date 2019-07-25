@@ -43,6 +43,15 @@
                 </div>
             </div>
         </main>
+        <script>
+            function initAutoComplete() {
+                var autocomplete = new google.maps.places.Autocomplete(
+                    (document.getElementById('location')), {
+                        types: ['(cities)']
+                    });
+            }
+        </script>
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCO2UFPuK_2nL3FPcjAOeilpUxUirnYptA&amp;libraries=places&amp;callback=initAutoComplete" async="async" defer="defer"></script>
 
         <nav th:replace="partials/footer :: footer"></nav>
         <th:block th:include="partials/scripts :: scripts" />
