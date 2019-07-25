@@ -106,9 +106,9 @@ public class UserController {
     }
     @PostMapping("/profile/{username}/edit")
     public String saveProfileDetailsOfUser(@PathVariable String username,
-                           @Valid UserDetails userDetails,
-                           Errors validation,
-                           Model model){
+                                           @Valid UserDetails userDetails,
+                                           Errors validation,
+                                           Model model){
         if(authSvc.getCurUser() == null){
             return "redirect:/login";
         }
