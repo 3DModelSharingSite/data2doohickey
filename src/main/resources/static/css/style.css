@@ -173,6 +173,33 @@ footer {
     min-height: 100px;
 }
 
+.view-stl-model {
+    margin-right: 2em;
+}
+
+.about-stl-model {
+    margin-left: 2em;
+}
+
+.stl-download {
+    align-content: center;
+}
+
+.stl-download-btn {
+    margin-bottom: 1em;
+    width: 100%;
+    border-radius: 5px;
+    border-color: var(--main-color-2);
+    background-color: rgba(85, 117, 157, 1);
+    color: var(--main-color-2);
+}
+
+.stl-download-btn:hover {
+    border-color: rgba(85, 117, 157, 1);
+    background-color: var(--main-color-2);
+    color: rgba(85, 117, 157, 1);
+}
+
 
 
 
@@ -193,6 +220,14 @@ footer {
         text-align: center;
         font-size: medium;
     }
+
+    .view-stl-model {
+        margin-right: 0;
+    }
+
+    .about-stl-model {
+        margin-left: 0;
+    }
 }
 
 /* Extra Small Devices, Phones */
@@ -207,6 +242,14 @@ footer {
     .small-nav {
         text-align: center;
         font-size: medium;
+    }
+
+    .view-stl-model {
+        margin-right: 0;
+    }
+
+    .about-stl-model {
+        margin-left: 0;
     }
 
 }
