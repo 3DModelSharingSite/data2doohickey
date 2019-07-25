@@ -54,7 +54,14 @@ public class UserController {
 
     @GetMapping("/profile/{username}/edit")
     public String editProfileDetailsOfUser(@PathVariable String username, Model model){
+        if(authSvc.getCurUser() == null){
+            return "redirect:/login";
+        }
+        User logUser = (User)authSvc.getCurUser();
         User user = userDao.findByUsername(username);
+        if(logUser.getId() != user.getId()){
+            return "redirect:/profile";
+        }
         model.addAttribute("user",user);
         model.addAttribute("userDetails",user.getUserDetails());
         return "users/edit";
@@ -64,7 +71,15 @@ public class UserController {
                            @Valid UserDetails userDetails,
                            Errors validation,
                            Model model){
+        if(authSvc.getCurUser() == null){
+            return "redirect:/login";
+        }
+        User logUser = (User)authSvc.getCurUser();
         User user = userDao.findByUsername(username);
+        if(logUser.getId() != user.getId()){
+            return "redirect:/profile";
+        }
+
         UserDetails oldDetails = user.getUserDetails();
 
         System.out.println(oldDetails.getBio());
