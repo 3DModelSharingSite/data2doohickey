@@ -8,13 +8,13 @@
 <nav th:replace="partials/navbar :: nav"></nav>
 
 <main class="container-fluid row w-100 pt-3">
-    <div class="view-stl-model content-box col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+    <div class="view-stl-model content-box col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 m-0">
         <div class="content-header" th:text="${doohickey.title}">Title</div>
-        <small>by: <a th:href="${'/profile/' + doohickey.author.username}" th:text="${doohickey.author.username}">Username</a>
+        <small class="stl-author-link">by: <a th:href="${'/profile/' + doohickey.author.username}" th:text="${doohickey.author.username}">Username</a>
         </small>
         <hr/>
         <div class="row center-align">
-            <th:block th:replace="doohickeys/3dShow :: 3dView"></th:block>
+            <th:block th:replace="doohickeys/3dshow :: 3dView"></th:block>
         </div>
         <div class="stl-tags-box">
             <hr/>
@@ -24,16 +24,13 @@
         </div>
         <div class="stl-download">
             <hr/>
-            <input id="downloadLink" type="hidden" th:value="${'https://data2doohickey.s3.us-east-2.amazonaws.com/' + doohickey.files[0].getS3_key()}"/>
-            <button th:attr="data-url=${'/doohickeys/' + doohickey.id + '/download'}" id="downloadBtn" class="stl-download-btn py-2">Download this doohickey</button>
+            <input id="downloadLink" type="hidden"
+                   th:value="${'https://data2doohickey.s3.us-east-2.amazonaws.com/' + doohickey.files[0].getS3_key()}"/>
+            <button th:attr="data-url=${'/doohickeys/' + doohickey.id + '/download'}" id="downloadBtn"
+                    class="stl-download-btn py-2">Download this doohickey
+            </button>
         </div>
         <div class="row">
-            <div sec:authorize="isAuthenticated()" th:if="${#authentication.principal.id} == ${doohickey.author.id}"
-                 class="stl-edit col-6">
-                <button class="stl-edit-btn py-2">
-                    <a th:href="@{'/doohickeys/' + ${doohickey.id} + '/edit'}">Edit</a>
-                </button>
-            </div>
             <div sec:authorize="isAuthenticated()" th:if="${#authentication.principal.id} == ${doohickey.author.id}"
                  class="stl-delete col-6">
                 <form th:action="@{'/doohickeys/' + ${doohickey.id} + '/delete'}" th:method="post">
@@ -42,15 +39,13 @@
             </div>
         </div>
     </div>
-    <div class="about-stl-model content-box col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 pb-2">
-        <div class="stl-about-box" th:text="${'About ' + doohickey.title + ': ' + doohickey.description}">
-        </div>
+    <div class="about-stl-model content-box col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 m-0">
+        <div class="stl-about-box" th:text="${'About ' + doohickey.title + ': ' + doohickey.description}"></div>
     </div>
 </main>
-
 <script>
     $(document).ready(function () {
-        document.getElementById("downloadBtn").addEventListener("click", function(event){
+        document.getElementById("downloadBtn").addEventListener("click", function (event) {
             event.preventDefault();
             var requestData = {};
             var url = $("#downloadBtn").attr("data-url");

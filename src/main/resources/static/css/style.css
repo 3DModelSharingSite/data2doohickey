@@ -230,16 +230,25 @@ ul.nav.bg-dark {
     flex-direction: column;
 }
 
+.stl-author-link a {
+    color: var(--font-color-general); !important;
+}
+
+.stl-author-link a:hover {
+    color: var(--dark-color-1);
+    text-decoration: none;
+}
+
 .stl-about-box {
-    min-height: 100px;
+    /*min-height: 100px;*/
 }
 
 .view-stl-model {
-    margin-right: 2em;
+    /*margin-right: 2em;*/
 }
 
 .about-stl-model {
-    margin-left: 2em;
+    /*margin-left: 2em;*/
 }
 
 .stl-download {
@@ -297,6 +306,10 @@ ul.nav.bg-dark {
     border-color: rgba(197, 91, 74, 1);
     background-color: transparent;
     color: rgba(197, 91, 74, 1);
+}
+
+.stl-tags-box a {
+    color: var(--font-color-general);
 }
 
 #profileBio {
