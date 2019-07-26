@@ -19,21 +19,21 @@
 
                     <div class="col-12 profile-image-header">
                         <div>
-                            <img src="/icons/user-regular.svg" alt="placeholder image" id="profile-image"/>
+                            <img src="/static/icons/user-regular.svg" alt="placeholder image" id="profile-image"/>
                         </div>
                         <div class="content-header" th:text="${user.username}">Display Name</div>
-                        <span><a th:href="${'/profile/' + user.username + '/edit'}"><img src="/icons/edit-regular.svg"
+                        <span><a th:href="${'/profile/' + user.username + '/edit'}"><img src="/static/icons/edit-regular.svg"
                                                                                          id="edit-btn"
                                                                                          alt="edit icon button"/></a></span>
                     </div>
 
                     <div class="col-12">
-                        <img id="user-icon" src="/icons/user-circle-solid.svg" alt="user icon"/>
+                        <img id="user-icon" src="/static/icons/user-circle-solid.svg" alt="user icon"/>
                         <span class="profile-username" th:text="${user.username}">Username</span>
                     </div>
 
                     <div class="user-location col-12">
-                        <img id="user-location" src="/icons/globe-solid.svg" alt="location icon"/>
+                        <img id="user-location" src="/static/icons/globe-solid.svg" alt="location icon"/>
                         <span class="profile-location">Location</span>
                     </div>
 
