@@ -45,7 +45,7 @@ public class DoohickeyController {
     }
 
     @GetMapping("/doohickeys")
-    public String showAllDoohickeys(@RequestParam(required = false) String search, @PageableDefault(page = 1,size=3) Pageable pageable, Model model) {
+    public String showAllDoohickeys(@RequestParam(required = false) String search, @PageableDefault(page = 1,size=9) Pageable pageable, Model model) {
 
         if(search == null) {
             search="";
