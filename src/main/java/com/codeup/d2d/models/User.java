@@ -7,7 +7,6 @@ import org.hibernate.validator.constraints.NotBlank;
 
 import javax.persistence.*;
 import javax.validation.constraints.Size;
-import java.util.Collection;
 import java.util.List;
 
 @Entity
@@ -167,7 +166,7 @@ public class User {
 
     public String getPhotoURL() {
         if(photoURL == null){
-            return "/icons/user-regular.svg";
+            return "/static/icons/user-regular.svg";
         }
         return "https://data2doohickey.s3.us-east-2.amazonaws.com/"+photoURL;
     }
