@@ -79,7 +79,7 @@
     <!--TOGGLE INFO-->
 
     <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 col-xl-8 profile-right">
-        <nav class="profile-nav" id="profileNav">
+        <nav class="profile-nav  d-flex justify-content-sm-center justify-content-md-start " id="profileNav">
             <ul class="nav small-nav">
                 <li class="nav-item">
                     <a class="small-nav-link nav-link pb-3 py-1 font-heading-1"
@@ -110,8 +110,79 @@
             </div>
         </div>
         <th:block th:if="${!pageType.equals('about')}">
-            <div th:include="partials/doohickeyList :: doohickeyList" class="col-12 mx-auto">
-                Pass in List of Doohickeys
+            <div class="col-12">
+                <nav th:replace="partials/pagination :: pageList"></nav>
+
+                <div class="row col-12 mx-sm-auto">
+                    <th:block th:each="doohickey, iStat : ${page}">
+                        <div th:class="${'item doohickey col-sm-12 '+(pageType == null ? 'col-md-4' : 'col-md-6')+' px-0  mx-md-1 mx-sm-auto'}">
+                            <div class="item-body" th:style="${'background-image:url(''https://cdn.filestackcontent.com/AsZ4wkm4kSSCPWhIZYFqEz/urlscreenshot/crop=dim:[0,0,495,495]/http://data2doohickey.com/doohickeys/'+doohickey.id+'/3d'');'}"
+                                 th:onclick="${'location=''/doohickeys/'+doohickey.id+''''}">
+
+                            </div>
+                            <div class="item-header">
+                                <div class="avatar-wrapper" th:onclick="${'location=''/profile/'+doohickey.author.username+''''}">
+                                    <img th:src="${doohickey.author.getPhotoURL()}" style="height:100%"/>
+                                </div>
+                                <div class="item-info center my-0">
+                                    <div class="ellipsis" th:text="${doohickey.title}" th:onclick="${'location=''/doohickeys/'+doohickey.id+''''}">
+                                    </div>
+                                    <div class="justify">
+                                        by <h5 th:text="${doohickey.author.username}" th:onclick="${'location=''/profile/'+doohickey.author.username+''''}"></h5>
+                                        <span class="item-date" th:datetime="${doohickey.created_at}"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="item-footer center-align">
+                                <div th:if="${user}" class="favButton item-footer-button col-4 content-box center-align" th:attr="data-id=${doohickey.id}">
+                                    <i th:class="${(doohickey.usersFavoritedContains(user.id) ? 'fas' : 'far')+' fa-heart'}"></i>
+                                    <span class="mx-2" th:text="${doohickey.usersFavorited.size()}"></span>
+                                </div>
+                                <div th:if="${user == null}" class="item-footer-button col-4 content-box center-align">
+                                    <i class="far fa-heart"></i>
+                                    <span class="mx-2" th:text="${doohickey.usersFavorited.size()}"></span>
+                                </div>
+
+                                <div class="item-footer-button col-4 content-box center-align">
+                                    <i class="far fa-eye"></i>
+                                    <span class="mx-2" th:text="${doohickey.views}"></span>
+                                </div>
+                                <div class="item-footer-button col-4 content-box center-align">
+                                    <i class="fas fa-download"></i>
+                                    <span class="mx-2" th:text="${doohickey.downloads}"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </th:block>
+                </div>
+                <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+                <script>
+                    $(".favButton").click(function(e){
+                        var button = $(this);
+                        var id = button.attr("data-id");
+                        console.log(button);
+                        $.get("/doohickeys/"+id+"/favorite",function(data){
+                            console.log(data);
+                            if(data == "Favorited") {
+                                console.log(data);
+                                button.find("i").removeClass("far");
+                                button.find("i").addClass("fas");
+                                button.find("span").text(parseInt(button.find("span").text())+1);
+                            }else if (data == "UnFavorited"){
+                                console.log(data);
+                                button.find("i").addClass("far");
+                                button.find("i").removeClass("fas");
+                                button.find("span").text(parseInt(button.find("span").text())-1);
+                            }else {
+                                document.location = "/login";
+                            }
+                        });
+                    });
+                </script>
+                <script src="js/timeago.min.js" type="text/javascript"></script>
+                <script>
+                    timeago.render($('.item-date'));
+                </script>
             </div>
         </th:block>
     </div>

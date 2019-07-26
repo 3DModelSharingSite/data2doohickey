@@ -40,7 +40,14 @@
         </div>
     </div>
     <div class="about-stl-model content-box col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 m-0">
-        <div class="stl-about-box" th:text="${'About ' + doohickey.title + ': ' + doohickey.description}"></div>
+        <div class="row my-5">
+            <div class="col-12 mt-5">
+                <h5 class="stl-about-box" th:text="${'About: '}"></h5>
+            </div>
+            <div class="col-12">
+                <p th:text="${doohickey.description}"></p>
+            </div>
+        </div>
     </div>
 </main>
 <nav th:replace="partials/footer :: footer"></nav>
