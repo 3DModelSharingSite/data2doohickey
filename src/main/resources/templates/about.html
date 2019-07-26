@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+    <head>
+        <th:block th:replace="partials/head :: head('About')"/>
+
+        <link rel="stylesheet" href="/css/doohickey-styling.css"/>
+    </head>
+        <div th:replace="partials/navbar :: nav"></div>
+    <body>
+    <main style="height: -webkit-fill-available;">
+        <div class="row center-align" style="height: -webkit-fill-available;">
+            <div class="col-md-3 col-sm-12 text-center ">
+                <div th:class="${'item doohickey col-sm-12 col-md-12 px-0 mx-sm-auto mr-auto'}">
+                    <div class="item-body" th:onclick="${'location=''https://alumni.codeup.com/students/646'''}">
+                        <img style="width: 100%;" src="https://data2doohickey.s3.us-east-2.amazonaws.com/profiles/codeup_4-19-0096.jpg" alt=""/>
+                    </div>
+                    <div class="item-header">
+                        <div class="item-info center my-0">
+                            <div class="ellipsis" th:text="${'Alexandra Fossum'}" th:onclick="${'location=''https://alumni.codeup.com/students/646'''}">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item-footer center-align">
+                        <a class="item-footer-button col-4 content-box center-align" href="https://www.linkedin.com/in/alexandra-fossum/">
+                            <i class="fab fa-linkedin"></i>
+                            <span class="mx-2" th:text="251"></span>
+                        </a>
+
+                        <a class="item-footer-button col-4 content-box center-align" href="https://github.com/alexandrafossum">
+                            <i class="fab fa-github"></i>
+                            <span class="mx-2" th:text="1072"></span>
+                        </a>
+                        <a class="item-footer-button col-4 content-box center-align" href="https://alumni.codeup.com/students/646">
+                            <img src="/icons/codeup-logo-removebg-preview.png" style="height:25px;width:25px;"/>
+                            <span class="mx-2" th:text="506"></span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-12 text-center ">
+                <div th:class="${'item doohickey col-sm-12 col-md-12 px-0 mx-sm-auto mr-auto'}">
+                    <div class="item-body" th:onclick="${'location=''https://alumni.codeup.com/students/648'''}">
+                        <img style="width: 100%;" src="https://data2doohickey.s3.us-east-2.amazonaws.com/profiles/headshot.jpg" alt=""/>
+                    </div>
+                    <div class="item-header">
+                        <div class="item-info center my-0">
+                            <div class="ellipsis" th:text="${'Ricky Davis'}" th:onclick="${'location=''https://alumni.codeup.com/students/648'''}">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item-footer center-align">
+                        <a class="item-footer-button col-4 content-box center-align" href="https://www.linkedin.com/in/ricky-davis/">
+                            <i class="fab fa-linkedin"></i>
+                            <span class="mx-2" th:text="249"></span>
+                        </a>
+
+                        <a class="item-footer-button col-4 content-box center-align" href="https://github.com/ricky-davis">
+                            <i class="fab fa-github"></i>
+                            <span class="mx-2" th:text="1100"></span>
+                        </a>
+                        <a class="item-footer-button col-4 content-box center-align" href="https://alumni.codeup.com/students/648">
+                            <img src="/icons/codeup-logo-removebg-preview.png" style="height:25px;width:25px;"/>
+                            <span class="mx-2" th:text="511"></span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-12 text-center ">
+                <div th:class="${'item doohickey col-sm-12 col-md-12 px-0 mx-sm-auto mr-auto'}">
+                    <div class="item-body" th:onclick="${'location=''https://alumni.codeup.com/students/647'''}">
+                        <img style="width: 100%;" src="https://data2doohickey.s3.us-east-2.amazonaws.com/profiles/image.png" alt=""/>
+                    </div>
+                    <div class="item-header">
+                        <div class="item-info center my-0">
+                            <div class="ellipsis" th:text="${'Josh Ramos'}" th:onclick="${'location=''https://alumni.codeup.com/students/647'''}">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item-footer center-align">
+                        <a class="item-footer-button col-4 content-box center-align" href="https://www.linkedin.com/in/joshrms/">
+                            <i class="fab fa-linkedin"></i>
+                            <span class="mx-2" th:text="260"></span>
+                        </a>
+
+                        <a class="item-footer-button col-4 content-box center-align" href="https://github.com/Josh-rms">
+                            <i class="fab fa-github"></i>
+                            <span class="mx-2" th:text="1272"></span>
+                        </a>
+                        <a class="item-footer-button col-4 content-box center-align" href="https://alumni.codeup.com/students/647">
+                            <img src="/icons/codeup-logo-removebg-preview.png" style="height:25px;width:25px;"/>
+                            <span class="mx-2" th:text="490"></span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+        <nav th:replace="partials/footer :: footer"></nav>
+        <th:block th:include="partials/scripts :: scripts" />
+    </body>
+</html>
