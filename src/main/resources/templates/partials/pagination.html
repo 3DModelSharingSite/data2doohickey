@@ -6,7 +6,7 @@
     </head>
     <body>
         <nav th:fragment="pageList" aria-label="Page navigation" th:class="${'text-center mx-auto col-12 '+(pageType == null ? 'px-2' : '')}">
-            <ul th:class="${'pagination d-flex justify-content-sm-center justify-content-md-start '+(pageType == null ? 'center-align' : '')}">
+            <ul th:class="${'pagination d-flex justify-content-sm-center '+(pageType == null ? 'center-align' : 'justify-content-md-start ')}">
                 <li th:class="${'page-item '+(page.hasPrevious()? '' : 'disabled')}">
                     <a class="page-link" th:href="'?page=1'">
                         <span class="d-md-none">First</span>
