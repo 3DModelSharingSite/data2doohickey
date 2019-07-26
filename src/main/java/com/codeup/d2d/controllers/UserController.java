@@ -62,7 +62,7 @@ public class UserController {
     }
 
     @GetMapping("/profile/{username}/favorites")
-    public String userFavorites(@PageableDefault(page = 1,size=3) Pageable pageable,
+    public String userFavorites(@PageableDefault(page = 1,size=4) Pageable pageable,
                                 @PathVariable String username, Model model){
         User user = userDao.findByUsername(username);
         model.addAttribute("user", user);
@@ -76,7 +76,7 @@ public class UserController {
     }
 
     @GetMapping("/profile/{username}/doohickeys")
-    public String userDoohickeys(@PageableDefault(page = 1,size=3) Pageable pageable,
+    public String userDoohickeys(@PageableDefault(page = 1,size=4) Pageable pageable,
                                  @PathVariable String username, Model model){
         User user = userDao.findByUsername(username);
         model.addAttribute("user", user);
