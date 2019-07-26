@@ -31,7 +31,6 @@
                              th:class="${user.photoURL.equals('/icons/user-regular.svg') ? ' stockPFP' :''} "
                              alt="Profile Photo" id="profile-image"/>
                     </div>
-<<<<<<< Updated upstream
                     <div class="user-info font-body-2">
                         <div class="content-header">
                             <span th:text="${user.username}">Display name</span>
@@ -48,28 +47,6 @@
                             <img id="location-img" src="/icons/globe-solid.svg" alt="location icon"/>
                             <span class="profile-location" th:text="${userDetails.location}">Location</span>
                         </div>
-=======
-                    <div class="content-header" >
-                        <img id="user-icon-img" src="/static/icons/user-circle-solid.svg" alt="user icon"/>
-                        <div th:text="${user.username}">Display name</div>
-                    </div>
-                    <span  sec:authorize="isAuthenticated()" th:if="${#authentication.principal.id == user.id}">
-                        <a th:href="${'/profile/' + user.username + '/edit'}">
-                            <img src="/static/icons/edit-regular.svg"
-                                 id="edit-btn"
-                                 alt="edit icon button"/>
-                        </a>
-                    </span>
-                    <div class="user-location">
-                        <img id="location-img" src="/static/icons/globe-solid.svg" alt="location icon"/>
-                        <span class="profile-location" th:text="${userDetails.location}">Location</span>
-                    </div>
-
-                                            <!--HIDE UNTIL FUNCTIONAL-->
-                    <!--<div class="row">-->
-                        <!--<button class="tip-maker-btn m-auto btn">Tip Designer</button>-->
-                    <!--</div>-->
->>>>>>> Stashed changes
 
                         <hr/>
 
