@@ -43,6 +43,7 @@
         <div class="stl-about-box" th:text="${'About ' + doohickey.title + ': ' + doohickey.description}"></div>
     </div>
 </main>
+<nav th:replace="partials/footer :: footer"></nav>
 <script>
     $(document).ready(function () {
         document.getElementById("downloadBtn").addEventListener("click", function (event) {

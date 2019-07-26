@@ -52,11 +52,13 @@
 
                         <div class="row pb-4">
                             <div class="mx-auto col-6">
-                                <button class="doo-fav-btns" th:href="${'/profile/' + user.username + '/doohickeys'}">
-                                    <span class="font-body-2" th:text="${user.doohickeyList.size()}">1</span>
-                                    <br/>
-                                    <span>Doohickeys</span>
-                                </button>
+                                <a  th:href="${'/profile/' + user.username + '/doohickeys'}">
+                                    <button class="doo-fav-btns">
+                                        <span class="font-body-2" th:text="${user.doohickeyList.size()}">1</span>
+                                        <br/>
+                                        <span>Doohickeys</span>
+                                    </button>
+                                </a>
                             </div>
                             <div class="mx-auto col-6">
                                 <a th:href="${'/profile/' + user.username + '/favorites'}">
