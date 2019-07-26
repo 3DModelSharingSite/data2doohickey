@@ -216,9 +216,12 @@ public class DoohickeyController {
             return "redirect:/login";
         }
         User logUser = (User)authSvc.getCurUser();
-        User dhkyAuthor = doohickeyDao.findOne(id).getAuthor();
+        Doohickey dhky = doohickeyDao.findOne(id);
+        User dhkyAuthor = dhky.getAuthor();
         if(logUser.getId() == dhkyAuthor.getId()) {
-            doohickeyDao.delete(id);
+            dhkyAuthor.getFavorites().remove(dhky);
+            dhky.getTags().clear();
+            doohickeyDao.delete(dhky);
         }
         return "redirect:/doohickeys";
     }
