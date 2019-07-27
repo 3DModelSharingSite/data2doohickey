@@ -110,8 +110,44 @@
             </div>
         </div>
         <th:block th:if="${!pageType.equals('about')}">
-            <div th:include="partials/doohickeyList :: doohickeyList" class="col-12 mx-auto">
-                Pass in List of Doohickeys
+            <div class="col-12">
+                <nav th:replace="partials/pagination :: pageList"></nav>
+
+                <div class="row col-12 mx-sm-auto">
+                    <th:block th:each="doohickey, iStat : ${page}">
+                        <div th:class="${'item doohickey col-sm-12 '+(pageType == null ? 'col-md-4' : 'col-md-6')+' px-0  mx-md-1 mx-sm-auto'}">
+                            <div th:replace="partials/doohickey :: doohickey"></div>
+                        </div>
+                    </th:block>
+                </div>
+                <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+                <script>
+                    $(".favButton").click(function(e){
+                        var button = $(this);
+                        var id = button.attr("data-id");
+                        console.log(button);
+                        $.get("/doohickeys/"+id+"/favorite",function(data){
+                            console.log(data);
+                            if(data == "Favorited") {
+                                console.log(data);
+                                button.find("i").removeClass("far");
+                                button.find("i").addClass("fas");
+                                button.find("span").text(parseInt(button.find("span").text())+1);
+                            }else if (data == "UnFavorited"){
+                                console.log(data);
+                                button.find("i").addClass("far");
+                                button.find("i").removeClass("fas");
+                                button.find("span").text(parseInt(button.find("span").text())-1);
+                            }else {
+                                document.location = "/login";
+                            }
+                        });
+                    });
+                </script>
+                <script src="js/timeago.min.js" type="text/javascript"></script>
+                <script>
+                    timeago.render($('.item-date'));
+                </script>
             </div>
         </th:block>
     </div>

@@ -45,7 +45,7 @@ public class DoohickeyController {
     }
 
     @GetMapping("/doohickeys")
-    public String showAllDoohickeys(@RequestParam(required = false) String search, @PageableDefault(page = 1,size=3) Pageable pageable, Model model) {
+    public String showAllDoohickeys(@RequestParam(required = false) String search, @PageableDefault(page = 1,size=9) Pageable pageable, Model model) {
 
         if(search == null) {
             search="";
@@ -67,7 +67,7 @@ public class DoohickeyController {
     @GetMapping("/doohickeys/{id}/download")
     @ResponseBody
     public String downloadDoohickey(@PathVariable Long id, Model model){
-        Doohickey doohickey = doohickeyDao.findOne(id);
+        Doohickey doohickey = doohickeyDao.findById(id).get();
         doohickey.setDownloads(doohickey.getDownloads()+1);
         doohickeyDao.save(doohickey);
         return "Downloaded";
@@ -75,7 +75,7 @@ public class DoohickeyController {
 
     @GetMapping("/doohickeys/{id}")
     public String showDoohickey(@PathVariable Long id, Model model){
-        Doohickey doohickey = doohickeyDao.findOne(id);
+        Doohickey doohickey = doohickeyDao.findById(id).get();
         doohickey.setViews(doohickey.getViews()+1);
         doohickeyDao.save(doohickey);
         File file = fileDao.findByDoohickey_Id(id);
@@ -92,8 +92,8 @@ public class DoohickeyController {
             return "Failure";
         }
         User user = (User)authSvc.getCurUser();
-        user = userDao.findOne(user.getId());
-        Doohickey doohickey = doohickeyDao.findOne(id);
+        user = userDao.findById(user.getId()).get();
+        Doohickey doohickey = doohickeyDao.findById(id).get();
         if(user.getFavorites().contains(doohickey)){
             user.getFavorites().remove(doohickey);
             userDao.save(user);
@@ -113,7 +113,7 @@ public class DoohickeyController {
         if(authSvc.getCurUser() == null){
             return "redirect:/login";
         }
-        model.addAttribute("doohickey", doohickeyDao.findOne(id));
+        model.addAttribute("doohickey", doohickeyDao.findById(id).get());
         model.addAttribute("action", "/doohickeys/"+id+"/edit");
         model.addAttribute("title", "Edit Doohickey");
         return "doohickeys/editCreate";
@@ -132,7 +132,7 @@ public class DoohickeyController {
             model.addAttribute("title", "Edit Doohickey");
             return "doohickeys/editCreate";
         }
-        Doohickey doohickey = doohickeyDao.findOne(editedDoohickey.getId());
+        Doohickey doohickey = doohickeyDao.findById(editedDoohickey.getId()).get();
 
 
         doohickey.setTitle(editedDoohickey.getTitle());
@@ -216,9 +216,9 @@ public class DoohickeyController {
             return "redirect:/login";
         }
         User logUser = (User)authSvc.getCurUser();
-        User dhkyAuthor = doohickeyDao.findOne(id).getAuthor();
+        User dhkyAuthor = (doohickeyDao.findById(id).get()).getAuthor();
         if(logUser.getId() == dhkyAuthor.getId()) {
-            doohickeyDao.delete(id);
+            doohickeyDao.delete((doohickeyDao.findById(id).get()));
         }
         return "redirect:/doohickeys";
     }

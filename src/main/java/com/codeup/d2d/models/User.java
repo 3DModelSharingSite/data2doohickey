@@ -41,7 +41,7 @@ public class User {
     @JsonBackReference
     private List<Doohickey> doohickeyList;
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany()
     @JoinTable(
             name = "users_favorites",
             joinColumns = {@JoinColumn(name = "user_id")},
