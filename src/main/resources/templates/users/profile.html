@@ -79,7 +79,7 @@
     <!--TOGGLE INFO-->
 
     <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 col-xl-8 profile-right">
-        <nav class="profile-nav  d-flex justify-content-sm-center justify-content-md-start " id="profileNav">
+        <nav class="profile-nav box-shadow-style" id="profileNav">
             <ul class="nav small-nav">
                 <li class="nav-item">
                     <a class="small-nav-link nav-link pb-3 py-1 font-heading-1"
@@ -102,8 +102,8 @@
             </ul>
         </nav>
 
-        <div class="card box-shadow-style" id="profileBio" th:if="${pageType.equals('about')}">
-            <span class="content-header uppercase mx-auto font-heading-1 pt-4"
+        <div class="bio-card card box-shadow-style" id="profileBio" th:if="${pageType.equals('about')}">
+            <span class="content-header bio-header mx-auto font-heading-1 pt-4"
                   th:text="${'About ' + user.username}">About Username</span>
             <div class="bio col-12 px-4 card-body font-body-1">
                 <p th:text="${userDetails.bio}">Lorem Ipsum is simply dummy text.</p>
@@ -152,6 +152,7 @@
         </th:block>
     </div>
 </main>
+<canvas class="dynamic-background"></canvas>
 <footer th:replace="partials/footer :: footer"></footer>
 <th:block th:include="partials/scripts :: scripts"/>
 <script src="https://static.filestackapi.com/filestack-js/3.x.x/filestack.min.js"  sec:authorize="isAuthenticated()" th:if="${#authentication.principal.id == user.id}"></script>
