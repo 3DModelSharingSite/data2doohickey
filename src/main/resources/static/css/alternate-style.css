@@ -162,4 +162,104 @@ a:hover {
 
 }
 
+/*PROFILE PAGE*/
+
+.profile-nav {
+    background-color: rgba(255, 255, 255, .75);
+    margin-top: 1em;
+    margin-bottom: 2em;
+    border-radius: 5px;
+    padding-top: 1em;
+}
+
+.profile-card, .bio-card {
+    background-color: rgba(255, 255, 255, .75);
+}
+
+.profile-card {
+    margin-bottom: 4em;
+}
+
+.bio-card {
+    margin-bottom: 5em;
+}
+
+.profile-nav {
+    align-content: center;
+}
+
+.small-nav-link {
+    color: var(--accent-color-1);
+    padding: 1em;
+    font-size: large;
+}
+
+.small-nav-link:hover {
+    text-shadow: 5px 5px 2px lightgrey;
+}
+
+#profile-image, #newPFP {
+    margin-top: 10px;
+    margin-bottom: 2px;
+    border-radius: 50%;
+    border-width: 0;
+    height: 10em;
+    width: 10em;
+}
+.stockPFP{
+    opacity:0.5;
+}
+.opOnHover:hover{
+    opacity:0.5;
+}
+
+.doo-fav-btns {
+    height: 100px;
+    width: 100px;
+    color: var(--accent-color-1);
+    border-color: var(--accent-color-1);
+    background-color: rgba(85, 117, 157, .7);
+    border-radius: 5px;
+    margin-bottom: 15px;
+    font-family: 'Raleway', sans-serif;
+    font-size: medium;
+    padding-left: 0;
+    padding-right:0;
+}
+
+.doo-fav-btns:hover {
+    color: rgba(85, 117, 157, .7);
+    border-color: rgba(85, 117, 157, .7);
+    background-color: transparent;
+}
+
+
+#edit-btn {
+    height: 19px;
+    width: 19px;
+    margin-bottom: 12px;
+}
+
+#edit-btn:hover {
+    opacity: .75;
+}
+
+#location-img {
+    height: 1em;
+    width: 1em;
+    padding-bottom: 2px;
+}
+
+#user-icon-img {
+    height: 1em;
+    width: 1em;
+    padding-bottom: 2px;
+}
+
+#newPFP {
+    display: none;
+}
+
+
+
 
