@@ -5,27 +5,30 @@
     </head>
     <body>
         <nav th:replace="partials/navbar :: nav"></nav>
-        <main class="container-fluid col-md-8 col-sm-12 mx-auto pt-3">
-            <div class="card">
-                <div class="card-header">Create an account</div>
-                <div class="card-body">
-                    <div class="col-12">
-                        <form th:action="@{/sign-up}" method="POST" th:object="${user}">
+        <main class="container-fluid content-wrap register-page col-xs-12 col-sm-12 col-md-8 col-lg-8 col-xl-8 mx-auto pt-3 mb-10">
+            <div class="content-box login-content-box col-12 px-0 box-shadow-style">
+                <div class="content-header font-heading-2 pt-3 pb-2">
+                    <h4 class="register-heading center-align font-heading-1">Register</h4>
+                    <hr/>
+                </div>
+                <div class="row">
+                    <div class="col-12 px-6">
+                        <form class="register-form" th:action="@{/sign-up}" method="POST" th:object="${user}">
 
-                            <div class="form-group">
+                            <div class="form-group px-5 font-body-1">
                                 <label for="username">Username</label>
                                 <input class="form-control" id="username" th:field="*{username}" />
                             </div>
-                            <div class="form-group">
+                            <div class="form-group px-5 font-body-1">
                                 <label for="email">Email</label>
                                 <input class="form-control" id="email" th:field="*{email}" />
                                 <small id="emailHelp" class="form-text text-muted">We'll never share your email.</small>
                             </div>
-                            <div class="form-group">
+                            <div class="form-group px-5 font-body-1">
                                 <label for="password">Password</label>
                                 <input class="form-control" id="password" type="password" th:field="*{password}" />
                             </div>
-                            <div class="form-group">
+                            <div class="form-group px-5 font-body-1">
                                 <label for="cnfmpassword">Confirm Password</label>
                                 <input class="form-control" id="cnfmpassword" type="password" th:field="*{cnfmpassword}" />
                             </div>
@@ -35,10 +38,10 @@
                                 <p th:if="${#fields.hasErrors('password')}" th:errors="*{password}" />
                             </div>
                             <div class="row">
-                                <button type="submit" class="mx-auto btn btn-success">Sign me up!</button>
+                                <button type="submit" class="mx-auto btn login-btn font-body-1">Sign me up!</button>
                             </div>
-                            <div class="row">
-                                <small id="logInHelp" class="mx-auto form-text text-muted">
+                            <div class="row pb-3">
+                                <small id="logInHelp" class="mx-auto form-text text-muted font-body-2">
                                     Already have an account?
                                     <a href="/login">Log In</a>
                                 </small>
@@ -48,6 +51,7 @@
                 </div>
             </div>
         </main>
+        <canvas class="dynamic-background"></canvas>
         <nav th:replace="partials/footer :: footer"></nav>
         <th:block th:include="partials/scripts :: scripts" />
 
