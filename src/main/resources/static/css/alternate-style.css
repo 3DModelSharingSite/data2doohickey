@@ -8,6 +8,7 @@
     --accent-color-1: rgba(62, 181, 195, 1); /* #3EB5C3 */
     /*--accent-color-2:*/
     --warning-color: rgba(208, 84, 90, 1); /* D0545A */
+    --main-text-color: rgba(0, 0, 0, .88);
 }
 
 html, body {
@@ -19,10 +20,10 @@ body {
     background: linear-gradient(90deg, #3F2B96 0%, #A8C0FF 100%);
 }
 
-canvas {
-    display: block;
-    vertical-align: bottom;
-}
+/*canvas {*/
+    /*display: block;*/
+    /*vertical-align: bottom;*/
+/*}*/
 
 /*footer {*/
     /*position: absolute;*/
@@ -64,6 +65,10 @@ a:hover {
     font-family: 'Raleway', sans-serif;
 }
 
+.page-link, .page-item {
+    background-color: rgba(255, 255, 255, .88);
+}
+
 .center-align {
     display: flex;
     align-items: center;
@@ -78,6 +83,8 @@ a:hover {
     right: 0;
     left: 0;
     z-index: -1;
+    display: block;
+    vertical-align: bottom;
 }
 
 .content-box {
@@ -184,6 +191,14 @@ a:hover {
     margin-bottom: 5em;
 }
 
+.bio-header {
+    font-size: 26px;
+}
+
+.bio {
+    color: var(--main-text-color);
+}
+
 .profile-nav {
     align-content: center;
 }
@@ -198,17 +213,10 @@ a:hover {
     text-shadow: 5px 5px 2px lightgrey;
 }
 
-#profile-image, #newPFP {
-    margin-top: 10px;
-    margin-bottom: 2px;
-    border-radius: 50%;
-    border-width: 0;
-    height: 10em;
-    width: 10em;
-}
 .stockPFP{
     opacity:0.5;
 }
+
 .opOnHover:hover{
     opacity:0.5;
 }
@@ -218,7 +226,7 @@ a:hover {
     width: 100px;
     color: var(--accent-color-1);
     border-color: var(--accent-color-1);
-    background-color: rgba(85, 117, 157, .7);
+    background-color: transparent;
     border-radius: 5px;
     margin-bottom: 15px;
     font-family: 'Raleway', sans-serif;
@@ -228,11 +236,10 @@ a:hover {
 }
 
 .doo-fav-btns:hover {
-    color: rgba(85, 117, 157, .7);
-    border-color: rgba(85, 117, 157, .7);
+    color: var(--dark-color-1);
+    border-color: var(--dark-color-1);
     background-color: transparent;
 }
-
 
 #edit-btn {
     height: 19px;
@@ -258,6 +265,15 @@ a:hover {
 
 #newPFP {
     display: none;
+}
+
+#profile-image, #newPFP {
+    margin-top: 10px;
+    margin-bottom: 2px;
+    border-radius: 50%;
+    border-width: 0;
+    height: 10em;
+    width: 10em;
 }
 
 

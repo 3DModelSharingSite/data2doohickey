@@ -103,7 +103,7 @@
         </nav>
 
         <div class="bio-card card box-shadow-style" id="profileBio" th:if="${pageType.equals('about')}">
-            <span class="content-header uppercase mx-auto font-heading-1 pt-4"
+            <span class="content-header bio-header mx-auto font-heading-1 pt-4"
                   th:text="${'About ' + user.username}">About Username</span>
             <div class="bio col-12 px-4 card-body font-body-1">
                 <p th:text="${userDetails.bio}">Lorem Ipsum is simply dummy text.</p>
