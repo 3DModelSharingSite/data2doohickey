@@ -194,7 +194,7 @@ public class UserController {
             return "redirect:/login";
         }
         User user = (User)authSvc.getCurUser();
-        user = userDao.findOne(user.getId());
+        user = userDao.findById(user.getId()).get();
         user.setPhotoURL(key);
         userDao.save(user);
         return "redirect:/profile";
