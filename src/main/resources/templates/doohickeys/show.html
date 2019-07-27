@@ -57,6 +57,8 @@
     </div>
 </main>
 <nav th:replace="partials/footer :: footer"></nav>
+<th:block th:include="partials/scripts :: scripts"/>
+
 <script>
     $(document).ready(function () {
         document.getElementById("downloadBtn").addEventListener("click", function (event) {
