@@ -154,8 +154,8 @@
 </main>
 <footer th:replace="partials/footer :: footer"></footer>
 <th:block th:include="partials/scripts :: scripts"/>
-<script src="https://static.filestackapi.com/filestack-js/3.x.x/filestack.min.js"></script>
-<script>
+<script src="https://static.filestackapi.com/filestack-js/3.x.x/filestack.min.js"  sec:authorize="isAuthenticated()" th:if="${#authentication.principal.id == user.id}"></script>
+<script sec:authorize="isAuthenticated()" th:if="${#authentication.principal.id == user.id}">
     (function () {
         const client = filestack.init('AsZ4wkm4kSSCPWhIZYFqEz');
         const fsoptions = {
