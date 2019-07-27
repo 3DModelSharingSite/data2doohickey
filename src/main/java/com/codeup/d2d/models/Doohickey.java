@@ -42,6 +42,7 @@ public class Doohickey {
     @JsonManagedReference
     private User author;
 
+
     @ManyToMany(mappedBy = "favorites")
     private List<User> usersFavorited;
 

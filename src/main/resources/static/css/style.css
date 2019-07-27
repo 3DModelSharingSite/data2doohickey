@@ -1,15 +1,15 @@
 @import url('https://fonts.googleapis.com/css?family=Comfortaa|Open+Sans|Playfair+Display|Raleway|Roboto&display=swap');
 
 *, :root {
-    --main-color-1: rgba(249, 246, 244, 0.5); /*  #F9F6F4  */
-    --main-color-2: rgba(249, 246, 244, 0.75); /*  #F9F6F4  */
-    --accent-color-1: rgba(181, 197, 197, 1.0); /*  #B5C5C5  */
-    --accent-color-2: rgba(150, 182, 191, 1.0); /*  #96B6BF  */
-    --accent-color-3: rgba(167, 174, 172, 1.0); /*  #A7AEAC  */
-    --dark-color-1: rgba(85, 117, 157, 1.0); /*  #55759D  */
-    --dark-color-2: rgba(85, 117, 157, 0.1); /*  #55759D  */
-    --font-color-general: rgba(69, 69, 69, 69); /* #454545 */
-}
+     --main-color-1: rgba(249, 246, 244, 0.5); /*  #F9F6F4  */
+     --main-color-2: rgba(249, 246, 244, 0.75); /*  #F9F6F4  */
+     --accent-color-1: rgba(181, 197, 197, 1.0); /*  #B5C5C5  */
+     --accent-color-2: rgba(150, 182, 191, 1.0); /*  #96B6BF  */
+     --accent-color-3: rgba(167, 174, 172, 1.0); /*  #A7AEAC  */
+     --dark-color-1: rgba(85, 117, 157, 1.0); /*  #55759D  */
+     --dark-color-2: rgba(85, 117, 157, 0.1); /*  #55759D  */
+     --font-color-general: rgba(69, 69, 69, 69); /* #454545 */
+ }
 
 html {
     height: 100%;
@@ -126,7 +126,6 @@ ul.nav.bg-dark {
 }
 
 #profile-image, #newPFP {
-    /*padding: 10px;*/
     margin-top: 10px;
     margin-bottom: 2px;
     border-radius: 50%;
@@ -315,6 +314,47 @@ ul.nav.bg-dark {
 #profileBio {
      margin-bottom: 125px;
 }
+
+/*login.html*/
+
+.login-form {
+    color: var(--font-color-general);
+}
+
+.login-header {
+    background-color: rgba(85, 117, 157, .75);
+    color: #FFFFFF;
+}
+
+.login-btn {
+    background-color: var(--dark-color-1);
+    color: #FFFFFF;
+    border-color: #FFFFFF;
+    border-radius: 5px;
+    padding: 1em;
+}
+
+.login-btn:hover {
+    background-color: transparent;
+    color: var(--dark-color-1);
+    border-color: var(--dark-color-1);
+}
+
+#sign-up-link {
+    color: var(--accent-color-1);
+}
+
+#sign-up-link:hover {
+    color: var(--dark-color-1);
+}
+
+.customError {
+    background-color: rgba(197, 91, 74, .5);
+    border-radius: 5px;
+    align-content: center;
+}
+
+
 /*!*==========  Mobile First Method  ==========*!*/
 
 /*!* Custom, iPhone Retina *!*/

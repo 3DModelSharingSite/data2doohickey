@@ -37,6 +37,12 @@
                     <button class="stl-delete-btn py-2">Delete</button>
                 </form>
             </div>
+            <div sec:authorize="isAuthenticated()" th:if="${#authentication.principal.id} == ${doohickey.author.id}"
+                 class="stl-delete col-6">
+                <form th:action="@{'/doohickeys/' + ${doohickey.id} + '/edit'}" th:method="get">
+                    <button class="stl-edit-btn py-2">Edit</button>
+                </form>
+            </div>
         </div>
     </div>
     <div class="about-stl-model content-box col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 m-0">
@@ -51,6 +57,8 @@
     </div>
 </main>
 <nav th:replace="partials/footer :: footer"></nav>
+<th:block th:include="partials/scripts :: scripts"/>
+
 <script>
     $(document).ready(function () {
         document.getElementById("downloadBtn").addEventListener("click", function (event) {
