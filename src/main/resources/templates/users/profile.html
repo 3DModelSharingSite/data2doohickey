@@ -116,42 +116,7 @@
                 <div class="row col-12 mx-sm-auto">
                     <th:block th:each="doohickey, iStat : ${page}">
                         <div th:class="${'item doohickey col-sm-12 '+(pageType == null ? 'col-md-4' : 'col-md-6')+' px-0  mx-md-1 mx-sm-auto'}">
-                            <div class="item-body" th:style="${'background-image:url(''https://cdn.filestackcontent.com/AsZ4wkm4kSSCPWhIZYFqEz/urlscreenshot/crop=dim:[0,0,495,495]/http://data2doohickey.com/doohickeys/'+doohickey.id+'/3d'');'}"
-                                 th:onclick="${'location=''/doohickeys/'+doohickey.id+''''}">
-
-                            </div>
-                            <div class="item-header">
-                                <div class="avatar-wrapper" th:onclick="${'location=''/profile/'+doohickey.author.username+''''}">
-                                    <img th:src="${doohickey.author.getPhotoURL()}" style="height:100%"/>
-                                </div>
-                                <div class="item-info center my-0">
-                                    <div class="ellipsis" th:text="${doohickey.title}" th:onclick="${'location=''/doohickeys/'+doohickey.id+''''}">
-                                    </div>
-                                    <div class="justify">
-                                        by <h5 th:text="${doohickey.author.username}" th:onclick="${'location=''/profile/'+doohickey.author.username+''''}"></h5>
-                                        <span class="item-date" th:datetime="${doohickey.created_at}"></span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="item-footer center-align">
-                                <div th:if="${user}" class="favButton item-footer-button col-4 content-box center-align" th:attr="data-id=${doohickey.id}">
-                                    <i th:class="${(doohickey.usersFavoritedContains(user.id) ? 'fas' : 'far')+' fa-heart'}"></i>
-                                    <span class="mx-2" th:text="${doohickey.usersFavorited.size()}"></span>
-                                </div>
-                                <div th:if="${user == null}" class="item-footer-button col-4 content-box center-align">
-                                    <i class="far fa-heart"></i>
-                                    <span class="mx-2" th:text="${doohickey.usersFavorited.size()}"></span>
-                                </div>
-
-                                <div class="item-footer-button col-4 content-box center-align">
-                                    <i class="far fa-eye"></i>
-                                    <span class="mx-2" th:text="${doohickey.views}"></span>
-                                </div>
-                                <div class="item-footer-button col-4 content-box center-align">
-                                    <i class="fas fa-download"></i>
-                                    <span class="mx-2" th:text="${doohickey.downloads}"></span>
-                                </div>
-                            </div>
+                            <div th:replace="partials/doohickey :: doohickey"></div>
                         </div>
                     </th:block>
                 </div>
