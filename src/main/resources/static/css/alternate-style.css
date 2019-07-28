@@ -330,7 +330,7 @@ a.page-link {
     border-color: white;
 }
 
-#stl_cont {
+.stl-cont {
     overflow: hidden;
     margin: auto;
 }
@@ -370,3 +370,15 @@ a.page-link {
     width: 10em;
 }
 
+#stl_cont {
+    width:300px;
+    height:300px;
+    margin:0 auto;
+    border-color: black;
+}
+
+/*EDIT/CREATE PAGE*/
+
+.stl-edit-content-box {
+    background-color: rgba(255, 255, 255, .75);
+}
