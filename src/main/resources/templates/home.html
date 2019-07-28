@@ -5,6 +5,7 @@
     </head>
         <div th:replace="partials/navbar :: nav"></div>
     <body>
+    <div id="particles-js"></div>
     <main role="main">
 
     <div id="myCarousel" class="carousel slide" data-ride="carousel" style="height: 280px;">
@@ -17,7 +18,7 @@
             <div class="carousel-item" style="height: 267px;">
                 <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img"><rect width="100%" height="100%" fill="#343a40" style="height: 286px;"></rect></svg>
                 <div class="container">
-                    <div class="carousel-caption text-left">
+                    <div class="carousel-caption login-content-box content-box box-shadow-style">
                         <h1>50+ Users</h1>
                         <p>Show us what you made: the world wants to see it! 3D modeling and printing is still in its infancy. The more you share your work, the more your designs inspire others, get printed, and do awesome things.</p>
                         <p><a class="btn btn-lg" style="background-color: #55759D; color: white;" href="#" role="button">Sign up today</a></p>
@@ -27,7 +28,7 @@
             <div class="carousel-item active" style="height: 267px;">
                 <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img"><rect width="100%" height="100%" fill="#343a40" style="height: 286px;"></rect></svg>
                 <div class="container">
-                    <div class="carousel-caption">
+                    <div class="carousel-caption login-content-box content-box box-shadow-style">
                         <h1>100+ Uploads</h1>
                         <p>Our community has uploaded over 100 3D models, and that number is growing every day. Check out all the incredible objects people have created, and get inspired to make your own!</p>
                         <p><a class="btn btn-lg" style="background-color: #55759D; color: white;" href="#" role="button">Learn more</a></p>
@@ -35,9 +36,9 @@
                 </div>
             </div>
             <div class="carousel-item" style="height: 267px;">
-                <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img"><rect width="100%" height="100%" fill="#343a40"></rect></svg>
+                <img src="https://www.digitalistmag.com/files/2016/11/3D-printing.jpg" style="width: 100%"/>
                 <div class="container">
-                    <div class="carousel-caption text-right">
+                    <div class="carousel-caption login-content-box content-box box-shadow-style">
                         <h1>50+ Downloads</h1>
                         <p>If you see a model you like in out library feel free to download the file. </p>
                         <p><a class="btn btn-lg" style="background-color: #55759D; color: white;" href="#" role="button">Explore</a></p>
@@ -58,12 +59,12 @@
     <div class="container">
 
         <div class="row">
-            <div class="col-lg-4" style="text-align: center">
+            <div class="col-lg-4" style="text-align: center; animation: ease-in;">
                 <img class="rounded-circle" src="https://images-eu.ssl-images-amazon.com/images/I/41BhKPIAyjL.png" width="140" height="140"/>
                 <h2>Share</h2>
                 <p style="text-align: start">Show us what you made: the world wants to see it! 3D modeling and printing is still in its infancy. The more you share your work, the more your designs inspire others, get printed, and do awesome things.</p>
             </div>
-            <div class="col-lg-4" style="text-align: center">
+            <div class="col-lg-4" style="text-align: center;">
                 <img class="" src="http://bankostan.ir/wp-content/uploads/2017/04/search.png" width="140" height="140"/>
                 <h2>Discover</h2>
                 <p style="text-align: start">Our community has uploaded over 100 3D models, and that number is growing every day. Check out all the incredible objects people have created, and get inspired to make your own!</p>
@@ -76,26 +77,6 @@
             </div>
         </div>
     </div>
-
-    <!--        <div class="row featurette">-->
-    <!--            <div class="col-md-7">-->
-    <!--                <h2 class="featurette-heading">Donec ullamcorper nulla. <span class="text-muted">Donec ullamcorper nulla.</span></h2>-->
-    <!--                <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>-->
-    <!--            </div>-->
-    <!--            <div class="col-md-5">-->
-    <!--                <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto .bg-dark" width="500" height="500" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 500x500"><title>Placeholder</title><rect width="100%" height="100%" fill="#eee"></rect></svg>-->
-    <!--            </div>-->
-    <!--        </div>-->
-    <!--        <div class="row featurette">-->
-    <!--            <div class="col-md-7 order-md-2">-->
-    <!--                <h2 class="featurette-heading">Donec ullamcorper nulla. <span class="text-muted">Donec ullamcorper nulla.</span></h2>-->
-    <!--                <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>-->
-    <!--            </div>-->
-    <!--            <div class="col-md-5 order-md-1">-->
-    <!--                <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto .bg-dark" width="500" height="500" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 500x500"><title>Placeholder</title><rect width="100%" height="100%" fill="#eee"></rect></svg>-->
-    <!--            </div>-->
-    <!--        </div>-->
-
 </main>
 <nav th:replace="partials/footer :: footer"></nav>
 <th:block th:include="partials/scripts :: scripts" />
