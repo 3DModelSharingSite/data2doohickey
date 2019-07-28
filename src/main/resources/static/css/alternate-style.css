@@ -38,7 +38,8 @@ footer {
     bottom: 0;
     width: 100%;
     margin-bottom: 0;
-    background-color: rgba(255, 255, 255, .88);
+    background-color: var(--dark-color-1);
+    z-index: 2;
 }
 
 a {
@@ -81,6 +82,8 @@ a:hover {
     z-index: -1;
     display: block;
     vertical-align: bottom;
+    height: 100%;
+    width: 100%;
 }
 
 .content-box {
@@ -122,16 +125,28 @@ a.page-link {
 /*MAIN NAVBAR*/
 
 .navbar-expand-md {
-    background-color: rgba(255, 255, 255, .88);
+    background-color: rgba(255, 255, 255, .75);
     font-family: 'Raleway', sans-serif;
-    color: #FFFFFF;
+    color: var(--dark-color-1);
     z-index: 10;
     border-bottom: rgba(210, 246, 253, 1);
+}
+
+.navbar-brand {
+    color: var(--dark-color-1);
+}
+
+.navbar-text {
+    color: var(--dark-color-1);
 }
 
 .navbar-link-item {
     color: var(--dark-color-1);
     font-size: 16px;
+}
+
+.navbar-toggler-icon {
+    color: var(--dark-color-1);
 }
 
 /*LOGIN PAGE*/
@@ -243,6 +258,78 @@ a.page-link {
     background-color: transparent;
 }
 
+/*SHOW PAGE*/
+
+.view-stl-model-heading {
+    font-size: 26px;
+}
+
+.view-stl-model {
+    background-color: rgba(255, 255, 255, .75);
+}
+
+.about-stl-model {
+    background-color: rgba(255, 255, 255, .75);
+}
+
+.stl-download-btn {
+    border-radius: 5px;
+    padding-left: 15px;
+    padding-right: 15px;
+    margin-bottom: 1em;
+    width: 100%;
+    color: rgba(235, 239, 233, 1);
+    border-color: rgba(235, 239, 233, 1);
+    background-color: var(--dark-color-1);
+}
+
+.stl-download-btn:hover {
+    background-color: transparent;
+    border-color: var(--dark-color-1);
+    color: var(--dark-color-1);
+}
+
+.stl-edit-btn {
+    border-radius: 5px;
+    padding-left: 15px;
+    padding-right: 15px;
+    width: 100%;
+    color: var(--accent-color-1);
+    border-color: var(--accent-color-1);
+    background-color: transparent;
+}
+
+.stl-edit-btn:hover {
+    color: var(--dark-color-1);
+    border-color: var(--dark-color-1);
+    background-color: transparent;
+}
+
+.stl-delete-btn {
+    border-radius: 5px;
+    padding-left: 15px;
+    padding-right: 15px;
+    width: 100%;
+    color: var(--warning-color);
+    border-color: var(--warning-color);
+    background-color: transparent;
+}
+
+.stl-delete-btn:hover {
+    border-radius: 5px;
+    padding-left: 15px;
+    padding-right: 15px;
+    width: 100%;
+    color: white;
+    background-color: var(--warning-color);
+    border-color: white;
+}
+
+#stl_cont {
+    overflow: hidden;
+    margin: auto;
+}
+
 #edit-btn {
     height: 19px;
     width: 19px;
@@ -277,3 +364,4 @@ a.page-link {
     height: 10em;
     width: 10em;
 }
+
