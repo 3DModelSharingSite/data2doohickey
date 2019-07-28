@@ -14,7 +14,11 @@ import java.util.Collections;
 @Service("authenticationService")
 public class AuthenticationService {
     public Object getCurUser() {
-        if (SecurityContextHolder.getContext().getAuthentication().getPrincipal() == "anonymousUser") {
+        System.out.println(SecurityContextHolder.getContext().getAuthentication().getPrincipal());
+        if(SecurityContextHolder.getContext().getAuthentication().getPrincipal().equals("anonymousUser")){
+            return null;
+        }
+        if (((User)SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getId() == 0) {
             return null;
         }
         return SecurityContextHolder.getContext().getAuthentication().getPrincipal();

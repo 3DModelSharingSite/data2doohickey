@@ -1,5 +1,6 @@
 package com.codeup.d2d.controllers;
 
+import com.codeup.d2d.models.User;
 import com.codeup.d2d.services.AuthenticationService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
