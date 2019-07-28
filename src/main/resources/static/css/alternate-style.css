@@ -77,7 +77,7 @@ a:hover {
     justify-content: center;
 }
 
-.dynamic-background {
+#particles-js {
     /*background: linear-gradient(90deg, #3F2B96 0%, #A8C0FF 100%);*/
     position: absolute;
     top: 0;
