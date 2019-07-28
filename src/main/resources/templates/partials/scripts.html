@@ -15,10 +15,22 @@
             crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
     <script>
+        var pC = 500;
+        var ww = $(window).width();
+        if(ww < 500){
+            $('#particles-js').remove();
+        }else if(ww < 700){
+            pC = 200;
+        }else if(ww < 1000){
+            pC = 300;
+        }else if(ww < 1200){
+            pC = 400;
+        }
+
         particlesJS("particles-js", {
             "particles": {
                 "number": {
-                    "value": 200
+                    "value": pC
                 },
                 "color": {
                     "value": "#FFF"
