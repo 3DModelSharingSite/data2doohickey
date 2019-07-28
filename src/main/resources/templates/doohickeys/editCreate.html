@@ -40,7 +40,7 @@
 
 <main class="container-fluid w-100 pt-3">
     <div class="stl-edit-content-box content-box mx-auto px-4 box-shadow-style">
-        <div class="stl-preview col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 mx-auto">
+        <div class="stl-preview col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-8 mx-auto">
             <div class="edit-content-header center-align font-heading-1 pt-3" th:text="${title}"></div>
             <hr/>
             <form class="row" id="doohickeyForm" th:action="${action}" method="POST" th:object="${doohickey}">
@@ -50,8 +50,8 @@
                         <span class="model-preview text-white">Doohickey Preview:</span>
                     </div>
                     <div class="stl-preview">
-                    <div id="stl_cont">
-                    </div>
+                        <div id="stl_cont" style="width:300px;height:300px;">
+                        </div>
                     </div>
                     <div class="row" th:if="${action == '/doohickeys/create'}">
                         <input class="btn btn-primary mx-auto" type="button" id="doohickey_stl"
