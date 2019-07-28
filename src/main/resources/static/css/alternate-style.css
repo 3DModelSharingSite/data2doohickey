@@ -49,6 +49,11 @@ a {
 a:hover {
     color: var(--accent-color-1);
 }
+.dropdown:hover .dropdown-menu {
+    display: block;
+    top:95%;
+    left:-5px;
+}
 
 .font-heading-1 {
     font-family: 'Comfortaa', cursive;
