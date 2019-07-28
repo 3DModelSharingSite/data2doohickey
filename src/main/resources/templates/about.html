@@ -10,7 +10,7 @@
     <main style="height: -webkit-fill-available;">
         <div class="row">
             <div class="col-12">
-                <h1 class="text-center" style="line-height:2em;">
+                <h1 class="text-center" style="line-height:2em; color:var(--white-1)">
                     Our team
                 </h1>
             </div>
@@ -94,7 +94,9 @@
             </div>
         </div>
     </main>
-        <nav th:replace="partials/footer :: footer"></nav>
+    <div id="particles-js"></div>
+
+    <nav th:replace="partials/footer :: footer"></nav>
         <th:block th:include="partials/scripts :: scripts" />
     </body>
 </html>

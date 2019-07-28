@@ -41,7 +41,7 @@ a:hover {
 .dropdown:hover .dropdown-menu {
     display: block;
     top:95%;
-    left:-5px;
+    left:-7px;
 }
 
 .font-heading-1 {
@@ -117,6 +117,12 @@ a.page-link {
 }
 
 /*MAIN NAVBAR*/
+.custom-toggler{
+    border-color:rgba(0,0,0,0.5);
+}
+.custom-toggler .navbar-toggler-icon {
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(0,0,0, 1)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
+}
 
 .navbar-expand-md {
     background-color: var(--white-1);
@@ -130,6 +136,12 @@ a.page-link {
     color: var(--green-1);
 }
 
+button{
+    color:var(--green-1);
+}
+.navbar-text:hover{
+    color:var(--purple-1);
+}
 .navbar-text {
     color: var(--green-1);
 }
@@ -215,13 +227,14 @@ a.page-link {
 }
 
 .small-nav-link {
-    color: var(--blue-1);
+    color: black;
     padding: 1em;
     font-size: large;
 }
 
 .small-nav-link:hover {
     text-shadow: 5px 5px 2px lightgrey;
+    color: var(--purple-1);
 }
 
 .stockPFP{
