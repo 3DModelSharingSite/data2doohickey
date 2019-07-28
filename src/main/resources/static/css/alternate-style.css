@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=Comfortaa|Open+Sans|Playfair+Display|Raleway|Roboto&display=swap');
 
 *, :root {
-    --green-1: rgba(4, 167, 119, 0.65); /* #04A777 */
+    --green-1: linear-gradient(90deg,#444 0%,#222 100%); /* #04A777 */
     --green-2: rgba(134, 231, 184, 0.65); /* #86E7B8 */
     --blue-1: rgba(84, 242, 242, 0.65); /* #54F2F2 */
     --orange-1: rgba(252, 185, 125, 0.65); /* #FCB97D */
@@ -26,7 +26,7 @@ footer {
     bottom: 0;
     width: 100%;
     margin-bottom: 0;
-    background-color: var(--green-1);
+    background: var(--green-1);
     z-index: 2;
 }
 
