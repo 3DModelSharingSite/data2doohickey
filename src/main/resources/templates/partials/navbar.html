@@ -8,15 +8,16 @@
 
         <nav th:fragment="nav" id="mainNav" class="navbar navbar-expand-md navbar-link-item">
             <a class="navbar-brand navbar-text" th:href="@{/}">D2D</a>
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link navbar-text" th:href="@{'/doohickeys?page=1'}">Explore</a>
+                </li>
+            </ul>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
-                    <li class="nav-item">
-                        <a class="nav-link navbar-text" th:href="@{'/doohickeys?page=1'}">Explore</a>
-                    </li>
                     <li class="nav-item" sec:authorize="isAuthenticated()">
                         <a class="nav-link navbar-text" th:href="@{/doohickeys/create}">Create</a>
                     </li>
@@ -74,11 +75,9 @@
                                 <button class="btn-link btn nav-link navbar-text">Logout</button>
                             </form>
                         </li>
-
                     </div>
                 </ul>
             </div>
         </nav>
-
     </body>
 </html>
