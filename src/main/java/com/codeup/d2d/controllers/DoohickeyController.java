@@ -95,13 +95,13 @@ public class DoohickeyController {
         user = userDao.findById(user.getId()).get();
         Doohickey doohickey = doohickeyDao.findById(id).get();
         if(user.getFavorites().contains(doohickey)){
-            user.getFavorites().remove(doohickey);
-            userDao.save(user);
+            doohickey.getUsersFavorited().remove(user);
+            doohickeyDao.save(doohickey);
             System.out.println(id+" Has been unfavorited!");
             return "UnFavorited";
         }else {
-            user.getFavorites().add(doohickey);
-            userDao.save(user);
+            doohickey.getUsersFavorited().add(user);
+            doohickeyDao.save(doohickey);
             System.out.println(id+" Has been favorited!");
             return "Favorited";
         }
@@ -216,9 +216,12 @@ public class DoohickeyController {
             return "redirect:/login";
         }
         User logUser = (User)authSvc.getCurUser();
-        User dhkyAuthor = (doohickeyDao.findById(id).get()).getAuthor();
+        Doohickey dhky = doohickeyDao.findById(id).get();
+        User dhkyAuthor = dhky.getAuthor();
         if(logUser.getId() == dhkyAuthor.getId()) {
-            doohickeyDao.delete((doohickeyDao.findById(id).get()));
+            dhky.getTags().clear();
+            dhky.getUsersFavorited().clear();
+            doohickeyDao.delete(dhky);
         }
         return "redirect:/doohickeys";
     }

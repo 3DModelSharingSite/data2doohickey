@@ -41,12 +41,7 @@ public class User {
     @JsonBackReference
     private List<Doohickey> doohickeyList;
 
-    @ManyToMany()
-    @JoinTable(
-            name = "users_favorites",
-            joinColumns = {@JoinColumn(name = "user_id")},
-            inverseJoinColumns = {@JoinColumn(name = "model_id")}
-    )
+    @ManyToMany(mappedBy = "usersFavorited")
     private List<Doohickey> favorites;
 
     @Column
