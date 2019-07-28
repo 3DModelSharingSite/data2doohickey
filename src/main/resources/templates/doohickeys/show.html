@@ -5,6 +5,7 @@
     <th:block th:replace="partials/head :: head(${title})"/>
 </head>
 <body>
+<div id="particles-js"></div>
 <nav th:replace="partials/navbar :: nav"></nav>
 
 <main class="container-fluid row w-100 pt-3 mx-auto">
@@ -56,7 +57,7 @@
         </div>
     </div>
 </main>
-<canvas class="dynamic-background"></canvas>
+<div id="particle-js"></div>
 <nav th:replace="partials/footer :: footer"></nav>
 <th:block th:include="partials/scripts :: scripts"/>
 

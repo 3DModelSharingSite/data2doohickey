@@ -18,7 +18,7 @@ html, body {
 }
 
 body {
-    background: linear-gradient(90deg, #3F2B96 0%, #A8C0FF 100%);
+    background: linear-gradient( #111 25%,#222 75%,#555 100%);
 }
 
 footer {
@@ -66,9 +66,9 @@ a:hover {
     justify-content: center;
 }
 
-.dynamic-background {
-    /*background: linear-gradient(90deg, #3F2B96 0%, #A8C0FF 100%);*/
-    position: absolute;
+#particles-js {
+    background: linear-gradient(#222 50%, #555 100%);
+    position: fixed;
     top: 0;
     bottom: 0;
     right: 0;
@@ -259,11 +259,11 @@ a.page-link {
 }
 
 .view-stl-model {
-    background-color: rgba(255, 255, 255, .75);
+    background-color: rgba(255, 255, 255, .5);
 }
 
 .about-stl-model {
-    background-color: rgba(255, 255, 255, .75);
+    background-color: rgba(255, 255, 255, .5);
 }
 
 .stl-download-btn {
