@@ -1,14 +1,15 @@
 @import url('https://fonts.googleapis.com/css?family=Comfortaa|Open+Sans|Playfair+Display|Raleway|Roboto&display=swap');
 
 *, :root {
-    --dark-color-1: rgba(69, 55, 153, 1); /* #453799 */
-    --dark-color-2: rgba(71, 98, 163, 1); /* #4762A3 */
-    --main-color-1: rgba(235, 239, 233, 1); /* #EBEFE9 */
-    --main-color-2: rgba(156, 174, 218, 1); /* #9CAEDA */
-    --accent-color-1: rgba(62, 181, 195, 1); /* #3EB5C3 */
-    /*--accent-color-2:*/
-    --warning-color: rgba(208, 84, 90, 1); /* D0545A */
-    --main-text-color: rgba(0, 0, 0, .68);
+    --green-1: rgba(4, 167, 119, 0.65); /* #04A777 */
+    --green-2: rgba(134, 231, 184, 0.65); /* #86E7B8 */
+    --blue-1: rgba(84, 242, 242, 0.65); /* #54F2F2 */
+    --orange-1: rgba(252, 185, 125, 0.65); /* #FCB97D */
+    --orange-2: rgba(244, 96, 54, 0.65); /* #F46036 */
+    --white-1: rgba(252, 252, 252, 0.65); /* #FCFCFC */
+    --purple-1: rgba(125, 83, 222, 0.65); /* #7D53DE */
+    --purple-2: rgba(172, 150, 221, 0.65); /* #AC96DD */
+    --text-general: rgba(11, 28, 33, 0.65); /* #0B1C21 */
 }
 
 html, body {
@@ -20,35 +21,23 @@ body {
     background: linear-gradient( #111 25%,#222 75%,#555 100%);
 }
 
-/*canvas {*/
-    /*display: block;*/
-    /*vertical-align: bottom;*/
-/*}*/
-
-/*footer {*/
-    /*position: absolute;*/
-    /*bottom: 0;*/
-    /*width: 100%;*/
-    /*height: 2.5rem;*/
-    /*background-color: rgba(255, 255, 255, .75);*/
-/*}*/
-
 footer {
     position: fixed;
     bottom: 0;
     width: 100%;
     margin-bottom: 0;
-    background-color: var(--dark-color-1);
+    background-color: var(--green-1);
     z-index: 2;
 }
 
 a {
-    color: rgba(62, 181, 195, .5);
+    color: var(--purple-1);
 }
 
 a:hover {
-    color: var(--accent-color-1);
+    color: var(--purple-2);
 }
+
 .dropdown:hover .dropdown-menu {
     display: block;
     top:95%;
@@ -130,36 +119,36 @@ a.page-link {
 /*MAIN NAVBAR*/
 
 .navbar-expand-md {
-    background-color: rgba(255, 255, 255, .75);
+    background-color: var(--white-1);
     font-family: 'Raleway', sans-serif;
-    color: var(--dark-color-1);
+    color: var(--green-1);
     z-index: 10;
     border-bottom: rgba(210, 246, 253, 1);
 }
 
 .navbar-brand {
-    color: var(--dark-color-1);
+    color: var(--green-1);
 }
 
 .navbar-text {
-    color: var(--dark-color-1);
+    color: var(--green-1);
 }
 
 .navbar-link-item {
-    color: var(--dark-color-1);
+    color: var(--green-1);
     font-size: 16px;
 }
 
 .navbar-toggler-icon {
-    color: var(--dark-color-1);
+    color: var(--green-1);
 }
 
 /*LOGIN PAGE*/
 
 .login-content-box {
-    background-color: rgba(255, 255, 255, .75);
+    background-color: var(--white-1);
     border-radius: 5px;
-    color: var(--dark-color-1);
+    color: var(--text-general);
 }
 
 .login-text {
@@ -167,22 +156,22 @@ a.page-link {
 }
 
 .login-btn {
-    background-color: var(--dark-color-2);
-    border-color: var(--main-color-1);
-    color: var(--main-color-1);
+    background-color: var(--green-1);
+    border-color: var(--white-1);
+    color: var(--white-1);
     padding: 5px 15px 5px 15px;
     border-radius: 5px;
 }
 
 .login-btn:hover {
     background-color: transparent;
-    border-color: var(--dark-color-2);
-    color: var(--dark-color-2);
+    border-color: var(--green-1);
+    color: var(--green-1);
 }
 
 .customError {
-    background-color: var(--main-color-1);
-    color: var(--warning-color);
+    background-color: var(--white-1);
+    color: var(--orange-2);
 }
 
 /*REGISTER PAGE*/
@@ -218,7 +207,7 @@ a.page-link {
 }
 
 .bio {
-    color: var(--main-text-color);
+    color: var(--text-general);
 }
 
 .profile-nav {
@@ -226,7 +215,7 @@ a.page-link {
 }
 
 .small-nav-link {
-    color: var(--accent-color-1);
+    color: var(--blue-1);
     padding: 1em;
     font-size: large;
 }
@@ -246,8 +235,8 @@ a.page-link {
 .doo-fav-btns {
     height: 100px;
     width: 100px;
-    color: var(--accent-color-1);
-    border-color: var(--accent-color-1);
+    color: var(--blue-1);
+    border-color: var(--blue-1);
     background-color: transparent;
     border-radius: 5px;
     margin-bottom: 15px;
@@ -258,8 +247,8 @@ a.page-link {
 }
 
 .doo-fav-btns:hover {
-    color: var(--dark-color-1);
-    border-color: var(--dark-color-1);
+    color: var(--green-1);
+    border-color: var(--green-1);
     background-color: transparent;
 }
 
@@ -285,13 +274,13 @@ a.page-link {
     width: 100%;
     color: rgba(235, 239, 233, 1);
     border-color: rgba(235, 239, 233, 1);
-    background-color: var(--dark-color-1);
+    background-color: var(--green-1);
 }
 
 .stl-download-btn:hover {
     background-color: transparent;
-    border-color: var(--dark-color-1);
-    color: var(--dark-color-1);
+    border-color: var(--green-1);
+    color: var(--green-1);
 }
 
 .stl-edit-btn {
@@ -299,14 +288,14 @@ a.page-link {
     padding-left: 15px;
     padding-right: 15px;
     width: 100%;
-    color: var(--accent-color-1);
-    border-color: var(--accent-color-1);
+    color: var(--blue-1);
+    border-color: var(--blue-1);
     background-color: transparent;
 }
 
 .stl-edit-btn:hover {
-    color: var(--dark-color-1);
-    border-color: var(--dark-color-1);
+    color: var(--green-1);
+    border-color: var(--green-1);
     background-color: transparent;
 }
 
@@ -315,8 +304,8 @@ a.page-link {
     padding-left: 15px;
     padding-right: 15px;
     width: 100%;
-    color: var(--warning-color);
-    border-color: var(--warning-color);
+    color: var(--orange-1);
+    border-color: var(--orange-1);
     background-color: transparent;
 }
 
@@ -326,7 +315,7 @@ a.page-link {
     padding-right: 15px;
     width: 100%;
     color: white;
-    background-color: var(--warning-color);
+    background-color: var(--orange-1);
     border-color: white;
 }
 
@@ -385,7 +374,7 @@ a.page-link {
 }
 
 .edit-content-header {
-    color: var(--main-text-color);
+    color: var(--text-general);
     font-size: 26px;
     text-shadow: 10px 10px rgba(62, 181, 195, .5);
 }
@@ -396,14 +385,14 @@ a.page-link {
     padding-right: 15px;
     padding-bottom: 5px;
     width: 50%;
-    color: var(--dark-color-1);
-    border-color: var(--dark-color-1);
+    color: var(--green-1);
+    border-color: var(--green-1);
     background-color: transparent;
 }
 
 .save-changes-btn:hover {
-    color: var(--accent-color-1);
-    border-color: var(--accent-color-1);
+    color: var(--blue-1);
+    border-color: var(--blue-1);
     background-color: transparent;
 }
 
