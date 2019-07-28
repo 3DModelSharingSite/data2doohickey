@@ -18,22 +18,21 @@
         },
         maxFiles: 1,
         startUploadingWhenMaxFilesReached: true,
-        onUploadDone: res = > {
-        console.log(res);
-    res.filesUploaded.forEach(function (file) {
-        $('<input/>').attr({'type': 'hidden', 'value': file.key, 'name': 'keys'}).appendTo('#doohickeyForm');
-    });
-    stl_viewer.add_model({
-        filename: "https://data2doohickey.s3.us-east-2.amazonaws.com/" + res.filesUploaded[0].key,
-        display: 'smooth',
-        rotationx: -1.5708,
-        rotationy: 0.0,
-        rotationz: 0.0
-    });
-    $("#doohickey_stl").remove();
-    }
-    }
-    ;
+        onUploadDone: res => {
+            console.log(res);
+            res.filesUploaded.forEach(function (file) {
+                $('<input/>').attr({'type': 'hidden', 'value': file.key, 'name': 'keys'}).appendTo('#doohickeyForm');
+            });
+            stl_viewer.add_model({
+                filename: "https://data2doohickey.s3.us-east-2.amazonaws.com/" + res.filesUploaded[0].key,
+                display: 'smooth',
+                rotationx: -1.5708,
+                rotationy: 0.0,
+                rotationz: 0.0
+            });
+            $("#doohickey_stl").remove();
+        }
+    };
 </script>
 
 <main class="container-fluid w-74 pt-3">
