@@ -370,7 +370,7 @@ a.page-link {
     width: 10em;
 }
 
-#stl_cont {
+.stl-cont {
     width:300px;
     height:300px;
     margin:0 auto;
