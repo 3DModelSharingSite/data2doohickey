@@ -207,7 +207,7 @@ a.page-link {
 }
 
 .bio {
-    color: var(--main-text-color);
+    color: var(--text-general);
 }
 
 .profile-nav {
@@ -215,7 +215,7 @@ a.page-link {
 }
 
 .small-nav-link {
-    color: var(--accent-color-1);
+    color: var(--blue-1);
     padding: 1em;
     font-size: large;
 }
@@ -235,8 +235,8 @@ a.page-link {
 .doo-fav-btns {
     height: 100px;
     width: 100px;
-    color: var(--accent-color-1);
-    border-color: var(--accent-color-1);
+    color: var(--blue-1);
+    border-color: var(--blue-1);
     background-color: transparent;
     border-radius: 5px;
     margin-bottom: 15px;
@@ -247,8 +247,8 @@ a.page-link {
 }
 
 .doo-fav-btns:hover {
-    color: var(--dark-color-1);
-    border-color: var(--dark-color-1);
+    color: var(--green-1);
+    border-color: var(--green-1);
     background-color: transparent;
 }
 
@@ -274,13 +274,13 @@ a.page-link {
     width: 100%;
     color: rgba(235, 239, 233, 1);
     border-color: rgba(235, 239, 233, 1);
-    background-color: var(--dark-color-1);
+    background-color: var(--green-1);
 }
 
 .stl-download-btn:hover {
     background-color: transparent;
-    border-color: var(--dark-color-1);
-    color: var(--dark-color-1);
+    border-color: var(--green-1);
+    color: var(--green-1);
 }
 
 .stl-edit-btn {
@@ -288,14 +288,14 @@ a.page-link {
     padding-left: 15px;
     padding-right: 15px;
     width: 100%;
-    color: var(--accent-color-1);
-    border-color: var(--accent-color-1);
+    color: var(--blue-1);
+    border-color: var(--blue-1);
     background-color: transparent;
 }
 
 .stl-edit-btn:hover {
-    color: var(--dark-color-1);
-    border-color: var(--dark-color-1);
+    color: var(--green-1);
+    border-color: var(--green-1);
     background-color: transparent;
 }
 
@@ -304,8 +304,8 @@ a.page-link {
     padding-left: 15px;
     padding-right: 15px;
     width: 100%;
-    color: var(--warning-color);
-    border-color: var(--warning-color);
+    color: var(--orange-1);
+    border-color: var(--orange-1);
     background-color: transparent;
 }
 
@@ -315,7 +315,7 @@ a.page-link {
     padding-right: 15px;
     width: 100%;
     color: white;
-    background-color: var(--warning-color);
+    background-color: var(--orange-1);
     border-color: white;
 }
 
@@ -374,7 +374,7 @@ a.page-link {
 }
 
 .edit-content-header {
-    color: var(--main-text-color);
+    color: var(--text-general);
     font-size: 26px;
     text-shadow: 10px 10px rgba(62, 181, 195, .5);
 }
@@ -385,14 +385,14 @@ a.page-link {
     padding-right: 15px;
     padding-bottom: 5px;
     width: 50%;
-    color: var(--dark-color-1);
-    border-color: var(--dark-color-1);
+    color: var(--green-1);
+    border-color: var(--green-1);
     background-color: transparent;
 }
 
 .save-changes-btn:hover {
-    color: var(--accent-color-1);
-    border-color: var(--accent-color-1);
+    color: var(--blue-1);
+    border-color: var(--blue-1);
     background-color: transparent;
 }
 
