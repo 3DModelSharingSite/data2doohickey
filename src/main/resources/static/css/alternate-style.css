@@ -8,7 +8,7 @@
     --accent-color-1: rgba(62, 181, 195, 1); /* #3EB5C3 */
     /*--accent-color-2:*/
     --warning-color: rgba(208, 84, 90, 1); /* D0545A */
-    --main-text-color: rgba(0, 0, 0, .88);
+    --main-text-color: rgba(0, 0, 0, .68);
 }
 
 html, body {
@@ -381,4 +381,36 @@ a.page-link {
 
 .stl-edit-content-box {
     background-color: rgba(255, 255, 255, .75);
+    border-radius: 5px;
+}
+
+.edit-content-header {
+    color: var(--main-text-color);
+    font-size: 26px;
+    text-shadow: 10px 10px rgba(62, 181, 195, .5);
+}
+
+.save-changes-btn {
+    border-radius: 5px;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-bottom: 5px;
+    width: 50%;
+    color: var(--dark-color-1);
+    border-color: var(--dark-color-1);
+    background-color: transparent;
+}
+
+.save-changes-btn:hover {
+    color: var(--accent-color-1);
+    border-color: var(--accent-color-1);
+    background-color: transparent;
+}
+
+.stl-preview {
+    align-content: center;
+}
+
+.model-preview {
+    align-content: center;
 }
