@@ -10,10 +10,10 @@
             <a class="navbar-brand navbar-text" th:href="@{/}">D2D</a>
             <ul class="navbar-nav mr-auto" style="flex-direction: row;justify-content: space-evenly;display: flex;">
                 <li class="nav-item">
-                    <a class="nav-link navbar-text" th:href="@{'/doohickeys?page=1'}">Explore</a>
+                    <a class="nav-link navbar-text" th:href="@{'/doohickeys?page=1'}">EXPLORE</a>
                 </li>
                 <li class="nav-item mx-3">
-                    <a class="nav-link navbar-text" th:href="@{'/about'}">About</a>
+                    <a class="nav-link navbar-text" th:href="@{'/about'}">ABOUT US</a>
                 </li>
             </ul>
             <button class="navbar-toggler custom-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -23,7 +23,7 @@
                 <ul class="navbar-nav mr-auto">
                     <a class="nav-link navbar-text" th:href="@{/doohickeys/create}">
                         <li class="nav-item" sec:authorize="isAuthenticated()">
-                            Create
+                            CREATE
                         </li>
                     </a>
                 </ul>
@@ -38,12 +38,12 @@
                 <ul class="navbar-nav">
                     <a class="nav-link navbar-text" th:href="@{/sign-up}" sec:authorize="!isAuthenticated()">
                         <li class="nav-item">
-                            Register
+                            REGISTER
                         </li>
                     </a>
                     <li class="nav-item" sec:authorize="!isAuthenticated()">
                         <form th:action="@{/login}" th:method="get" class="my-0">
-                            <button class="btn-link btn nav-link navbar-text border-0 col-12 text-left">Login</button>
+                            <button class="btn-link btn nav-link navbar-text border-0 col-12 text-left">LOGIN</button>
                         </form>
                     </li>
 
@@ -51,15 +51,15 @@
                     <!-- Hide these on smaller screens -->
                     <li class="nav-item dropdown d-none d-md-block" sec:authorize="isAuthenticated()">
                         <a class="nav-link dropdown-toggle navbar-text" th:href="@{/profile}">
-                            Profile (<span th:text="${#authentication.principal.username}"></span>)
+                            PROFILE (<span th:text="${#strings.toUpperCase(#authentication.principal.username)}"></span>)
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <a class="nav-link navbar-text" th:href="@{'/profile/'+${#authentication.principal.username}+'/edit'}">
-                                Settings
+                                SETTINGS
                             </a>
                             <div class="dropdown-divider"></div>
                             <form th:action="@{/logout}" th:method="post" class="my-0 form-inline">
-                                <button class="btn-link btn nav-link navbar-text border-0">Logout</button>
+                                <button class="btn-link btn nav-link navbar-text border-0">LOGOUT</button>
                             </form>
                         </div>
                     </li>
@@ -67,18 +67,18 @@
                     <!-- Only show these on smaller screens -->
                     <a class="nav-link navbar-text d-md-none" sec:authorize="isAuthenticated()" th:href="@{/profile}">
                         <li class="nav-item navbar-text">
-                            Profile (<span th:text="${#authentication.principal.username}"></span>)
+                            PROFILE (<span th:text="${#strings.toUpperCase(#authentication.principal.username)}"></span>)
                         </li>
                     </a>
                     <a class="nav-link navbar-text d-md-none" sec:authorize="isAuthenticated()" th:href="@{'/profile/'+${#authentication.principal.username}+'/edit'}">
                         <li class="nav-item navbar-text">
-                            Settings
+                            SETTINGS
                         </li>
                     </a>
                     <div class="dropdown-divider d-md-none" sec:authorize="isAuthenticated()" ></div>
                     <li class="nav-item d-md-none" sec:authorize="isAuthenticated()" >
                         <form th:action="@{/logout}" th:method="post" class="my-0 py-0 nav-link">
-                            <button class="btn-link btn nav-link navbar-text col-12 text-left">Logout</button>
+                            <button class="btn-link btn nav-link navbar-text col-12 text-left">LOGOUT</button>
                         </form>
                     </li>
                 </ul>
