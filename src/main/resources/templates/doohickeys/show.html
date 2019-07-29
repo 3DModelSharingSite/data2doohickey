@@ -53,7 +53,7 @@
         <div class="stl-tags-box">
             <hr/>
             <th:block th:each="tag : ${doohickey.tags}">
-                <h4><img id="tag-icon" src="/icons/tags-solid.svg" alt="tag icon"/><a class="content-wrap" href="" th:text="${tag.name}"></a></h4>
+                <h4><img id="tag-icon" src="/icons/tags-solid.svg" alt="tag icon"/><a th:href="@{'/doohickeys?page=1&search='+${tag.name}}" th:text="${tag.name}"></a></h4>
             </th:block>
         </div>
     </div>
