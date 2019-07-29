@@ -51,7 +51,7 @@
                         <hr/>
 
                         <div class="row pb-4">
-                            <div class="mx-auto col-6">
+                            <div class="mx-auto col-6 col-md-12">
                                 <a  th:href="${'/profile/' + user.username + '/doohickeys'}">
                                     <button class="doo-fav-btns">
                                         <span class="font-body-2" th:text="${user.doohickeyList.size()}">1</span>
@@ -60,7 +60,7 @@
                                     </button>
                                 </a>
                             </div>
-                            <div class="mx-auto col-6">
+                            <div class="mx-auto col-6 col-md-12">
                                 <a th:href="${'/profile/' + user.username + '/favorites'}">
                                     <button class="doo-fav-btns">
                                         <span th:text="${user.favorites.size()}">1</span>
@@ -105,6 +105,7 @@
         <div class="bio-card card box-shadow-style" id="profileBio" th:if="${pageType.equals('about')}">
             <span class="content-header bio-header mx-auto font-heading-1 pt-4"
                   th:text="${'About ' + user.username}">About Username</span>
+            <hr/>
             <div class="bio col-12 px-4 card-body font-body-1">
                 <p th:text="${userDetails.bio}">Lorem Ipsum is simply dummy text.</p>
             </div>

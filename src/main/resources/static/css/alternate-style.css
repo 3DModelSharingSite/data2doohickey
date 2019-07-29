@@ -18,7 +18,7 @@ html, body {
 }
 
 body {
-    background: linear-gradient( #111 25%,#222 75%,#555 100%);
+    background: linear-gradient( #111 25%, #222 75%, #555 100%);
 }
 
 footer {
@@ -26,7 +26,7 @@ footer {
     bottom: 0;
     width: 100%;
     margin-bottom: 0;
-    background: var(--green-1);
+    background: linear-gradient(90deg, #444 0%, #222 100%);
     z-index: 2;
 }
 
@@ -40,8 +40,8 @@ a:hover {
 
 .dropdown:hover .dropdown-menu {
     display: block;
-    top:95%;
-    left:-5px;
+    top: 95%;
+    left: -5px;
 }
 
 .font-heading-1 {
@@ -121,25 +121,41 @@ a.page-link {
 .navbar-expand-md {
     background-color: var(--white-1);
     font-family: 'Raleway', sans-serif;
-    color: var(--green-1);
+    color: var(--text-general);
     z-index: 10;
     border-bottom: rgba(210, 246, 253, 1);
 }
 
 .navbar-brand {
-    color: var(--green-1);
+    color: var(--text-general);
+}
+
+.navbar-brand:hover {
+    color: var(--green-1)
 }
 
 .navbar-text {
+    color: var(--text-general);
+}
+
+.navbar-text:hover {
     color: var(--green-1);
 }
 
 .navbar-link-item {
-    color: var(--green-1);
+    color: var(--text-general);
     font-size: 16px;
 }
 
+.navbar-link-item:hover {
+    color: var(--green-1);
+}
+
 .navbar-toggler-icon {
+    color: var(--text-general);
+}
+
+.navbar-toggler-icon:hover {
     color: var(--green-1);
 }
 
@@ -172,6 +188,7 @@ a.page-link {
 .customError {
     background-color: var(--white-1);
     color: var(--orange-2);
+    border-radius: 5px;
 }
 
 /*REGISTER PAGE*/
@@ -204,6 +221,7 @@ a.page-link {
 
 .bio-header {
     font-size: 26px;
+    text-shadow: 10px 10px rgba(172, 150, 221, 0.65);
 }
 
 .bio {
@@ -215,13 +233,14 @@ a.page-link {
 }
 
 .small-nav-link {
-    color: var(--blue-1);
+    color: var(--text-general);
     padding: 1em;
     font-size: large;
 }
 
 .small-nav-link:hover {
-    text-shadow: 5px 5px 2px lightgrey;
+    color: var(--text-general);
+    text-shadow: 5px 5px 2px rgba(172, 150, 221, 0.65);
 }
 
 .stockPFP{
@@ -235,9 +254,9 @@ a.page-link {
 .doo-fav-btns {
     height: 100px;
     width: 100px;
-    color: var(--blue-1);
-    border-color: var(--blue-1);
-    background-color: transparent;
+    color: var(--white-1);
+    border-color: var(--white-1);
+    background-color: var(--text-general);
     border-radius: 5px;
     margin-bottom: 15px;
     font-family: 'Raleway', sans-serif;
@@ -247,8 +266,8 @@ a.page-link {
 }
 
 .doo-fav-btns:hover {
-    color: var(--green-1);
-    border-color: var(--green-1);
+    color: var(--text-general);
+    border-color: var(--text-general);
     background-color: transparent;
 }
 
