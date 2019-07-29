@@ -20,6 +20,7 @@ html, body {
 
 body {
     background: linear-gradient( #111 25%, #222 75%, #555 100%);
+    margin-bottom:100px;
 }
 
 footer {
@@ -42,7 +43,7 @@ a:hover {
 .dropdown:hover .dropdown-menu {
     display: block;
     top:95%;
-    left:-7px;
+    left:0px;
 }
 
 .font-heading-1 {
@@ -308,6 +309,33 @@ button{
 .doo-fav-btns:hover {
     color: var(--text-general);
     border-color: var(--text-general);
+    background-color: transparent;
+}
+
+/*EDIT PROFILE PAGE*/
+
+.edit-header {
+    font-size: 20px;
+}
+
+.edit-profile-page {
+    background-color: var(--white-1);
+    border-radius: 5px;
+}
+
+.edit-profile-btn {
+    border-radius: 5px;
+    padding-left: 15px;
+    padding-right: 15px;
+    width: 90%;
+    color: var(--white-1);
+    border-color: var(--white-1);
+    background-color: var(--blue-1);
+}
+
+.edit-profile-btn:hover {
+    color: var(--blue-1);
+    border-color: var(--blue-1);
     background-color: transparent;
 }
 
