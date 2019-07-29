@@ -30,7 +30,7 @@
             <div sec:authorize="isAuthenticated()" th:if="${#authentication.principal.id} == ${doohickey.author.id}"
                  class="stl-delete col-6">
                 <form th:action="@{'/doohickeys/' + ${doohickey.id} + '/delete'}" th:method="post">
-                    <button class="stl-delete-btn py-2">Delete</button>
+                    <button class="stl-delete-btn py-2" onclick="return confirm('Are you sure you want to delete this item?');">Delete</button>
                 </form>
             </div>
             <div sec:authorize="isAuthenticated()" th:if="${#authentication.principal.id} == ${doohickey.author.id}"
@@ -52,7 +52,7 @@
         <div class="stl-tags-box">
             <hr/>
             <th:block th:each="tag : ${doohickey.tags}">
-                <h4><a href="" th:text="${tag.name}"></a></h4>
+                <h4><a class="content-wrap" href="" th:text="${tag.name}"></a></h4>
             </th:block>
         </div>
     </div>

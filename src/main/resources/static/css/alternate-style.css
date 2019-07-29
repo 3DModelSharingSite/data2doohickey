@@ -7,6 +7,7 @@
     --orange-1: rgba(252, 185, 125, 0.65); /* #FCB97D */
     --orange-2: rgba(244, 96, 54, 0.65); /* #F46036 */
     --white-1: rgba(252, 252, 252, 0.65); /* #FCFCFC */
+    --white-background: rgba(252, 252, 252, .90);
     --purple-1: rgba(125, 83, 222, 0.65); /* #7D53DE */
     --purple-2: rgba(172, 150, 221, 0.65); /* #AC96DD */
     --text-general: rgba(11, 28, 33, 0.65); /* #0B1C21 */
@@ -119,8 +120,9 @@ a.page-link {
 /*MAIN NAVBAR*/
 
 .navbar-expand-md {
-    background-color: var(--white-1);
+    background-color: var(--white-background);
     font-family: 'Raleway', sans-serif;
+    font-size: 20px;
     color: var(--text-general);
     z-index: 10;
     border-bottom: rgba(210, 246, 253, 1);
@@ -162,7 +164,7 @@ a.page-link {
 /*HOME PAGE*/
 
 .homepage-info {
-    background-color: var(--white-1);
+    background-color: var(--white-background);
     border-radius: 5px;
     border-style: solid;
     border-color: var(--blue-1);
@@ -185,7 +187,7 @@ a.page-link {
 /*LOGIN PAGE*/
 
 .login-content-box {
-    background-color: var(--white-1);
+    background-color: var(--white-background);
     border-radius: 5px;
     color: var(--text-general);
 }
@@ -209,7 +211,7 @@ a.page-link {
 }
 
 .customError {
-    background-color: var(--white-1);
+    background-color: var(--white-background);
     color: var(--orange-2);
     border-radius: 5px;
 }
@@ -235,7 +237,7 @@ a.page-link {
 }
 
 .profile-card, .bio-card {
-    background-color: rgba(255, 255, 255, .75);
+    background-color: var(--white-background);
 }
 
 .profile-card {
@@ -305,7 +307,7 @@ a.page-link {
 }
 
 .edit-profile-page {
-    background-color: var(--white-1);
+    background-color: var(--white-background);
     border-radius: 5px;
 }
 
@@ -332,11 +334,15 @@ a.page-link {
 }
 
 .view-stl-model {
-    background-color: rgba(255, 255, 255, .5);
+    background-color: var(--white-background);
 }
 
 .about-stl-model {
-    background-color: rgba(255, 255, 255, .5);
+    background-color: var(--white-background);
+}
+
+.wrap {
+    overflow-wrap: break-word;
 }
 
 .stl-download-btn {
@@ -361,14 +367,14 @@ a.page-link {
     padding-left: 15px;
     padding-right: 15px;
     width: 100%;
-    color: var(--blue-1);
-    border-color: var(--blue-1);
-    background-color: transparent;
+    color: var(--white-1);
+    border-color: var(--white-1);
+    background-color: var(--blue-1);
 }
 
 .stl-edit-btn:hover {
-    color: var(--green-1);
-    border-color: var(--green-1);
+    color: var(--blue-1);
+    border-color: var(--blue-1);
     background-color: transparent;
 }
 
@@ -377,19 +383,15 @@ a.page-link {
     padding-left: 15px;
     padding-right: 15px;
     width: 100%;
-    color: var(--orange-1);
-    border-color: var(--orange-1);
-    background-color: transparent;
+    color: var(--white-1);
+    border-color: var(--white-1);
+    background-color: var(--orange-2);
 }
 
 .stl-delete-btn:hover {
-    border-radius: 5px;
-    padding-left: 15px;
-    padding-right: 15px;
-    width: 100%;
-    color: white;
-    background-color: var(--orange-1);
-    border-color: white;
+    color: var(--orange-2);
+    background-color: transparent;
+    border-color: var(--orange-2);
 }
 
 .stl-cont {
@@ -442,7 +444,7 @@ a.page-link {
 /*EDIT/CREATE PAGE*/
 
 .stl-edit-content-box {
-    background-color: rgba(255, 255, 255, .75);
+    background-color: var(--white-background);
     border-radius: 5px;
 }
 
