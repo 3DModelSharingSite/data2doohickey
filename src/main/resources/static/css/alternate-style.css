@@ -13,9 +13,6 @@
     --bg-color1: rgb(151, 178, 200);
 }
 
-html{
-    overflow: hidden;
-}
 html, body {
     position: relative;
     min-height: 90vh;
@@ -23,7 +20,6 @@ html, body {
 
 body {
     background: linear-gradient( #111 25%, #222 75%, #555 100%);
-    overflow: auto;
 }
 
 footer {
