@@ -1,17 +1,21 @@
 @import url('https://fonts.googleapis.com/css?family=Comfortaa|Open+Sans|Playfair+Display|Raleway|Roboto&display=swap');
 
 *, :root {
-    --green-1: linear-gradient(90deg,#444 0%,#222 100%); /* #04A777 */
+    --linear-gradient: linear-gradient(90deg,#444 0%,#222 100%); /* #04A777 */
+    --green-1: rgba(38, 191, 117, .9); /* #26BF75*/
     --green-2: rgba(134, 231, 184, 0.65); /* #86E7B8 */
-    --blue-1: rgba(84, 242, 242, 0.65); /* #54F2F2 */
+    --blue-1: rgba(93, 171, 189, 1); /* #54F2F2 */
+    --blue-2: rgba(85, 112, 159, 1); /* #55709F */
     --orange-1: rgba(252, 185, 125, 0.65); /* #FCB97D */
     --orange-2: rgba(244, 96, 54, 0.65); /* #F46036 */
     --white-1: rgba(252, 252, 252, 0.65); /* #FCFCFC */
-    --white-background: rgba(252, 252, 252, .90);
-    --purple-1: rgba(125, 83, 222, 0.65); /* #7D53DE */
-    --purple-2: rgba(172, 150, 221, 0.65); /* #AC96DD */
+    --white-background: rgba(252, 252, 252, .85);
+    --purple-1: rgba(125, 83, 222, 0.85); /* #7D53DE */
+    --purple-2: rgba(172, 150, 221, 0.85); /* #AC96DD */
     --text-general: rgba(11, 28, 33, 0.65); /* #0B1C21 */
     --bg-color1: rgb(151, 178, 200);
+    --link-purple-1: rgb(40, 0, 71);
+    --link-purple-2: rgb(130, 38, 201);
 }
 
 html, body {
@@ -34,11 +38,11 @@ footer {
 }
 
 a {
-    color: var(--purple-1);
+    color: var(--link-purple-1);
 }
 
 a:hover {
-    color: var(--purple-2);
+    color: var(--link-purple-2);
 }
 
 .dropdown:hover .dropdown-menu {
@@ -96,6 +100,50 @@ a:hover {
     padding-bottom: 2.5rem;
 }
 
+/*ANIMATIONS*/
+
+@keyframes fade-in {
+    0% { opacity: 0;}
+    100% {opacity: 0;}
+}
+
+.fade-in-anim {
+    animation-name: fade-in;
+    animation-duration: 4s;
+}
+
+@keyframes error-flash {
+    from {color: white;}
+    to {color: red;}
+}
+
+.error-flash {
+    animation-name: error-flash;
+    animation-iteration-count: infinite;
+}
+
+/*ERROR PAGES*/
+
+.error-four-oh-four {
+    text-align: center;
+}
+
+.errors {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    color: red;
+}
+
+.errors h1 {
+    font-size: 100px;
+}
+
+.errors p {
+     font-size: 50px;
+}
+
 /*PAGINATION BUTTONS*/
 
 a.page-link {
@@ -120,6 +168,7 @@ a.page-link {
 }
 
 /*MAIN NAVBAR*/
+
 .custom-toggler{
     border-color:rgba(0,0,0,0.5);
 }
@@ -130,7 +179,7 @@ a.page-link {
 .navbar-expand-md {
     background-color: var(--white-background);
     font-family: 'Raleway', sans-serif;
-    font-size: 20px;
+    font-size: 16px;
     color: var(--text-general);
     z-index: 10;
     border-bottom: rgba(210, 246, 253, 1);
@@ -138,24 +187,20 @@ a.page-link {
 
 .navbar-brand {
     color: var(--text-general);
+    font-size: 16px;
 }
 
 .navbar-brand:hover {
-    color: var(--green-1)
+    color: var(--blue-1)
 }
 
-button{
-    color:var(--green-1);
-}
-.navbar-text:hover{
-    color:var(--purple-1);
-}
 .navbar-text {
     color: var(--text-general);
+    font-size: 16px;
 }
 
 .navbar-text:hover {
-    color: var(--green-1);
+    color: var(--blue-1);
 }
 
 .navbar-link-item {
@@ -164,7 +209,7 @@ button{
 }
 
 .navbar-link-item:hover {
-    color: var(--green-1);
+    color: var(--blue-1);
 }
 
 .navbar-toggler-icon {
@@ -172,7 +217,7 @@ button{
 }
 
 .navbar-toggler-icon:hover {
-    color: var(--green-1);
+    color: var(--blue-1);
 }
 
 /*HOME PAGE*/
@@ -181,7 +226,7 @@ button{
     background-color: var(--white-background);
     border-radius: 5px;
     border-style: solid;
-    border-color: var(--blue-1);
+    border-color: var(--blue-2);
     color: var(--text-general);
     padding: 5px 5px 5px 5px;
     height: 100%;
@@ -198,7 +243,20 @@ button{
     color: var(--blue-1);
 }
 
+.home-card-title {
+    color: var(--blue-2);
+}
+
+.home-card-subtitle {
+    font-size: 20px;
+}
+
 /*LOGIN PAGE*/
+
+.login-header, .content-header {
+    color: var(--blue-1);
+    text-shadow: 3px 3px lightgrey;
+}
 
 .login-content-box {
     background-color: var(--white-background);
@@ -208,10 +266,11 @@ button{
 
 .login-text {
     font-size: 20px;
+    color: var(--blue-1);
 }
 
 .login-btn {
-    background-color: var(--green-1);
+    background-color: var(--blue-1);
     border-color: var(--white-1);
     color: var(--white-1);
     padding: 5px 15px 5px 15px;
@@ -220,8 +279,8 @@ button{
 
 .login-btn:hover {
     background-color: transparent;
-    border-color: var(--green-1);
-    color: var(--green-1);
+    border-color: var(--blue-1);
+    color: var(--blue-1);
 }
 
 .customError {
@@ -234,6 +293,25 @@ button{
 
 .register-form .form-group {
 
+}
+
+.register-text {
+    font-size: 20px;
+    color: var(--blue-1);
+}
+
+.never-share {
+    font-size: 14px;
+    padding-left: 2px;
+}
+
+.register-errors {
+    background-color: var(--orange-2);
+    color: var(--white-background);
+    text-align: center;
+    border-radius: 5px;
+    padding: 5px 5px 5px 5px;
+    margin: 7px 47px 7px 47px;
 }
 
 /*PROFILE PAGE*/
@@ -365,8 +443,8 @@ button{
     padding-right: 15px;
     margin-bottom: 1em;
     width: 100%;
-    color: rgba(235, 239, 233, 1);
-    border-color: rgba(235, 239, 233, 1);
+    color: var(--white-background);
+    border-color: var(--white-background);
     background-color: var(--green-1);
 }
 
@@ -411,6 +489,12 @@ button{
 .stl-cont {
     overflow: hidden;
     margin: auto;
+}
+
+#tag-icon {
+    height: 15px;
+    width: 15px;
+    padding-right: 2px;
 }
 
 #edit-btn {
@@ -463,9 +547,8 @@ button{
 }
 
 .edit-content-header {
-    color: var(--text-general);
+    /*color: var(--text-general);*/
     font-size: 26px;
-    /*text-shadow: 10px 10px rgba(62, 181, 195, .5);*/
 }
 
 .save-changes-btn {
@@ -515,12 +598,55 @@ button{
     -moz-box-shadow: 0px 6px 15px 22px var(--bg-color1);
     box-shadow: 0px 6px 15px 22px var(--bg-color1);
 }
+
 .about .item-footer-button{
-    bottom:-1px;
-    height:30px;
-    margin-bottom:10px;
-    color:var(--text-general);
+    bottom: -1px;
+    height: 30px;
+    margin-bottom: 10px;
+    color: var(--text-general);
 }
+
 .about .item-body{
-    bottom:30px;
+    bottom: 30px;
+}
+
+.about-stl-description {
+    font-size: 20px;
+}
+
+#d2d-logo {
+    height: 500px;
+}
+
+@media only screen and (max-width: 375px) {
+
+    .edit-create-page {
+        width: 90%;
+    }
+
+    .show-page {
+        width: 90%;
+    }
+
+    .home-page {
+        width: 90%;
+    }
+
+    #d2d-logo {
+        height: 200px;
+        margin-top: 10px;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    .show-page {
+        /*margin: 5px 25px 5px 25px;*/
+        width: 75%;
+    }
+}
+
+@media only screen and (min-width: 937px) {
+    .show-page {
+        width: 85%;
+    }
 }

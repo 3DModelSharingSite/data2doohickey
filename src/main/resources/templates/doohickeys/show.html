@@ -8,11 +8,10 @@
 <div id="particles-js"></div>
 <nav th:replace="partials/navbar :: nav"></nav>
 
-<main class="container-fluid row w-100 pt-3 mx-auto">
-    <div class="view-stl-model content-box col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 m-0 mb-5">
-        <div class="content-header view-stl-model-heading font-heading-2" th:text="${doohickey.title}">Title</div>
-        <small class="stl-author-link">by: <a th:href="${'/profile/' + doohickey.author.username}" th:text="${doohickey.author.username}">Username</a>
-        </small>
+<main class="show-page container-fluid row pt-3 mx-auto">
+    <div class="view-stl-model content-box col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-6 m-0 mb-5">
+        <div class="content-header view-stl-model-heading font-heading-2 pt-2" th:text="${doohickey.title}">Title</div>
+        <small class="stl-author-link">by: <a th:href="${'/profile/' + doohickey.author.username}" th:text="${doohickey.author.username}">Username</a></small>
         <hr/>
         <div class="row center-align">
             <th:block th:replace="doohickeys/3dShow :: 3dView"></th:block>
@@ -41,18 +40,20 @@
             </div>
         </div>
     </div>
-    <div class="about-stl-model content-box col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 m-0 mb-5">
+    <div class="about-stl-model content-box col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-6 m-0 mb-5 pb-3">
         <div class="row my-2">
             <div class="content-header view-stl-model-heading font-heading-2 pl-3 pb-3">About <span th:text="${doohickey.title}"></span></div>
+            <br/>
             <hr/>
-            <div class="col-12">
+            <div class="col-12 about-stl-description">
                 <p th:text="${doohickey.description}"></p>
             </div>
+            <hr/>
         </div>
         <div class="stl-tags-box">
             <hr/>
             <th:block th:each="tag : ${doohickey.tags}">
-                <h4><a class="content-wrap" href="" th:text="${tag.name}"></a></h4>
+                <h4><img id="tag-icon" src="/icons/tags-solid.svg" alt="tag icon"/><a class="content-wrap" href="" th:text="${tag.name}"></a></h4>
             </th:block>
         </div>
     </div>

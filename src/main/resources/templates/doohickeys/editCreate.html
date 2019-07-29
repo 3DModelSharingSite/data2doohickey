@@ -38,11 +38,11 @@
     };
 </script>
 
-<main class="container-fluid w-100 pt-3 mx-auto">
+<main class="container-fluid w-100 pt-3 mx-auto edit-create-page">
     <div class="stl-edit-content-box content-box mx-auto px-4 box-shadow-style">
         <div class="row">
             <div class="stl-preview col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-8 mx-auto">
-                <div class="edit-content-header center-align font-heading-1 pt-3" th:text="${title}"></div>
+                <div class="edit-content-header content-header center-align font-heading-1 pt-3" th:text="${title}"></div>
                 <hr/>
             </div>
         </div>
@@ -83,7 +83,7 @@
                     <p th:if="${#fields.hasErrors('tagsString')}" th:errors="*{tagsString}"/>
                 </div>
                 <div class="row pb-5">
-                    <button type="submit" class="mx-auto btn save-changes-btn">Save!</button>
+                    <button type="submit" class="mx-auto btn save-changes-btn box-shadow-style">Save!</button>
                 </div>
             </div>
         </form>

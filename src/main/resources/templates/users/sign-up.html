@@ -15,30 +15,30 @@
                     <div class="col-12 px-6">
                         <form class="register-form" th:action="@{/sign-up}" method="POST" th:object="${user}">
 
-                            <div class="form-group px-5 font-body-1">
+                            <div class="form-group px-5 register-text font-body-1">
                                 <label for="username">Username</label>
-                                <input class="form-control" id="username" th:field="*{username}" />
+                                <input class="form-control box-shadow-style" id="username" th:field="*{username}" />
                             </div>
-                            <div class="form-group px-5 font-body-1">
+                            <div class="form-group px-5 register-text font-body-1">
                                 <label for="email">Email</label>
-                                <input class="form-control" id="email" th:field="*{email}" />
-                                <small id="emailHelp" class="form-text text-muted">We'll never share your email.</small>
+                                <input class="form-control box-shadow-style" id="email" th:field="*{email}" />
+                                <small id="emailHelp" class="form-text text-muted never-share">We'll never share your email.</small>
                             </div>
-                            <div class="form-group px-5 font-body-1">
+                            <div class="form-group px-5 register-text font-body-1">
                                 <label for="password">Password</label>
-                                <input class="form-control" id="password" type="password" th:field="*{password}" />
+                                <input class="form-control box-shadow-style" id="password" type="password" th:field="*{password}" />
                             </div>
-                            <div class="form-group px-5 font-body-1">
+                            <div class="form-group px-5 register-text font-body-1">
                                 <label for="cnfmpassword">Confirm Password</label>
-                                <input class="form-control" id="cnfmpassword" type="password" th:field="*{cnfmpassword}" />
+                                <input class="form-control box-shadow-style" id="cnfmpassword" type="password" th:field="*{cnfmpassword}" />
                             </div>
-                            <div class="bg-warning">
+                            <div class="register-errors box-shadow-style">
                                 <p th:if="${#fields.hasErrors('username')}" th:errors="*{username}" />
                                 <p th:if="${#fields.hasErrors('email')}" th:errors="*{email}" />
                                 <p th:if="${#fields.hasErrors('password')}" th:errors="*{password}" />
                             </div>
-                            <div class="row">
-                                <button type="submit" class="mx-auto btn login-btn font-body-1">Sign me up!</button>
+                            <div class="row pb-2">
+                                <button type="submit" class="mx-auto btn login-btn font-body-1 box-shadow-style">Sign me up!</button>
                             </div>
                             <div class="row pb-3">
                                 <small id="logInHelp" class="mx-auto form-text text-muted font-body-2">
