@@ -52,7 +52,7 @@
         <div class="stl-tags-box">
             <hr/>
             <th:block th:each="tag : ${doohickey.tags}">
-                <h4><a href="" th:text="${tag.name}"></a></h4>
+                <h4><a th:href="@{'/doohickeys?page=1&search='+${tag.name}}" th:text="${tag.name}"></a></h4>
             </th:block>
         </div>
     </div>
