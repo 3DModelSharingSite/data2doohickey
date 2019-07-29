@@ -186,7 +186,7 @@ public class UserController {
         authSvc.authenticate(user);
         model.addAttribute("user", user);
 
-        return "redirect:/";
+        return "redirect:/profile";
     }
     @PostMapping("/profile/updatePicture")
     public String updatePFP(@RequestParam String key){
