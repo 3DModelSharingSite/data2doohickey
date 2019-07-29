@@ -312,6 +312,33 @@ button{
     background-color: transparent;
 }
 
+/*EDIT PROFILE PAGE*/
+
+.edit-header {
+    font-size: 20px;
+}
+
+.edit-profile-page {
+    background-color: var(--white-1);
+    border-radius: 5px;
+}
+
+.edit-profile-btn {
+    border-radius: 5px;
+    padding-left: 15px;
+    padding-right: 15px;
+    width: 90%;
+    color: var(--white-1);
+    border-color: var(--white-1);
+    background-color: var(--blue-1);
+}
+
+.edit-profile-btn:hover {
+    color: var(--blue-1);
+    border-color: var(--blue-1);
+    background-color: transparent;
+}
+
 /*SHOW PAGE*/
 
 .view-stl-model-heading {

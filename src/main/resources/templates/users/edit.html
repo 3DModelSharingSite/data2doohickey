@@ -8,20 +8,21 @@
         <script>
             const client = filestack.init('AsZ4wkm4kSSCPWhIZYFqEz');
         </script>
-        <main class="container-fluid w-50 pt-3">
-            <div class="card">
-                <div class="card-header">Edit your profile</div>
-                <div class="card-body">
+        <div id="particles-js"></div>
+        <main class="container-fluid w-50 pt-3 mb-7">
+            <div class="content-box edit-profile-page box-shadow-style">
+                <div class="content-header center-align font-heading-1 edit-header pt-4">Edit your profile</div>
+                <hr/>
+                <div class="card-body font-body-1">
                     <div class="col-12">
                         <form th:action="@{'/profile/'+${user.username}+'/edit'}" method="POST" th:object="${userDetails}">
-
                             <div class="form-group">
                                 <label for="location">Location</label>
-                                <input class="form-control" id="location" th:field="*{location}" />
+                                <input class="form-control box-shadow-style" id="location" th:field="*{location}"/>
                             </div>
                             <div class="form-group">
-                                <label for="location">Who are you?</label>
-                                <select class="form-control" th:field="*{classification}" id="classification">
+                                <label for="classification">Who are you?</label>
+                                <select class="form-control box-shadow-style" th:field="*{classification}" id="classification">
                                     <option value="0">Artist</option>
                                     <option value="1">Designer</option>
                                     <option value="2">Engineer</option>
@@ -33,10 +34,10 @@
                             </div>
                             <div class="form-group">
                                 <label for="bio">Bio</label>
-                                <textarea class="form-control" id="bio" rows="5" th:field="*{bio}"></textarea>
+                                <textarea class="form-control box-shadow-style" id="bio" rows="5" th:field="*{bio}"></textarea>
                             </div>
-                            <div class="row">
-                                <button type="submit" class="mx-auto btn btn-success">Save!</button>
+                            <div class="row mb-1">
+                                <button type="submit" class="mx-auto btn edit-profile-btn box-shadow-style">Save!</button>
                             </div>
                         </form>
                     </div>
