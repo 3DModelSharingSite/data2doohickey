@@ -71,7 +71,7 @@
                     <label for="description">Description</label>
                     <textarea class="form-control box-shadow-style" id="description" rows="4" th:field="*{description}"></textarea>
                 </div>
-                <div class="form-group">
+                <div class="form-group" th:if="${action != '/doohickeys/'+doohickey.id+'/edit'}">
                     <label for="tagsString">Tags</label>
                     <input class="form-control box-shadow-style" id="tagsString" th:field="*{tagsString}"/>
                     <small id="tagHelp" class="form-text text-muted">* tags must be separated by commas</small>
