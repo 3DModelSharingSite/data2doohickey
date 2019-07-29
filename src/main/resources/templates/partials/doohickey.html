@@ -21,7 +21,7 @@
                 </div>
                 <div class="justify">
                     by <h5 th:text="${doohickey.author.username}" th:data1="${doohickey.author.username}" th:onclick="location='/profile/'+(this.getAttribute('data1'))"></h5>
-                    <span class="item-date" th:datetime="${doohickey.created_at}"></span>
+                    <span class="item-date" th:datetime="${doohickey.created_at + ' UTC'}"></span>
                 </div>
             </div>
         </div>
