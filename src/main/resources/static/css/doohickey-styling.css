@@ -12,6 +12,7 @@ a{
 
 .doohickey {
     cursor: pointer;
+    opacity:0.8;
 }
 
 .doohickey:hover {
@@ -21,7 +22,7 @@ a{
     -o-transform: scale(1.003);
     transform: scale(1.003);
     transition: 0.2s ease;
-    opacity: 0.9;
+    opacity: 0.7;
 }
 .justify{
     display:flex;

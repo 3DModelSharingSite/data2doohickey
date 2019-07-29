@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=Comfortaa|Open+Sans|Playfair+Display|Raleway|Roboto&display=swap');
 
 *, :root {
-    --green-1: rgba(4, 167, 119, 0.65); /* #04A777 */
+    --green-1: linear-gradient(90deg,#444 0%,#222 100%); /* #04A777 */
     --green-2: rgba(134, 231, 184, 0.65); /* #86E7B8 */
     --blue-1: rgba(84, 242, 242, 0.65); /* #54F2F2 */
     --orange-1: rgba(252, 185, 125, 0.65); /* #FCB97D */
@@ -11,15 +11,17 @@
     --purple-1: rgba(125, 83, 222, 0.65); /* #7D53DE */
     --purple-2: rgba(172, 150, 221, 0.65); /* #AC96DD */
     --text-general: rgba(11, 28, 33, 0.65); /* #0B1C21 */
+    --bg-color1: rgb(151, 178, 200);
 }
 
 html, body {
     position: relative;
-    min-height: 100vh;
+    min-height: 90vh;
 }
 
 body {
     background: linear-gradient( #111 25%, #222 75%, #555 100%);
+    margin-bottom:100px;
 }
 
 footer {
@@ -41,8 +43,8 @@ a:hover {
 
 .dropdown:hover .dropdown-menu {
     display: block;
-    top: 95%;
-    left: -5px;
+    top:95%;
+    left:0px;
 }
 
 .font-heading-1 {
@@ -118,6 +120,12 @@ a.page-link {
 }
 
 /*MAIN NAVBAR*/
+.custom-toggler{
+    border-color:rgba(0,0,0,0.5);
+}
+.custom-toggler .navbar-toggler-icon {
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(0,0,0, 1)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
+}
 
 .navbar-expand-md {
     background-color: var(--white-background);
@@ -136,6 +144,12 @@ a.page-link {
     color: var(--green-1)
 }
 
+button{
+    color:var(--green-1);
+}
+.navbar-text:hover{
+    color:var(--purple-1);
+}
 .navbar-text {
     color: var(--text-general);
 }
@@ -494,4 +508,19 @@ a.page-link {
 
 .model-preview {
     align-content: center;
+}
+
+.about .item-footer{
+    -webkit-box-shadow: 0px 6px 15px 22px var(--bg-color1);
+    -moz-box-shadow: 0px 6px 15px 22px var(--bg-color1);
+    box-shadow: 0px 6px 15px 22px var(--bg-color1);
+}
+.about .item-footer-button{
+    bottom:-1px;
+    height:30px;
+    margin-bottom:10px;
+    color:var(--text-general);
+}
+.about .item-body{
+    bottom:30px;
 }

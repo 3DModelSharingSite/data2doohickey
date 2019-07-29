@@ -161,7 +161,7 @@ public class User {
 
     public String getPhotoURL() {
         if(photoURL == null){
-            return "/static/icons/user-regular.svg";
+            return "/icons/user-regular.svg";
         }
         return "https://data2doohickey.s3.us-east-2.amazonaws.com/"+photoURL;
     }
