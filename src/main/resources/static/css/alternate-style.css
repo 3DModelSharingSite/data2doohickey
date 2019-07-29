@@ -20,6 +20,7 @@ html, body {
 
 body {
     background: linear-gradient( #111 25%, #222 75%, #555 100%);
+    margin-bottom:100px;
 }
 
 footer {
