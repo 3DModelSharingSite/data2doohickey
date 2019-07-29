@@ -431,23 +431,32 @@ a.page-link {
     padding-right: 15px;
     padding-bottom: 5px;
     width: 50%;
+    color: var(--white-1);
+    border-color: var(--white-1);
+    background-color: var(--green-1);
+}
+
+.save-changes-btn:hover {
     color: var(--green-1);
     border-color: var(--green-1);
     background-color: transparent;
 }
 
-.save-changes-btn:hover {
-    color: var(--blue-1);
-    border-color: var(--blue-1);
-    background-color: transparent;
-}
-
 .upload-model-btn {
-
+    border-radius: 5px;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-bottom: 5px;
+    width: 50%;
+    color: var(--white-1);
+    border-color: var(--white-1);
+    background-color: var(--blue-1);
 }
 
 .upload-model-btn:hover {
-
+    color: var(--blue-1);
+    border-color: var(--blue-1);
+    background-color: transparent;
 }
 
 .stl-preview {
