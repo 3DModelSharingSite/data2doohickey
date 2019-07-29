@@ -84,63 +84,54 @@
 <!--</html>-->
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-    <head>
+<head>
+    <th:block th:replace="partials/head :: head('Home')"/>
+</head>
+<div th:replace="partials/navbar :: nav"></div>
+<body>
 
-    <meta charset="UTF-8">
-        <th:block th:replace="partials/head :: head('Home')"/>
-    </head>
-        <div th:replace="partials/navbar :: nav"></div>
-    <body>
-    <div id="particles-js"></div>
-    <main role="main"></main>
-    <div>
-    <div>
-        <div>
-            <div>
-                <img src="" alt="">
+<div id="particles-js"></div>
+<main role="main" class="mx-auto">
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 mx-auto center-align my-3">
+            <img src="img/translogo7.png" alt="" style="height: 600px"/>
+        </div>
+    </div>
+    <div class="row mx-auto">
+        <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-4 mb-2">
+            <div class="homepage-info box-shadow-style">
+                <div class="center-align">
+                    <img class="homepage-icons mt-1 mb-2" height="100" width="100" alt="social icon" src="icons/icons8-safety-collection-place-500.png"/>
+                </div>
+                <p>
+                    Show us what you made: the world wants to see it! 3D modeling and printing is still in its infancy. The more you share your work, the more your designs inspire others, get printed, and do awesome things.
+                </p>
             </div>
-            <div>
-                <h1>Still using an tired old ...? </h1>
-                <h3>Try Data2Doohickey</h3>
-                <h5 >Learn More About Us <a href=""><span class="arrow-down; ratio: 2.0"><svg width="40" height="40" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" data-svg="arrow-down"><polygon points="10.5,16.08 5.63,10.66 6.37,10 10.5,14.58 14.63,10 15.37,10.66"></polygon><line fill="none" stroke="#000" x1="10.5" y1="4" x2="10.5" y2="15"></line></svg></span></a>
-                </h5>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-4 mb-2">
+            <div class="homepage-info box-shadow-style">
+                <div class="center-align">
+                    <img class="homepage-icons mt-1 mb-2" height="100" width="100" alt="search icon" src="icons/icons8-search-500.png"/>
+                </div>
+                <p>
+                    Our community has uploaded over 100 3D models, and that number is growing every day. Check out all the incredible objects people have created, and get inspired to make your own!
+                </p>
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-4 mb-2">
+            <div class="homepage-info box-shadow-style">
+                <div class="center-align">
+                    <img class="homepage-icons mt-1 mb-2" height="100" width="100" alt="download icon" src="icons/icons8-download-from-the-cloud-500.png"/>
+                </div>
+                <p>
+                    If you see a model you like in our library feel free to download the file.
+                </p>
             </div>
         </div>
     </div>
-</div>
-<div class="login-content-box">
-    <h1 style="text-align: center">Data2Doohickeys Features</h1>
-    <div>
-        <div>
-            <div class="">
-                <h3>1. Share</h3>
-                <img src="" alt="">
-            </div>
-            <div class="">
-                <h3>2. Discover</h3>
-                <img src="" alt="">
-            </div>
-            <div class="">
-                <h3>3. Download</h3>
-                <img src="" alt="">
-            </div>
-        </div>
-    </div>
-</div>
+</main>
 
-<div>
-    <div>
-        <div>
-            <div>
-                <img src="" alt="">
-            </div>
-            <div class="">
-                <h2 class="">Data2Doohickey | Modern ... System</h2>
-                <p class="">Data2Doohickey is a lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. </p>
-            </div>
-        </div>
-    </div>
-</div>
-    <nav th:replace="partials/footer :: footer"></nav>
-    <th:block th:include="partials/scripts :: scripts" />
-    </body></html>
+<nav th:replace="partials/footer :: footer"></nav>
+<th:block th:include="partials/scripts :: scripts"/>
+</body>
+</html>
