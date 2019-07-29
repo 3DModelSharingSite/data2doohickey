@@ -13,6 +13,7 @@ import java.util.List;
 @Repository
 public interface DoohickeyRepository extends CrudRepository<Doohickey, Long> {
     Page<Doohickey> findByTitleIsLikeOrDescriptionIsLikeOrderByIdDesc(String term,String term2,Pageable pageable);
+    Page<Doohickey> findDistinctByTitleIsLikeOrDescriptionIsLikeOrTags_NameIsLikeOrderByIdDesc(String term,String term2,String term3,Pageable pageable);
     Page<Doohickey> findByAuthorOrderByIdDesc(User user,Pageable pageable);
     Page<Doohickey> findByUsersFavoritedOrderByIdDesc(User user, Pageable pageable);
 }
