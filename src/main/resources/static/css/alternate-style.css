@@ -621,7 +621,13 @@ a.page-link {
 @media only screen and (max-width: 375px) {
 
     .edit-create-page {
+        width: 80%;
+        margin: auto;
+    }
+
+    .edit-profile-page {
         width: 90%;
+        margin: auto;
     }
 
     .show-page {
@@ -639,6 +645,12 @@ a.page-link {
 }
 
 @media only screen and (min-width: 768px) {
+
+    .edit-profile-page {
+        width: 75%;
+        margin: auto;
+    }
+
     .show-page {
         /*margin: 5px 25px 5px 25px;*/
         width: 75%;
